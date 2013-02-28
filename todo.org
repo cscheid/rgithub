@@ -1,0 +1,16 @@
+* TODO Sanitize and escape all parameters in api.request
+** Investigate what the requirements are here
+* TODO Github APIs:
+** http://developer.github.com/v3/gists/
+*** Missing create.gist and edit.gist
+** http://developer.github.com/v3/activity/ 
+** http://developer.github.com/v3/git/
+** http://developer.github.com/v3/issues/
+** http://developer.github.com/v3/orgs/
+** http://developer.github.com/v3/pulls/
+** http://developer.github.com/v3/repos/
+** http://developer.github.com/v3/users/
+** http://developer.github.com/v3/search/
+** http://developer.github.com/v3/gitignore/
+** http://developer.github.com/v3/markdown/
+

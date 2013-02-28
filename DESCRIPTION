@@ -7,5 +7,5 @@ Author: Who wrote it
 Maintainer: Carlos Scheidegger <cscheid@research.att.com>
 Description: Provides access to the Github v3 API
 License: EPL
-Depends: httr, Rook, stringr
+Depends: httr, Rook, stringr, rjson
 
