@@ -20,17 +20,46 @@ web.login <- function(client_id, client_secret=NULL,
   ctx
 }
 
-api.request <- function(ctx, req, method, expect_code=200)
+build.url <- function(ctx, req, params)
 {
-  # FIXME this path needs sanitization (names can't include slashes, etc)
+  # FIXME this path needs sanitization (some names can't include slashes, etc)
+  # NB if you ever fix this, the *.reference calls in data.R will need attention, since reference include slashes that are passed unescaped to the github API
   
   path = str_c(req, collapse='/')
-  url = modify_url(ctx$api_url, path=path,
+
+  query <- params
+  query$client_id <- ctx$client_id
+  query$client_secret <- ctx$client_secret
+  query$access_token <- ctx$token[[1]]
+  
+  modify_url(ctx$api_url, path=path,
     query=list(client_id=ctx$client_id, client_secret=ctx$client_secret, access_token=ctx$token[[1]]))
-  r=method(url, accept_json())
 }
 
-api.get.request <- function(ctx, req, expect_code=200) api.request(ctx, req, GET, expect_code)
-api.put.request <- function(ctx, req, expect_code) api.request(ctx, req, PUT, expect_code)
-api.delete.request <- function(ctx, req, expect_code) api.request(ctx, req, DELETE, expect_code)
+api.request <- function(ctx, req, method, expect_code=200, params=list(), config=accept_json())
+{
+  r = method(build.url(ctx, req, params), config=config)
+  stopifnot(r$status_code %in% expect_code)
+  r
+}
 
+# body can either be a json object (an R list of the right type), a length-1 character, or NULL
+api.request.with.body <- function(ctx, req, method, expect_code=200, params=list(), config=accept_json(), body=NULL)
+{
+  if (is.list(body))
+    body=toJSON(body)
+  else if (is.character(body))
+    stopifnot(length(body) == 1)
+  else
+    stopifnot(is.null(body))
+  
+  r = method(build.url(ctx, req, params), config=config, body=body)
+  stopifnot(r$status_code %in% expect_code)
+  r
+}
+
+api.get.request    <- function(ctx, req, expect_code=200, params=list(), config=accept_json()) api.request(ctx, req, GET, expect_code, params, config)
+api.delete.request <- function(ctx, req, expect_code=204, params=list(), config=accept_json()) api.request(ctx, req, DELETE, expect_code, params, config)
+api.put.request    <- function(ctx, req, expect_code=200, params=list(), config=accept_json(), body=NULL) api.request.with.body(ctx, req, PUT, expect_code, params, config, body)
+api.patch.request  <- function(ctx, req, expect_code=200, params=list(), config=accept_json(), body=NULL) api.request.with.body(ctx, req, PATCH, expect_code, params, config, body)
+api.post.request   <- function(ctx, req, expect_code=200, params=list(), config=accept_json(), body=NULL) api.request.with.body(ctx, req, POST, expect_code, params, config, body)
