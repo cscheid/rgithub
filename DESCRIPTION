@@ -1,0 +1,11 @@
+Package: github
+Type: Package
+Title: github API
+Version: 0.0.1
+Date: 2013-02-28
+Author: Who wrote it
+Maintainer: Carlos Scheidegger <cscheid@research.att.com>
+Description: Provides access to the Github v3 API
+License: EPL
+Depends: httr, Rook, stringr
+
