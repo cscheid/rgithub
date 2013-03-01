@@ -32,13 +32,14 @@ build.url <- function(ctx, req, params)
   query$client_secret <- ctx$client_secret
   query$access_token <- ctx$token[[1]]
   
-  modify_url(ctx$api_url, path=path,
-    query=list(client_id=ctx$client_id, client_secret=ctx$client_secret, access_token=ctx$token[[1]]))
+  modify_url(ctx$api_url, path=path, query=query)
 }
 
 api.request <- function(ctx, req, method, expect.code=200, params=list(), config=accept_json())
 {
-  r = method(build.url(ctx, req, params), config=config)
+  url <- build.url(ctx, req, params)
+  cat(paste(url, "\n"))
+  r <- method(url, config=config)
   stopifnot(r$status_code %in% expect.code)
   r
 }
@@ -52,8 +53,9 @@ api.request.with.body <- function(ctx, req, method, expect.code=200, params=list
     stopifnot(length(body) == 1)
   else
     stopifnot(is.null(body))
-  
-  r = method(build.url(ctx, req, params), config=config, body=body)
+  url <- build.url(ctx, req, params)
+  cat(paste(url, "\n"))
+  r = method(url, config=config, body=body)
   stopifnot(r$status_code %in% expect.code)
   r
 }
