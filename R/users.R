@@ -1,1 +1,26 @@
-user <- function(ctx) api.get.request(ctx, "user")
+user <- function(ctx, user) api.get.request(ctx, c("users", user))
+myself <- function(ctx) api.get.request(ctx, "user")
+update.myself <- function(ctx, content) api.patch.request(ctx, "user", body=content)
+users <- function(ctx, ...) api.get.request(ctx, c("users"), params=.rest(...))
+
+# emails
+my.emails <- function(ctx) api.get.request(ctx, c("user", "emails"))
+add.emails <- function(ctx, content) api.post.request(ctx, c("user", "emails"), body=content)
+delete.emails <- function(ctx, content) api.delete.request(ctx, c("user", "emails"), body=content)
+
+# followers/following
+user.followers <- function(ctx, user) api.get.request(ctx, c("users", user, "followers"))
+my.followers <- function(ctx) api.get.request(ctx, c("user", "followers"))
+user.following <- function(ctx, user) api.get.request(ctx, c("users", user, "following"))
+my.following <- function(ctx) api.get.request(ctx, c("user", "following"))
+am.following.user <- function(ctx, user) api.get.request(ctx, c("user", "following", user), expect.code=c(204, 404))
+follow.user <- function(ctx, user) api.put.request(ctx, c("user", "following", user), expect.code=204)
+unfollow.user <- function(ctx, user) api.delete.request(ctx, c("user", "following", user), expect.code=204)
+
+# keys
+user.keys <- function(ctx, user) api.get.request(ctx, c("users", user, "keys"))
+my.keys <- function(ctx) api.get.request(ctx, c("user", "keys"))
+key <- function(ctx, id) api.get.request(ctx, c("user", "keys", id))
+create.key <- function(ctx, content) api.post.request(ctx, c("user", "keys"), body=content)
+update.key <- function(ctx, id, content) api.patch.request(ctx, c("user", "keys", id), body=content)
+delete.key <- function(ctx, id) api.delete.request(ctx, c("user", "keys"), body=content)

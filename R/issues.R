@@ -33,7 +33,7 @@ delete.label      <- function(ctx, owner, repo, name)          api.delete.reques
 issue.labels      <- function(ctx, owner, repo, issue.number)          api.get.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"))
 post.labels       <- function(ctx, owner, repo, issue.number, content) api.post.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), expect.code=200, body=content)
 delete.labels     <- function(ctx, owner, repo, issue.number, name)    api.delete.request(ctx, c("repos", owner, repo, "labels", issue.number, "labels", name))
-replace.labels    <- function(ctx, owner, repo, issue.number, content) api.put.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), expect.code=200, body=content)
+replace.labels    <- function(ctx, owner, repo, issue.number, content) api.put.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), body=content)
 delete.all.labels <- function(ctx, owner, repo, issue.number)          api.delete.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), body=content)
 
 milestone.labels <- function(ctx, owner, repo, milestone.number) api.get.request(ctx, c("repos", owner, repo, "milestones", milestone.number, "labels"))
