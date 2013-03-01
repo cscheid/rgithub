@@ -38,7 +38,6 @@ build.url <- function(ctx, req, params)
 api.request <- function(ctx, req, method, expect.code=200, params=list(), config=accept_json())
 {
   url <- build.url(ctx, req, params)
-  cat(paste(url, "\n"))
   r <- method(url, config=config)
   stopifnot(r$status_code %in% expect.code)
   r
@@ -54,7 +53,6 @@ api.request.with.body <- function(ctx, req, method, expect.code=200, params=list
   else
     stopifnot(is.null(body))
   url <- build.url(ctx, req, params)
-  cat(paste(url, "\n"))
   r = method(url, config=config, body=body)
   stopifnot(r$status_code %in% expect.code)
   r
