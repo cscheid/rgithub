@@ -14,16 +14,16 @@ get.all.references <- function(ctx, owner, repo, subnamespace=NULL) {
   else
     api.get.request(ctx, c("repos", owner, repo, "git", "refs", subnamespace))
 }
-create.reference <- function(ctx, owner, repo, content) api.post.request(ctx, c("repos", owner, repo, "git", "refs"), expect_code=201, body=content)
+create.reference <- function(ctx, owner, repo, content) api.post.request(ctx, c("repos", owner, repo, "git", "refs"), body=content)
 update.reference <- function(ctx, owner, repo, ref, content) api.patch.request(ctx, c("repos", owner, repo, "git", "refs", ref), body=content)
 delete.reference <- function(ctx, owner, repo, ref) api.delete.request(ctx, c("repos", owner, repo, "git", "refs", ref))
 
 # tags
 get.tag <- function(ctx, owner, repo, sha) api.get.request(ctx, c("repos", owner, repo, "git", "tags", sha))
-create.tag <- function(ctx, owner, repo, content) api.post.request(ctx, c("repos", owner, repo, "git", "tags"), expect_code=201, body=content)
+create.tag <- function(ctx, owner, repo, content) api.post.request(ctx, c("repos", owner, repo, "git", "tags"), body=content)
 
 # trees
 get.tree <- function(ctx, owner, repo, sha, ...) api.get.request(ctx, c("repos", owner, repo, "git", "trees", sha), params=.rest(...))
-create.tree <- function(ctx, owner, repo, content) api.post.request(ctx, c("repos", owner, repo, "git", "trees"), expect_code=201, body=content)
+create.tree <- function(ctx, owner, repo, content) api.post.request(ctx, c("repos", owner, repo, "git", "trees"), body=content)
 
 

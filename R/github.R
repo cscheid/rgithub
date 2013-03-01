@@ -62,4 +62,4 @@ api.get.request    <- function(ctx, req, expect_code=200, params=list(), config=
 api.delete.request <- function(ctx, req, expect_code=204, params=list(), config=accept_json()) api.request(ctx, req, DELETE, expect_code, params, config)
 api.put.request    <- function(ctx, req, expect_code=200, params=list(), config=accept_json(), body=NULL) api.request.with.body(ctx, req, PUT, expect_code, params, config, body)
 api.patch.request  <- function(ctx, req, expect_code=200, params=list(), config=accept_json(), body=NULL) api.request.with.body(ctx, req, PATCH, expect_code, params, config, body)
-api.post.request   <- function(ctx, req, expect_code=200, params=list(), config=accept_json(), body=NULL) api.request.with.body(ctx, req, POST, expect_code, params, config, body)
+api.post.request   <- function(ctx, req, expect_code=201, params=list(), config=accept_json(), body=NULL) api.request.with.body(ctx, req, POST, expect_code, params, config, body)
