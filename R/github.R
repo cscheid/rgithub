@@ -4,10 +4,16 @@ require(stringr)
 require(rjson)
 
 web.login <- function(client_id, client_secret=NULL,
-                      base_url = "https://github.com")
+                      base_url = "https://github.com", scopes=NULL)
 {
+  auth_url <- NULL
+  if (is.null(scopes))
+    auth_url <- modify_url(base_url, path="login/oauth")
+  else
+    auth_url <- modify_url(base_url, path="login/oauth", query=list(scope=str_c(scopes, collapse=',')))
+  cat(str_c(auth_url, "\n"))
   github <- oauth_endpoint(NULL, "authorize", "access_token",
-                           base_url = modify_url(base_url, path="login/oauth"))
+                           base_url = auth_url)
   # as in httr, if client_secret is not given,
   # the environment variable GITHUB_CONSUMER_SECRET will be
   # used.
@@ -53,8 +59,11 @@ api.request.with.body <- function(ctx, req, method, expect.code=200, params=list
   else
     stopifnot(is.null(body))
   url <- build.url(ctx, req, params)
+  cat(url)
+  cat(body)
+  
   r = method(url, config=config, body=body)
-  stopifnot(r$status_code %in% expect.code)
+  ## stopifnot(r$status_code %in% expect.code)
   r
 }
 

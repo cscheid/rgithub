@@ -26,11 +26,12 @@ with it.
 To log in, you will need the Application Client ID and Secret, and you
 will call the following function in your R script:
 
-    > ctx = web.login(client.id, client.secret)
+    > ctx = web.login(client.id, client.secret, scopes=c("gist"))
 
 This will open a web browser where the caller of the R script
 (presumably, you) will be asked to type their Github username and
-password.
+password. Give more scopes to allow the bindings to do more things ([more
+on oAuth scopes](http://developer.github.com/v3/oauth/#scopes)).
 
 ### Remote operation (say, a Rook server asking for user credentials)
 
@@ -90,4 +91,4 @@ When the Github API specifies extra parameters, such as when [listing repositori
 * Keep track of rate limits
 * Handle event query rate limits automatically, honor etags infrastructure to save calls
 * Handle notification quer rate limits automatically, honor Last-modified infrastructure to save calls
-* oAuth scopes
+
