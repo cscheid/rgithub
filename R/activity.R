@@ -32,9 +32,9 @@ unstar.repository            <- function(ctx, owner, repo) api.delete.request(ct
 
 # watching
 # NB http://developer.github.com/changes/2012-9-5-watcher-api/
-watchers <- function(ctx, owner, repo) api.get.request(ctx, c("repos", owner, repo, "subscribers"))
-repositories.watched.by.user <- function(ctx, user) api.get.request(ctx, c("users", user, "subscriptions"))
-repositories.watched.by.me   <- function(ctx,) api.get.request(ctx, c("user", "subscriptions"))
-repository.subscription <- function(ctx, owner, repo) api.get.request(ctx, c("repos", owner, repo, "subscription"))
-set.repository.subscription <- function(ctx, owner, repo, ...) api.put.request(ctx, c("repos", owner, repo, "subscription"), params=.rest(...))
-unset.repository.subscription <- function(ctx, owner, repo) api.delete.request(ctx, c("repos", owner, repo, "subscription"))
+watchers                      <- function(ctx, owner, repo)      api.get.request(ctx, c("repos", owner, repo, "subscribers"))
+repositories.watched.by.user  <- function(ctx, user)             api.get.request(ctx, c("users", user, "subscriptions"))
+repositories.watched.by.me    <- function(ctx,)                  api.get.request(ctx, c("user", "subscriptions"))
+repository.subscription       <- function(ctx, owner, repo)      api.get.request(ctx, c("repos", owner, repo, "subscription"))
+set.repository.subscription   <- function(ctx, owner, repo, ...) api.put.request(ctx, c("repos", owner, repo, "subscription"), params=.rest(...))
+unset.repository.subscription <- function(ctx, owner, repo)      api.delete.request(ctx, c("repos", owner, repo, "subscription"))
