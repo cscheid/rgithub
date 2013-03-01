@@ -5,7 +5,7 @@ organization.issues <- function(ctx, org, ...) api.get.request(ctx, c("orgs", or
 repository.issues   <- function(ctx, owner, repo, ...) api.get.request(ctx, c("repos", owner, repo, "issues"), params=.rest(...))
 
 create.issue <- function(ctx, owner, repo, content) api.post.request(ctx, c("repos", owner, repo, "issues"), body=content)
-edit.issue <- function(ctx, owner, repo, number, content) api.patch.request(ctx, c("repos", owner, repo, "issues", number), body=content)
+update.issue <- function(ctx, owner, repo, number, content) api.patch.request(ctx, c("repos", owner, repo, "issues", number), body=content)
 
 # assignees
 assignees <- function(ctx, owner, repo) api.get.request(ctx, c("repos", owner, repo, "assignees"))
@@ -15,7 +15,7 @@ is.assignee <- function(ctx, owner, repo, assignee) api.get.request(ctx, c("repo
 issue.comments <- function(ctx, owner, repo, number, ...) api.get.request(ctx, c("repos", owner, repo, "issues", number, "comments"), params=.rest(...))
 issue.comment <- function(ctx, owner, repo, issue.number, comment.number) api.get.request(ctx, c("repos", owner, repo, "issues", issue.number, "comments", comment.number))
 create.issue.comment <- function(ctx, owner, repo, issue.number, content) api.post.request(ctx, c("repos", owner, repo, "issues", issue.number, "comments"), body=content)
-edit.issue.comment <- function(ctx, owner, repo, issue.number, comment.number, content) api.patch.request(ctx, c("repos", owner, repo, "issues", issue.number, "comments", comment.number), body=content)
+update.issue.comment <- function(ctx, owner, repo, issue.number, comment.number, content) api.patch.request(ctx, c("repos", owner, repo, "issues", issue.number, "comments", comment.number), body=content)
 delete.issue.comment <- function(ctx, owner, repo, issue.number, comment.number) api.delete.request(ctx, c("repos", owner, repo, "issues", issue.number, "comments", comment.number))
 
 # events
