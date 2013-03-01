@@ -16,7 +16,7 @@ web.login <- function(client_id, client_secret=NULL,
   github_sig <- sign_oauth2.0(github_token$access_token)
   api_url <- modify_url(base_url, hostname=str_c("api.", parse_url(base_url)$hostname))
   ctx <- list(app=app, token=github_token, sig=github_sig, api_url=api_url, base_url=base_url, client_secret=client_secret, client_id=client_id, etags=new.env(parent=emptyenv()))
-  ctx$user <- myself(ctx)
+  ctx$user <- get.myself(ctx)
   ctx
 }
 
