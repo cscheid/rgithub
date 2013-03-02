@@ -26,7 +26,7 @@ unset.thread.notifications.subscription <- function(ctx, id)               api.d
 get.stargazers                   <- function(ctx, owner, repo) api.get.request(ctx, c("repos", owner, repo, "stargazers"))
 get.repositories.starred.by.user <- function(ctx, user, ...)   api.get.request(ctx, c("users", user, "starred"), params=.rest(...))
 get.repositories.starred.by.me   <- function(ctx, ...)         api.get.request(ctx, c("user", "starred"), params=.rest(...))
-is.repository.starred.by.me      <- function(ctx, owner, repo) api.get.request(ctx, c("user", "starred", owner, repo), expect.code=c(204, 404))
+is.repository.starred.by.me      <- function(ctx, owner, repo) api.test.request(ctx, c("user", "starred", owner, repo))
 star.repository                  <- function(ctx, owner, repo) api.put.request(ctx, c("user", "starred", owner, repo), expect.code=204)
 unstar.repository                <- function(ctx, owner, repo) api.delete.request(ctx, c("user", "starred", owner, repo), expect.code=204)
 

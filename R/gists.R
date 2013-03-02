@@ -3,7 +3,7 @@ get.user.gists <- function(ctx, user)    api.get.request   (ctx, c("users", user
 get.gist       <- function(ctx, id)      api.get.request   (ctx, c("gists", id))
 star.gist      <- function(ctx, id)      api.put.request   (ctx, c("gists", id, "star"), expect.code=204)
 unstar.gist    <- function(ctx, id)      api.delete.request(ctx, c("gists", id, "star"))
-is.starred     <- function(ctx, id)      api.get.request   (ctx, c("gists", id, "star"), expect.code=c(204, 404))
+is.starred     <- function(ctx, id)      api.test.request  (ctx, c("gists", id, "star"))
 fork.gist      <- function(ctx, id)      api.post.request  (ctx, c("gists", id, "forks"))
 delete.gist    <- function(ctx, id)      api.delete.request(ctx, c("gists", id))
 create.gist    <- function(ctx, content) api.post.request  (ctx, c("gists"), body=content)

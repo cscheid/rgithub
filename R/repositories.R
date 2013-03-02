@@ -16,7 +16,7 @@ delete.repository              <- function(ctx, owner, repo)          api.delete
 
 # collaborators
 get.repository.collaborators   <- function(ctx, owner, repo)       api.get.request(ctx, c("repos", owner, repo, "collaborators"))
-is.repository.collaborator     <- function(ctx, owner, repo, user) api.get.request(ctx, c("repos", owner, repo, "collaborators", user), expect.code=c(204, 404))
+is.repository.collaborator     <- function(ctx, owner, repo, user) api.test.request(ctx, c("repos", owner, repo, "collaborators", user))
 add.repository.collaborator    <- function(ctx, owner, repo, user) api.put.request(ctx, c("repos", owner, repo, "collaborators", user), expect.code=204)
 delete.repository.collaborator <- function(ctx, owner, repo, user) api.delete.request(ctx, c("repos", owner, repo, "collaborators", user))
 

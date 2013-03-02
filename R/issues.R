@@ -8,7 +8,7 @@ update.issue <- function(ctx, owner, repo, number, content) api.patch.request(ct
 
 # assignees
 get.assignees <- function(ctx, owner, repo) api.get.request(ctx, c("repos", owner, repo, "assignees"))
-is.assignee   <- function(ctx, owner, repo, assignee) api.get.request(ctx, c("repos", owner, repo, "assignees", assignee), expect.code=c(204, 404))
+is.assignee   <- function(ctx, owner, repo, assignee) api.test.request(ctx, c("repos", owner, repo, "assignees", assignee))
 
 # comments
 get.issue.comments <- function(ctx, owner, repo, number, ...) api.get.request(ctx, c("repos", owner, repo, "issues", number, "comments"), params=.rest(...))

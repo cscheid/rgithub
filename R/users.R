@@ -13,7 +13,7 @@ get.user.followers <- function(ctx, user) api.get.request(ctx, c("users", user, 
 get.my.followers   <- function(ctx)       api.get.request(ctx, c("user", "followers"))
 get.user.following <- function(ctx, user) api.get.request(ctx, c("users", user, "following"))
 get.my.following   <- function(ctx)       api.get.request(ctx, c("user", "following"))
-am.following.user  <- function(ctx, user) api.get.request(ctx, c("user", "following", user), expect.code=c(204, 404))
+am.following.user  <- function(ctx, user) api.test.request(ctx, c("user", "following", user))
 follow.user        <- function(ctx, user) api.put.request(ctx, c("user", "following", user), expect.code=204)
 unfollow.user      <- function(ctx, user) api.delete.request(ctx, c("user", "following", user), expect.code=204)
 

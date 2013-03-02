@@ -63,7 +63,7 @@ api.request.with.body <- function(ctx, req, method, expect.code=200, params=list
   cat(body)
   
   r = method(url, config=config, body=body)
-  ## stopifnot(r$status_code %in% expect.code)
+  stopifnot(r$status_code %in% expect.code)
   r
 }
 
@@ -72,3 +72,9 @@ api.delete.request <- function(ctx, req, expect.code=204, params=list(), config=
 api.put.request    <- function(ctx, req, expect.code=200, params=list(), config=accept_json(), body=NULL) api.request.with.body(ctx, req, PUT, expect.code, params, config, body)
 api.patch.request  <- function(ctx, req, expect.code=200, params=list(), config=accept_json(), body=NULL) api.request.with.body(ctx, req, PATCH, expect.code, params, config, body)
 api.post.request   <- function(ctx, req, expect.code=201, params=list(), config=accept_json(), body=NULL) api.request.with.body(ctx, req, POST, expect.code, params, config, body)
+
+api.test.request <- function(ctx, path)
+{
+  r=api.get.request(ctx, path, expect.code=c(204, 404))
+  r$status == 204
+}

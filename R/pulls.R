@@ -4,7 +4,7 @@ create.pull.request      <- function(ctx, owner, repo, content)     api.post.req
 update.pull.request      <- function(ctx, owner, repo, id, content) api.patch.request(ctx, c("repos", owner, repo, "pulls", id), body=content)
 get.pull.request.commits <- function(ctx, owner, repo, id)          api.get.request(ctx, c("repos", owner, repo, "pulls", id, "commits"))
 get.pull.request.files   <- function(ctx, owner, repo, id)          api.get.request(ctx, c("repos", owner, repo, "pulls", id, "files"))
-is.pull.request.merged   <- function(ctx, owner, repo, id)          api.get.request(ctx, c("repos", owner, repo, "pulls", id, "merge"), expect.code=c(204, 404))
+is.pull.request.merged   <- function(ctx, owner, repo, id)          api.test.request(ctx, c("repos", owner, repo, "pulls", id, "merge"))
 merge.pull.request       <- function(ctx, owner, repo, id, ...)     api.put.request(ctx, c("repos", owner, repo, "pulls", id, "merge"), params=.rest(...))
 
 # comments
