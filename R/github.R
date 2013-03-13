@@ -18,11 +18,17 @@ web.login <- function(client_id, client_secret=NULL,
   # the environment variable GITHUB_CONSUMER_SECRET will be
   # used.
   app <- oauth_app("github", client_id, client_secret)
+  client_secret <- app$secret
   github_token <- oauth2.0_token(github, app)
-  github_sig <- sign_oauth2.0(github_token$access_token)
   api_url <- modify_url(base_url, hostname=str_c("api.", parse_url(base_url)$hostname))
-  ctx <- list(app=app, token=github_token, sig=github_sig, api_url=api_url, base_url=base_url, client_secret=client_secret, client_id=client_id, etags=new.env(parent=emptyenv()))
-  ctx$user <- get.myself(ctx)
+  rgithub.context.from.token(api_url, client_id, client_secret, github_token)
+}
+
+# use this if you somehow already have obtained the access token
+rgithub.context.from.token <- function(url, client_id, client_secret, access_token)
+{
+  ctx <- list(token=access_token, api_url=url, client_secret=client_secret, token=access_token, client_id=client_id, etags=new.env(parent=emptyenv()))
+  ctx$user <- content(get.myself(ctx))
   ctx
 }
 
