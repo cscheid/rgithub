@@ -51,7 +51,7 @@ api.request <- function(ctx, req, method, expect.code=200, params=list(), config
 {
   url <- build.url(ctx, req, params)
   r <- method(url, config=config)
-  stopifnot(r$status_code %in% expect.code)
+  # stopifnot(r$status_code %in% expect.code)
   r
 }
 
