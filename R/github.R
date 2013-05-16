@@ -50,11 +50,14 @@ build.url <- function(ctx, req, params)
 api.request <- function(ctx, req, method, expect.code=200, params=list(), config=accept_json())
 {
   url <- build.url(ctx, req, params)
+  #fix for http://developer.github.com/changes/2013-04-24-user-agent-required/
+  config<-c(config, user_agent(getOption("HTTPUserAgent")))
   r <- method(url, config=config)
-  stopifnot(r$status_code %in% expect.code)
+  if(!r$status_code %in% expect.code)
+    #meanigful error for API, to manage future API changes
+    stop(paste("Unexpected Github API response - \n",r), call.=FALSE)
   r
 }
-
 # body can either be a json object (an R list of the right type), a length-1 character, or NULL
 api.request.with.body <- function(ctx, req, method, expect.code=200, params=list(), config=accept_json(), body=NULL)
 {
