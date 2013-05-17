@@ -1,5 +1,5 @@
 get.user      <- function(ctx, user)    api.get.request(ctx, c("users", user), config=add_headers("User-Agent" = "rcloud", Accept = "application/json"))
-get.myself    <- function(ctx)          api.get.request(ctx, "user")
+get.myself    <- function(ctx)          api.get.request(ctx, "user", config=add_headers("User-Agent" = "rcloud", Accept = "application/json"))
 update.myself <- function(ctx, content) api.patch.request(ctx, "user", body=content)
 get.users     <- function(ctx, ...)     api.get.request(ctx, c("users"), params=.rest(...))
 
