@@ -50,7 +50,7 @@ build.url <- function(ctx, req, params)
 api.request <- function(ctx, req, method, expect.code=200, params=list(), config=accept_json())
 {
   url <- build.url(ctx, req, params)
-  r <- method(url, config=config, add_headers("User-Agent" = "rcloud"))
+  r <- method(url, config=config)
   stopifnot(r$status_code %in% expect.code)
   r
 }
