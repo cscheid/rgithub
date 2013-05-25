@@ -73,7 +73,9 @@ api.request.with.body <- function(ctx, req, method, expect.code=200, params=list
   cat(body)
   
   r = method(url, config=config, body=body)
-  stopifnot(r$status_code %in% expect.code)
+  if(!r$status_code %in% expect.code)
+    #meaningful error for API, to manage future API changes
+    stop(paste("Unexpected Github API response - \n",r), call.=FALSE)
   r
 }
 

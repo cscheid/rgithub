@@ -7,7 +7,7 @@ is.starred     <- function(ctx, id)      api.test.request  (ctx, c("gists", id, 
 fork.gist      <- function(ctx, id)      api.post.request  (ctx, c("gists", id, "forks"))
 delete.gist    <- function(ctx, id)      api.delete.request(ctx, c("gists", id))
 create.gist    <- function(ctx, content) api.post.request  (ctx, c("gists"), body=content)
-update.gist    <- function(ctx, id)      api.patch.request (ctx, c("gists", id), body=content)
+update.gist    <- function(ctx, id, content)      api.patch.request (ctx, c("gists", id), body=content)
 
 # comments
 get.gist.comments   <- function(ctx, id) api.get.request(ctx, c("gists", id, "comments"))
