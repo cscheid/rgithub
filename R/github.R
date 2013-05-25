@@ -54,7 +54,7 @@ api.request <- function(ctx, req, method, expect.code=200, params=list(), config
   config<-c(config, user_agent(getOption("HTTPUserAgent")))
   r <- method(url, config=config)
   if(!r$status_code %in% expect.code)
-    #meanigful error for API, to manage future API changes
+    #meaningful error for API, to manage future API changes
     stop(paste("Unexpected Github API response - \n",r), call.=FALSE)
   r
 }
@@ -73,7 +73,9 @@ api.request.with.body <- function(ctx, req, method, expect.code=200, params=list
   cat(body)
   
   r = method(url, config=config, body=body)
-  stopifnot(r$status_code %in% expect.code)
+  if(!r$status_code %in% expect.code)
+    #meaningful error for API, to manage future API changes
+    stop(paste("Unexpected Github API response - \n",r), call.=FALSE)
   r
 }
 
