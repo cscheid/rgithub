@@ -44,6 +44,12 @@ build.url <- function(ctx, req, params)
   query$client_secret <- ctx$client_secret
   query$access_token <- ctx$token[[1]]
   
+  ## we cannot use modify_url directly, becasue it doesn't merge paths
+  ## so we have to do that by hand
+  api.path <- parse_url(ctx$api_url)$path
+  if (isTRUE(nzchar(api.path)))
+    path <- gsub('//+', '/', paste(api.path, path, sep='/'))
+
   modify_url(ctx$api_url, path=path, query=query)
 }
 
