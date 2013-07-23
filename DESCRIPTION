@@ -7,5 +7,20 @@ Author: Who wrote it
 Maintainer: Carlos Scheidegger <cscheid@research.att.com>
 Description: Provides access to the Github v3 API
 License: EPL
-Depends: httr, Rook, stringr, rjson
-
+Depends:
+    httr,
+    Rook,
+    stringr,
+    rjson
+Collate:
+    'activity.R'
+    'data.R'
+    'gists.R'
+    'github.R'
+    'issues.R'
+    'orgs.R'
+    'pulls.R'
+    'repositories.R'
+    'search.R'
+    'users.R'
+    'utils.R'
