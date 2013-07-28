@@ -36,14 +36,14 @@ build.url <- function(ctx, req, params)
 {
   # FIXME this path needs sanitization (some names can't include slashes, etc)
   # NB if you ever fix this, the *.reference calls in data.R will need attention, since reference include slashes that are passed unescaped to the github API
-  
+
   path = str_c(req, collapse='/')
 
   query <- params
   query$client_id <- ctx$client_id
   query$client_secret <- ctx$client_secret
   query$access_token <- ctx$token[[1]]
-  
+
   ## we cannot use modify_url directly, becasue it doesn't merge paths
   ## so we have to do that by hand
   api.path <- parse_url(ctx$api_url)$path
