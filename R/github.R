@@ -44,6 +44,12 @@ build.url <- function(ctx, req, params)
   query$client_secret <- ctx$client_secret
   query$access_token <- ctx$token[[1]]
   
+  ## we cannot use modify_url directly, becasue it doesn't merge paths
+  ## so we have to do that by hand
+  api.path <- parse_url(ctx$api_url)$path
+  if (isTRUE(nzchar(api.path)))
+    path <- gsub('//+', '/', paste(api.path, path, sep='/'))
+
   modify_url(ctx$api_url, path=path, query=query)
 }
 
@@ -54,7 +60,7 @@ api.request <- function(ctx, req, method, expect.code=200, params=list(), config
   config<-c(config, user_agent(getOption("HTTPUserAgent")))
   r <- method(url, config=config)
   if(!r$status_code %in% expect.code)
-    #meanigful error for API, to manage future API changes
+    #meaningful error for API, to manage future API changes
     stop(paste("Unexpected Github API response - \n",r), call.=FALSE)
   r
 }
@@ -71,7 +77,8 @@ api.request.with.body <- function(ctx, req, method, expect.code=200, params=list
   url <- build.url(ctx, req, params)
   cat(url)
   cat(body)
-  
+  #fix for http://developer.github.com/changes/2013-04-24-user-agent-required/
+  config<-c(config, user_agent(getOption("HTTPUserAgent")))
   r = method(url, config=config, body=body)
   if(!r$status_code %in% expect.code)
     #meaningful error for API, to manage future API changes
