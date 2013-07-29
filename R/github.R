@@ -27,8 +27,12 @@ web.login <- function(client_id, client_secret=NULL,
 rgithub.context.from.token <- function(url, client_id, client_secret, access_token)
 {
   ctx <- list(token=access_token, api_url=url, client_secret=client_secret, token=access_token, client_id=client_id, etags=new.env(parent=emptyenv()))
-  ctx$user <- content(get.myself(ctx))
-  ctx
+  r <- get.myself(ctx)
+  if(r$succeeded) {
+    ctx$user <- content(r$response)
+    list(succeeded = TRUE, content = ctx)
+  }
+  else list(succeeded = FALSE, content = content(r$response))
 }
 
 build.url <- function(ctx, req, params)
@@ -58,10 +62,7 @@ api.request <- function(ctx, req, method, expect.code=200, params=list(), config
   #fix for http://developer.github.com/changes/2013-04-24-user-agent-required/
   config<-c(config, user_agent(getOption("HTTPUserAgent")))
   r <- method(url, config=config)
-  if(!r$status_code %in% expect.code)
-    #meaningful error for API, to manage future API changes
-    stop(paste("Unexpected Github API response - \n",r), call.=FALSE)
-  r
+  list(succeeded = r$status_code %in% expect.code, response = r);
 }
 
 # body can either be a json object (an R list of the right type), a length-1 character, or NULL
@@ -79,10 +80,8 @@ api.request.with.body <- function(ctx, req, method, expect.code=200, params=list
   #fix for http://developer.github.com/changes/2013-04-24-user-agent-required/
   config<-c(config, user_agent(getOption("HTTPUserAgent")))
   r = method(url, config=config, body=body)
-  if(!r$status_code %in% expect.code)
-    #meaningful error for API, to manage future API changes
-    stop(paste("Unexpected Github API response - \n",r), call.=FALSE)
-  r
+  r <- method(url, config=config)
+  list(succeeded = r$status_code %in% expect.code, response = r);
 }
 
 api.get.request    <- function(ctx, req, expect.code=200, params=list(), config=accept_json()) api.request(ctx, req, GET, expect.code, params, config)
@@ -94,5 +93,9 @@ api.post.request   <- function(ctx, req, expect.code=201, params=list(), config=
 api.test.request <- function(ctx, path)
 {
   r=api.get.request(ctx, path, expect.code=c(204, 404))
-  r$status == 204
+
+  if(r$succeeded)
+    list(succeeded = TRUE, content = r$status == 204)
+  else
+    list(succeeded = FALSE, content = content(r$response))
 }
