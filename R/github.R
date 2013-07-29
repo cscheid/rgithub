@@ -80,7 +80,6 @@ api.request.with.body <- function(ctx, req, method, expect.code=200, params=list
   #fix for http://developer.github.com/changes/2013-04-24-user-agent-required/
   config<-c(config, user_agent(getOption("HTTPUserAgent")))
   r = method(url, config=config, body=body)
-  r <- method(url, config=config)
   list(succeeded = r$status_code %in% expect.code, response = r);
 }
 
