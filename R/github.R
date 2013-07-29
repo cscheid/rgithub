@@ -4,7 +4,7 @@ require(stringr)
 require(rjson)
 
 web.login <- function(client_id, client_secret=NULL,
-                      base_url = "https://github.com", scopes=NULL)
+                      base_url = "https://github.com", api_url = "https://api.github.com", scopes=NULL)
 {
   auth_url <- NULL
   if (is.null(scopes))
@@ -20,7 +20,6 @@ web.login <- function(client_id, client_secret=NULL,
   app <- oauth_app("github", client_id, client_secret)
   client_secret <- app$secret
   github_token <- oauth2.0_token(github, app)
-  api_url <- modify_url(base_url, hostname=str_c("api.", parse_url(base_url)$hostname))
   rgithub.context.from.token(api_url, client_id, client_secret, github_token)
 }
 
