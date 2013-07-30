@@ -11,7 +11,6 @@ web.login <- function(client_id, client_secret=NULL,
     auth_url <- modify_url(base_url, path="login/oauth")
   else
     auth_url <- modify_url(base_url, path="login/oauth", query=list(scope=str_c(scopes, collapse=',')))
-  cat(str_c(auth_url, "\n"))
   github <- oauth_endpoint(NULL, "authorize", "access_token",
                            base_url = auth_url)
   # as in httr, if client_secret is not given,
@@ -75,8 +74,6 @@ api.request.with.body <- function(ctx, req, method, expect.code=200, params=list
   else
     stopifnot(is.null(body))
   url <- build.url(ctx, req, params)
-  cat(url)
-  cat(body)
   #fix for http://developer.github.com/changes/2013-04-24-user-agent-required/
   config<-c(config, user_agent(getOption("HTTPUserAgent")))
   r = method(url, config=config, body=body)
