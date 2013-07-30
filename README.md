@@ -64,7 +64,7 @@ format used throughout's the api:
     > me = get.myself(ctx)
     > content(me)$public_repos
     [1] 17
-    
+
 The naming of the function calls is always meant to evoke an
 order. It starts with a verb and follows with the appropriate
 objects:

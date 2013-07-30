@@ -4,7 +4,7 @@ require(stringr)
 require(rjson)
 
 web.login <- function(client_id, client_secret=NULL,
-                      base_url = "https://github.com", scopes=NULL)
+                      base_url = "https://github.com", api_url = "https://api.github.com", scopes=NULL)
 {
   auth_url <- NULL
   if (is.null(scopes))
@@ -20,7 +20,6 @@ web.login <- function(client_id, client_secret=NULL,
   app <- oauth_app("github", client_id, client_secret)
   client_secret <- app$secret
   github_token <- oauth2.0_token(github, app)
-  api_url <- modify_url(base_url, hostname=str_c("api.", parse_url(base_url)$hostname))
   rgithub.context.from.token(api_url, client_id, client_secret, github_token)
 }
 
@@ -28,22 +27,26 @@ web.login <- function(client_id, client_secret=NULL,
 rgithub.context.from.token <- function(url, client_id, client_secret, access_token)
 {
   ctx <- list(token=access_token, api_url=url, client_secret=client_secret, token=access_token, client_id=client_id, etags=new.env(parent=emptyenv()))
-  ctx$user <- content(get.myself(ctx))
-  ctx
+  r <- get.myself(ctx)
+  if(r$ok) {
+    ctx$user <- r$content
+    list(ok = TRUE, content = ctx)
+  }
+  else list(ok = FALSE, content = content(r$response))
 }
 
 build.url <- function(ctx, req, params)
 {
   # FIXME this path needs sanitization (some names can't include slashes, etc)
   # NB if you ever fix this, the *.reference calls in data.R will need attention, since reference include slashes that are passed unescaped to the github API
-  
+
   path = str_c(req, collapse='/')
 
   query <- params
   query$client_id <- ctx$client_id
   query$client_secret <- ctx$client_secret
   query$access_token <- ctx$token[[1]]
-  
+
   ## we cannot use modify_url directly, becasue it doesn't merge paths
   ## so we have to do that by hand
   api.path <- parse_url(ctx$api_url)$path
@@ -59,10 +62,7 @@ api.request <- function(ctx, req, method, expect.code=200, params=list(), config
   #fix for http://developer.github.com/changes/2013-04-24-user-agent-required/
   config<-c(config, user_agent(getOption("HTTPUserAgent")))
   r <- method(url, config=config)
-  if(!r$status_code %in% expect.code)
-    #meaningful error for API, to manage future API changes
-    stop(paste("Unexpected Github API response - \n",r), call.=FALSE)
-  r
+  list(ok = r$status_code %in% expect.code, content = content(r), code = r$status_code);
 }
 
 # body can either be a json object (an R list of the right type), a length-1 character, or NULL
@@ -80,10 +80,7 @@ api.request.with.body <- function(ctx, req, method, expect.code=200, params=list
   #fix for http://developer.github.com/changes/2013-04-24-user-agent-required/
   config<-c(config, user_agent(getOption("HTTPUserAgent")))
   r = method(url, config=config, body=body)
-  if(!r$status_code %in% expect.code)
-    #meaningful error for API, to manage future API changes
-    stop(paste("Unexpected Github API response - \n",r), call.=FALSE)
-  r
+  list(ok = r$status_code %in% expect.code, content = content(r), code = r$status_code);
 }
 
 api.get.request    <- function(ctx, req, expect.code=200, params=list(), config=accept_json()) api.request(ctx, req, GET, expect.code, params, config)
@@ -95,5 +92,9 @@ api.post.request   <- function(ctx, req, expect.code=201, params=list(), config=
 api.test.request <- function(ctx, path)
 {
   r=api.get.request(ctx, path, expect.code=c(204, 404))
-  r$status == 204
+
+  if(r$ok)
+    list(ok = TRUE, content = r$code == 204)
+  else
+    list(ok = FALSE, content = content(r$response))
 }

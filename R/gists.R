@@ -15,4 +15,3 @@ get.gist.comment    <- function(ctx, gist.id, comment.id) api.get.request(ctx, c
 create.gist.comment <- function(ctx, gist.id, content) api.post.request(ctx, c("gists", gist.id, "comments"), body=content)
 update.gist.comment <- function(ctx, gist.id, comment.id, content) api.patch.request(ctx, c("gists", gist.id, "comments", comment.id), body=content)
 delete.gist.comment <- function(ctx, gist.id, comment.id) api.patch.request(ctx, c("gists", gist.id, "comments", comment.id))
-
