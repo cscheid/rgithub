@@ -25,15 +25,15 @@ repository.issue.event  <- function(ctx, owner, repo, event.number) api.get.requ
 # labels
 get.repository.labels <- function(ctx, owner, repo)                api.get.request(ctx, c("repos", owner, repo, "labels"))
 get.repository.label  <- function(ctx, owner, repo, name)          api.get.request(ctx, c("repos", owner, repo, "labels", name))
-create.label          <- function(ctx, owner, repo, content)       api.post.request(ctx, c("repos", owner, repo, "labels"), body=content)
-update.label          <- function(ctx, owner, repo, name, content) api.patch.request(ctx, c("repos", owner, repo, "labels", name), body=content)
-delete.label          <- function(ctx, owner, repo, name)          api.delete.request(ctx, c("repos", owner, repo, "labels", name))
+create.repository.label  <- function(ctx, owner, repo, content)       api.post.request(ctx, c("repos", owner, repo, "labels"), body=content)
+update.repository.label  <- function(ctx, owner, repo, name, content) api.patch.request(ctx, c("repos", owner, repo, "labels", name), body=content)
+delete.repository.label  <- function(ctx, owner, repo, name)          api.delete.request(ctx, c("repos", owner, repo, "labels", name))
 
 get.issue.labels     <- function(ctx, owner, repo, issue.number)          api.get.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"))
-add.labels           <- function(ctx, owner, repo, issue.number, content) api.post.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), expect.code=200, body=content)
-delete.labels        <- function(ctx, owner, repo, issue.number, name)    api.delete.request(ctx, c("repos", owner, repo, "labels", issue.number, "labels", name))
-replace.labels       <- function(ctx, owner, repo, issue.number, content) api.put.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), body=content)
-delete.all.labels    <- function(ctx, owner, repo, issue.number)          api.delete.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), body=content)
+add.issue.labels           <- function(ctx, owner, repo, issue.number, content) api.post.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), expect.code=200, body=content)
+delete.issue.labels        <- function(ctx, owner, repo, issue.number, name)    api.delete.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels", name))
+replace.issue.labels       <- function(ctx, owner, repo, issue.number, content) api.put.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), body=content)
+delete.all.issue.labels    <- function(ctx, owner, repo, issue.number)          api.delete.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), body=content)
 get.milestone.labels <- function(ctx, owner, repo, milestone.number)      api.get.request(ctx, c("repos", owner, repo, "milestones", milestone.number, "labels"))
 
 # milestones
