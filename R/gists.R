@@ -1,6 +1,6 @@
 get.my.gists   <- function(ctx, user)    api.get.request   (ctx, c("gists"))
 get.user.gists <- function(ctx, user)    api.get.request   (ctx, c("users", user, "gists"))
-get.gist       <- function(ctx, id)      api.get.request   (ctx, c("gists", id))
+get.gist       <- function(ctx, id, version = NULL)      api.get.request   (ctx, c("gists", id, version))
 star.gist      <- function(ctx, id)      api.put.request   (ctx, c("gists", id, "star"), expect.code=204)
 unstar.gist    <- function(ctx, id)      api.delete.request(ctx, c("gists", id, "star"))
 is.starred     <- function(ctx, id)      api.test.request  (ctx, c("gists", id, "star"))
