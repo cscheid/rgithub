@@ -1,4 +1,4 @@
-get.my.gists   <- function(ctx, user)    api.get.request   (ctx, c("gists"))
+get.my.gists   <- function(ctx)          api.get.request   (ctx, c("gists"))
 get.user.gists <- function(ctx, user)    api.get.request   (ctx, c("users", user, "gists"))
 get.gist       <- function(ctx, id, version = NULL)      api.get.request   (ctx, c("gists", id, version))
 star.gist      <- function(ctx, id)      api.put.request   (ctx, c("gists", id, "star"), expect.code=204)
@@ -12,6 +12,8 @@ update.gist    <- function(ctx, id, content)      api.patch.request (ctx, c("gis
 # comments
 get.gist.comments   <- function(ctx, id) api.get.request(ctx, c("gists", id, "comments"))
 get.gist.comment    <- function(ctx, gist.id, comment.id) api.get.request(ctx, c("gists", gist.id, "comment", comment.id))
-create.gist.comment <- function(ctx, gist.id, content) api.post.request(ctx, c("gists", gist.id, "comments"), body=content)
-update.gist.comment <- function(ctx, gist.id, comment.id, content) api.patch.request(ctx, c("gists", gist.id, "comments", comment.id), body=content)
+create.gist.comment <- function(ctx, gist.id, content, config=add_headers(Accept='application/vnd.github.v3.text+json')) api.post.request(ctx, c("gists", gist.id, "comments"), body=content, config=config)
+# create.gist.comment <- function(ctx, gist.id, content) api.post.request(ctx, c("gists", gist.id, "comments"), body=content)
+update.gist.comment <- function(ctx, gist.id, comment.id, content, config=add_headers(Accept='application/vnd.github.v3.text+json')) api.patch.request(ctx, c("gists", gist.id, "comments", comment.id), body=content, config=config)
+# update.gist.comment <- function(ctx, gist.id, comment.id, content) api.patch.request(ctx, c("gists", gist.id, "comments", comment.id), body=content)
 delete.gist.comment <- function(ctx, gist.id, comment.id) api.patch.request(ctx, c("gists", gist.id, "comments", comment.id))
