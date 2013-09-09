@@ -1,7 +1,7 @@
 Package: github
 Type: Package
 Title: github API
-Version: 0.0.2
+Version: 0.0.3
 Date: 2013-02-28
 Author: Who wrote it
 Maintainer: Carlos Scheidegger <cscheid@research.att.com>
