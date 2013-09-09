@@ -61,7 +61,14 @@ api.request <- function(ctx, req, method, expect.code=200, params=list(), config
   #fix for http://developer.github.com/changes/2013-04-24-user-agent-required/
   config<-c(config, user_agent(getOption("HTTPUserAgent")))
   r <- method(url, config=config)
-  list(ok = r$status_code %in% expect.code, content = content(r), code = r$status_code);
+  result <-  tryCatch(content(r),
+                      error=function(e) {
+                        raw <- r$content
+                        raw[raw>127] = as.raw(63)
+                        r$content <- raw
+                        content(r)
+                      })
+  list(ok = r$status_code %in% expect.code, content = result, code = r$status_code)
 }
 
 # body can either be a json object (an R list of the right type), a length-1 character, or NULL
