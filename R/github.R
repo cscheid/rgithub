@@ -3,14 +3,37 @@ require(RCurl)
 require(stringr)
 require(rjson)
 
-web.login <- function(client_id, client_secret=NULL,
-                      base_url = "https://github.com", api_url = "https://api.github.com", scopes=NULL)
+#' Obtain a github context interactively
+#'
+#' interactive.login opens a web browser, asks for your username+password, performs
+#' the OAuth dance, retrieves the token, and uses it to create a github context.
+#'
+#' Refer to http://developer.github.com/guides/basics-of-authentication/
+#' 
+#' @param client_id the github client ID
+#'
+#' @param client_secret the github client secret
+#'
+#' @param base_url the base URL for the github webpage. Change this in
+#'   GitHub Enterprise deployments to your base G.E. URL
+#'
+#' @param api_url the base URL for the github API. Change this in
+#'   GitHub Enterprise deployments to your base G.E. API URL
+#'
+#' @return a github context object that is used in every github API call
+#'   issued by this library.
+interactive.login <- function(client_id,
+                              client_secret,
+                              scopes = NULL,
+                              base_url = "https://github.com",
+                              api_url = "https://api.github.com")
 {
   auth_url <- NULL
   if (is.null(scopes))
-    auth_url <- modify_url(base_url, path="login/oauth")
+    auth_url <- modify_url(base_url, path = "login/oauth")
   else
-    auth_url <- modify_url(base_url, path="login/oauth", query=list(scope=str_c(scopes, collapse=',')))
+    auth_url <- modify_url(base_url, path = "login/oauth",
+                           query = list(scope = str_c(scopes, collapse = ',')))
   github <- oauth_endpoint(NULL, "authorize", "access_token",
                            base_url = auth_url)
   # as in httr, if client_secret is not given,
@@ -19,13 +42,36 @@ web.login <- function(client_id, client_secret=NULL,
   app <- oauth_app("github", client_id, client_secret)
   client_secret <- app$secret
   github_token <- oauth2.0_token(github, app)
-  rgithub.context.from.token(api_url, client_id, client_secret, github_token)
+  create.github.context(api_url, client_id, client_secret, github_token)
 }
 
-# use this if you somehow already have obtained the access token
-rgithub.context.from.token <- function(url, client_id, client_secret, access_token)
+#' Create a github context object.
+#'
+#' If create.github.context is called without some of client_id, client_secret
+#' or access_token, then some API calls will be unavailable, and more severe
+#' rate limiting will be in effect. Refer to http://developer.github.com for
+#' more details.
+#'
+#' @param api_url the base URL
+#'
+#' @param client_id the github client ID
+#'
+#' @param client_secret the github client secret
+#'
+#' @param access_token the github access token
+#'
+#' @return a github context object that is used in every github API call
+#'   issued by this library.
+create.github.context <- function(api_url, client_id = NULL,
+                                  client_secret = NULL, access_token = NULL)
 {
-  ctx <- list(token=access_token, api_url=url, client_secret=client_secret, token=access_token, client_id=client_id, etags=new.env(parent=emptyenv()))
+  ctx <- list(token         = access_token,
+              api_url       = api_url,
+              client_secret = client_secret,
+              token         = access_token,
+              client_id     = client_id,
+              etags         = new.env(parent = emptyenv()),
+              authenticated = !is.null(access_token))
   r <- get.myself(ctx)
   if(r$ok) {
     ctx$user <- r$content
@@ -36,46 +82,54 @@ rgithub.context.from.token <- function(url, client_id, client_secret, access_tok
 
 build.url <- function(ctx, req, params)
 {
-  # FIXME this path needs sanitization (some names can't include slashes, etc)
-  # NB if you ever fix this, the *.reference calls in data.R will need attention, since reference include slashes that are passed unescaped to the github API
+  # FIXME this path needs sanitization (some names can't include
+  # slashes, etc) NB if you ever fix this, the *.reference calls in
+  # data.R will need attention, since reference include slashes that
+  # are passed unescaped to the github API
 
-  path = str_c(req, collapse='/')
-
+  path = str_c(req, collapse = '/')
+  
   query <- params
-  query$client_id <- ctx$client_id
-  query$client_secret <- ctx$client_secret
-  query$access_token <- ctx$token[[1]]
+  if (!is.null(ctx$client_id))
+    query$client_id <- ctx$client_id
+  if (!is.null(ctx$client_secret))
+    query$client_secret <- ctx$client_secret
+  if (!is.null(ctx$token))
+    query$access_token <- ctx$token[[1]]
 
-  ## we cannot use modify_url directly, becasue it doesn't merge paths
-  ## so we have to do that by hand
+  # we cannot use modify_url directly, because it doesn't merge paths
+  # so we have to do that by hand
   api.path <- parse_url(ctx$api_url)$path
   if (isTRUE(nzchar(api.path)))
-    path <- gsub('//+', '/', paste(api.path, path, sep='/'))
+    path <- gsub('//+', '/', paste(api.path, path, sep = '/'))
 
-  modify_url(ctx$api_url, path=path, query=query)
+  modify_url(ctx$api_url, path = path, query = query)
 }
 
-api.request <- function(ctx, req, method, expect.code=200, params=list(), config=accept_json())
+api.request <- function(ctx, req, method, expect.code = 200,
+                        params = list(), config = accept_json())
 {
   url <- build.url(ctx, req, params)
-  #fix for http://developer.github.com/changes/2013-04-24-user-agent-required/
-  config<-c(config, user_agent(getOption("HTTPUserAgent")))
-  r <- method(url, config=config)
-  result <-  tryCatch(content(r),
-                      error=function(e) {
-                        raw <- r$content
-                        raw[raw>127] = as.raw(63)
-                        r$content <- raw
-                        content(r)
-                      })
-  list(ok = r$status_code %in% expect.code, content = result, code = r$status_code)
+
+  # GitHub requires a user-agent
+  config <- c(config, user_agent(getOption("HTTPUserAgent")))
+  r <- method(url, config = config)
+  result <- tryCatch(content(r),
+                     error = function(e) {
+                       raw <- r$content
+                       raw[raw>127] <- as.raw(63)
+                       r$content <- raw
+                       content(r)
+                     })
+  list(ok = r$status_code %in% expect.code, content = result,
+       code = r$status_code)
 }
 
 # body can either be a json object (an R list of the right type), a length-1 character, or NULL
-api.request.with.body <- function(ctx, req, method, expect.code=200, params=list(), config=accept_json(), body=NULL)
+api.request.with.body <- function(ctx, req, method, expect.code = 200, params = list(), config = accept_json(), body = NULL)
 {
   if (is.list(body))
-    body=toJSON(body)
+    body = toJSON(body)
   else if (is.character(body))
     stopifnot(length(body) == 1)
   else
@@ -83,19 +137,19 @@ api.request.with.body <- function(ctx, req, method, expect.code=200, params=list
   url <- build.url(ctx, req, params)
   #fix for http://developer.github.com/changes/2013-04-24-user-agent-required/
   config<-c(config, user_agent(getOption("HTTPUserAgent")))
-  r = method(url, config=config, body=body)
+  r = method(url, config=config, body = body)
   list(ok = r$status_code %in% expect.code, content = content(r), code = r$status_code);
 }
 
-api.get.request    <- function(ctx, req, expect.code=200, params=list(), config=accept_json()) api.request(ctx, req, GET, expect.code, params, config)
-api.delete.request <- function(ctx, req, expect.code=204, params=list(), config=accept_json()) api.request(ctx, req, DELETE, expect.code, params, config)
-api.put.request    <- function(ctx, req, expect.code=200, params=list(), config=accept_json(), body=NULL) api.request.with.body(ctx, req, PUT, expect.code, params, config, body)
-api.patch.request  <- function(ctx, req, expect.code=200, params=list(), config=accept_json(), body=NULL) api.request.with.body(ctx, req, PATCH, expect.code, params, config, body)
-api.post.request   <- function(ctx, req, expect.code=201, params=list(), config=accept_json(), body=NULL) api.request.with.body(ctx, req, POST, expect.code, params, config, body)
+api.get.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json()) api.request(ctx, req, GET, expect.code, params, config)
+api.delete.request <- function(ctx, req, expect.code = 204, params = list(), config = accept_json()) api.request(ctx, req, DELETE, expect.code, params, config)
+api.put.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request.with.body(ctx, req, PUT, expect.code, params, config, body)
+api.patch.request  <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request.with.body(ctx, req, PATCH, expect.code, params, config, body)
+api.post.request   <- function(ctx, req, expect.code = 201, params = list(), config = accept_json(), body = NULL) api.request.with.body(ctx, req, POST, expect.code, params, config, body)
 
 api.test.request <- function(ctx, path)
 {
-  r=api.get.request(ctx, path, expect.code=c(204, 404))
+  r=api.get.request(ctx, path, expect.code = c(204, 404))
 
   if(r$ok)
     list(ok = TRUE, content = r$code == 204)
