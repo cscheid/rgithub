@@ -72,12 +72,14 @@ create.github.context <- function(api_url, client_id = NULL,
               client_id     = client_id,
               etags         = new.env(parent = emptyenv()),
               authenticated = !is.null(access_token))
-  r <- get.myself(ctx)
-  if(r$ok) {
+  if (!is.null(access_token)) {
+    r <- get.myself(ctx)
+    if (!r$ok) {
+      stop("create.github.context had access token but wasn't authenticated to get.user?");
+    }
     ctx$user <- r$content
-    list(ok = TRUE, content = ctx)
   }
-  else list(ok = FALSE, content = content(r$response))
+  ctx
 }
 
 build.url <- function(ctx, req, params)
