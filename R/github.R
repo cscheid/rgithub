@@ -20,13 +20,16 @@ require(rjson)
 #' @param api_url the base URL for the github API. Change this in
 #'   GitHub Enterprise deployments to your base G.E. API URL
 #'
+#' @param max_etags the maximum number of entries to cache in the context
+#'
 #' @return a github context object that is used in every github API call
 #'   issued by this library.
 interactive.login <- function(client_id,
                               client_secret,
                               scopes = NULL,
                               base_url = "https://github.com",
-                              api_url = "https://api.github.com")
+                              api_url = "https://api.github.com",
+                              max_etags = 10000)
 {
   auth_url <- NULL
   if (is.null(scopes))
@@ -60,16 +63,20 @@ interactive.login <- function(client_id,
 #'
 #' @param access_token the github access token
 #'
+#' @param max_etags the maximum number of entries to cache in the context
+#'
 #' @return a github context object that is used in every github API call
 #'   issued by this library.
 create.github.context <- function(api_url, client_id = NULL,
-                                  client_secret = NULL, access_token = NULL)
+                                  client_secret = NULL, access_token = NULL,
+                                  max_etags = 10000)
 {
   ctx <- list(token         = access_token,
               api_url       = api_url,
               client_secret = client_secret,
               token         = access_token,
               client_id     = client_id,
+              max_etags     = max_etags,
               etags         = new.env(parent = emptyenv()),
               authenticated = !is.null(access_token))
   if (!is.null(access_token)) {
@@ -78,18 +85,17 @@ create.github.context <- function(api_url, client_id = NULL,
       stop("create.github.context had access token but wasn't authenticated to get.user?");
     }
     ctx$user <- r$content
+    ctx$oath_scopes <- r$headers$`x-oauth-scopes`
   }
   ctx
 }
 
-build.url <- function(ctx, req, params)
+build.url <- function(ctx, resource, params)
 {
   # FIXME this path needs sanitization (some names can't include
   # slashes, etc) NB if you ever fix this, the *.reference calls in
   # data.R will need attention, since reference include slashes that
   # are passed unescaped to the github API
-
-  path = str_c(req, collapse = '/')
   
   query <- params
   if (!is.null(ctx$client_id))
@@ -103,18 +109,61 @@ build.url <- function(ctx, req, params)
   # so we have to do that by hand
   api.path <- parse_url(ctx$api_url)$path
   if (isTRUE(nzchar(api.path)))
-    path <- gsub('//+', '/', paste(api.path, path, sep = '/'))
+    path <- gsub('//+', '/', paste(api.path, resource, sep = '/'))
+  else
+    path <- resource
 
   modify_url(ctx$api_url, path = path, query = query)
+}
+
+cached.api.request <- function(ctx, req, method, expect.code = 200,
+                               params = list(), config = accept_json())
+{
+  resource <- str_c(req, collapse = '/')
+  etags <- ctx$etags
+  if (exists(resource, etags)) {
+    cache <- get(resource, etags)
+    tag <- cache$tag
+    r <- api.request(ctx, req, method, expect.code = c(304, expect.code),
+                     params = params, config = c(add_headers(`If-None-Match`=tag), config))
+    if (r$code == 304) {
+      r$content <- cache$content
+    }
+  } else {
+    r <- api.request(ctx, req, method, expect.code = expect.code,
+                     params = params, config = config)
+  }
+  if (r$code != 304) {
+    assign(resource, list(tag = r$headers$ETag, content = r$content), etags)
+  }
+
+  # if etags environment is too large, we need to trim it.  but this
+  # requires a traversal over the entire data structure, which is O(n)
+  # so we only want this to happen once every O(n) operations to get
+  # O(1) amortized time, and so we need to trim a constant fraction of
+  # the elements at once. we get rid of half of them.
+  #
+  # We choose the entries to trim randomly.
+  if (length(etags) > ctx$max_etags) {
+    l <- as.list(etags)
+    names_to_remove <- names(sample(as.list(etags), as.integer(length(etags)/2)))
+    print(names_to_remove)
+    print(names(as.list(etags)))
+    rm(list=names_to_remove, envir=etags)
+  }
+  r
 }
 
 api.request <- function(ctx, req, method, expect.code = 200,
                         params = list(), config = accept_json())
 {
-  url <- build.url(ctx, req, params)
+  resource <- str_c(req, collapse = '/')
+
+  url <- build.url(ctx, resource, params)
 
   # GitHub requires a user-agent
   config <- c(config, user_agent(getOption("HTTPUserAgent")))
+
   r <- method(url, config = config)
   result <- tryCatch(content(r),
                      error = function(e) {
@@ -123,7 +172,7 @@ api.request <- function(ctx, req, method, expect.code = 200,
                        r$content <- raw
                        content(r)
                      })
-  list(ok = r$status_code %in% expect.code, content = result,
+  list(ok = r$status_code %in% expect.code, content = result, headers = r$headers,
        code = r$status_code)
 }
 
@@ -137,13 +186,14 @@ api.request.with.body <- function(ctx, req, method, expect.code = 200, params = 
   else
     stopifnot(is.null(body))
   url <- build.url(ctx, req, params)
-  #fix for http://developer.github.com/changes/2013-04-24-user-agent-required/
+
+  # a user agent is mandatory for GitHub API use
   config<-c(config, user_agent(getOption("HTTPUserAgent")))
   r = method(url, config=config, body = body)
   list(ok = r$status_code %in% expect.code, content = content(r), code = r$status_code);
 }
 
-api.get.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json()) api.request(ctx, req, GET, expect.code, params, config)
+api.get.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json()) cached.api.request(ctx, req, GET, expect.code, params, config)
 api.delete.request <- function(ctx, req, expect.code = 204, params = list(), config = accept_json()) api.request(ctx, req, DELETE, expect.code, params, config)
 api.put.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request.with.body(ctx, req, PUT, expect.code, params, config, body)
 api.patch.request  <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request.with.body(ctx, req, PATCH, expect.code, params, config, body)
