@@ -185,7 +185,8 @@ api.request.with.body <- function(ctx, req, method, expect.code = 200, params = 
     stopifnot(length(body) == 1)
   else
     stopifnot(is.null(body))
-  url <- build.url(ctx, req, params)
+  resource <- str_c(req, collapse='/')
+  url <- build.url(ctx, resource, params)
 
   # a user agent is mandatory for GitHub API use
   config<-c(config, user_agent(getOption("HTTPUserAgent")))
