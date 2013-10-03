@@ -4,7 +4,7 @@ These are bindings for the Github web service API as of version 3. For
 full documentation, please refer to the [Github developer
 API](http://developer.github.com/v3).
 
-# Quickie
+### Quickie
 
 	> ctx = interactive.login(client.id, client.secret)
     > me = get.myself(ctx)
@@ -13,14 +13,14 @@ API](http://developer.github.com/v3).
     > star.repository(ctx, "cscheid", "guitar")
     > unstar.repository(ctx, "cscheid", "guitar")
 
-# Setting up
+### Setting up
 
 In order to use most of their API, Github requires you to register an
 [application](https://github.com/settings/applications/). You'll need
 to do this if you want to change information, repositories, post
 gists, etc. 
 
-## Interactive use
+#### Interactive use
 
 If you will authenticate your Github account interactively (using the
 OAuth dance, for example), you should point the Callback URL to
@@ -40,7 +40,7 @@ This will open a web browser where the caller of the R script
 password. Give more scopes to allow the bindings to do more things ([more
 on oAuth scopes](http://developer.github.com/v3/oauth/#scopes)).
 
-## Noninteractive use
+#### Noninteractive use
 
 If you have obtained an
 [OAuth access token](http://developer.github.com/v3/oauth/) by some
@@ -57,7 +57,7 @@ contexts. You will be able to make some calls into the API, but not
 all of them, and you will be much more severely rate-limited. See the
 [documentation](http://developer.github.com/v3/#rate-limiting) for details.
 
-## About the Github client secret
+#### About the Github client secret
 
 DO NOT PUT THE CLIENT SECRET ON A PUBLICLY VISIBLE LOCATION. This is
 equivalent to an application-wide password. It is used by Github to
@@ -66,7 +66,7 @@ in a safe location (like a locally-encrypted file in your local
 filesystem), ask the user to type it, or pass it via environment
 variables from the shell.
 
-# API naming and style
+### API naming and style
 
 All API entry points are very shallow wrappers around Github's
 API. Once you logged in, all calls to the API take the result of
@@ -104,7 +104,7 @@ When the Github API specifies extra parameters, such as when [listing repositori
     # Get all my repositories, sorted by when I last pushed to them
     > repos = get.my.repositories(ctx, type="owned", sort="pushed")
 
-# TODO
+### TODO
 
 * Keep track of rate limits
 * Honor event API `X-Poll-Interval` query rate limits automatically
