@@ -25,3 +25,4 @@ Collate:
     'search.R'
     'users.R'
     'utils.R'
+    'S3methods.R'
