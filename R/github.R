@@ -172,8 +172,11 @@ api.request <- function(ctx, req, method, expect.code = 200,
                        r$content <- raw
                        content(r)
                      })
+  output <- 
   list(ok = r$status_code %in% expect.code, content = result, headers = r$headers,
        code = r$status_code)
+  class(output) <- "github"
+  output
 }
 
 # body can either be a json object (an R list of the right type), a length-1 character, or NULL
@@ -191,7 +194,10 @@ api.request.with.body <- function(ctx, req, method, expect.code = 200, params = 
   # a user agent is mandatory for GitHub API use
   config<-c(config, user_agent(getOption("HTTPUserAgent")))
   r = method(url, config=config, body = body)
+  output <- 
   list(ok = r$status_code %in% expect.code, content = content(r), code = r$status_code);
+  class(output) = "github"
+  output
 }
 
 api.get.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json()) cached.api.request(ctx, req, GET, expect.code, params, config)
