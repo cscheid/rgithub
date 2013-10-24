@@ -11,7 +11,8 @@ Imports:
     httr,
     Rook,
     stringr,
-    rjson
+    rjson,
+    yaml
 Collate:
     'activity.R'
     'data.R'
