@@ -3,6 +3,8 @@ require(RCurl)
 require(stringr)
 require(rjson)
 
+.state <- new.env(parent=emptyenv())
+
 #' Obtain a github context interactively
 #'
 #' interactive.login opens a web browser, asks for your username+password, performs
@@ -67,7 +69,7 @@ interactive.login <- function(client_id,
 #'
 #' @return a github context object that is used in every github API call
 #'   issued by this library.
-create.github.context <- function(api_url, client_id = NULL,
+create.github.context <- function(api_url = "https://api.github.com", client_id = NULL,
                                   client_secret = NULL, access_token = NULL,
                                   max_etags = 10000)
 {
@@ -87,7 +89,30 @@ create.github.context <- function(api_url, client_id = NULL,
     ctx$user <- r$content
     ctx$oath_scopes <- r$headers$`x-oauth-scopes`
   }
+  class(ctx) <- "github"
+  .state$ctx <- ctx
   ctx
+}
+
+get.github.context <- function()
+{
+  if (is.null(.state$ctx))
+    create.github.context()
+  .state$ctx
+}
+
+api.function <- function(fn)
+{
+  function(...)
+  {
+    p1 <- .rest(...)
+    if (length(p1) == 0)
+      fn(get.github.context())
+    else if (class(p1) == "github")
+      fn(...)
+    else
+      fn(get.github.context(), ...)
+  }
 }
 
 build.url <- function(ctx, resource, params)
