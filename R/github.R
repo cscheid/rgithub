@@ -89,7 +89,7 @@ create.github.context <- function(api_url = "https://api.github.com", client_id 
     ctx$user <- r$content
     ctx$oath_scopes <- r$headers$`x-oauth-scopes`
   }
-  class(ctx) <- "github"
+  class(ctx) <- "githubcontext"
   .state$ctx <- ctx
   ctx
 }
@@ -108,7 +108,7 @@ api.function <- function(fn)
     p1 <- .rest(...)
     if (length(p1) == 0)
       fn(get.github.context())
-    else if (class(p1) == "github")
+    else if (class(p1) == "githubcontext")
       fn(...)
     else
       fn(get.github.context(), ...)
