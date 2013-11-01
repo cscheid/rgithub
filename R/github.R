@@ -155,16 +155,13 @@ cached.api.request <- function(ctx, req, method, expect.code = 200,
 }
 
 api.request <- function(ctx, req, method, expect.code = 200,
-                        params = list(), config = accept_json())
+                        params = list(), config = accept_json(), body = NULL)
 {
   resource <- str_c(req, collapse = '/')
-
   url <- build.url(ctx, resource, params)
-
-  # GitHub requires a user-agent
   config <- c(config, user_agent(getOption("HTTPUserAgent")))
 
-  r <- method(url, config = config)
+  r <- method(url = url, config = config, body = body)
   result <- tryCatch(content(r),
                      error = function(e) {
                        raw <- r$content
@@ -176,29 +173,28 @@ api.request <- function(ctx, req, method, expect.code = 200,
        code = r$status_code)
 }
 
-# body can either be a json object (an R list of the right type), a length-1 character, or NULL
-api.request.with.body <- function(ctx, req, method, expect.code = 200, params = list(), config = accept_json(), body = NULL)
+without.body <- function(method)
 {
-  if (is.list(body))
-    body = toJSON(body)
-  else if (is.character(body))
-    stopifnot(length(body) == 1)
-  else
-    stopifnot(is.null(body))
-  resource <- str_c(req, collapse='/')
-  url <- build.url(ctx, resource, params)
-
-  # a user agent is mandatory for GitHub API use
-  config<-c(config, user_agent(getOption("HTTPUserAgent")))
-  r = method(url, config=config, body = body)
-  list(ok = r$status_code %in% expect.code, content = content(r), code = r$status_code);
+  function(url, config, body) { method(url, config = config) }
 }
 
-api.get.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json()) cached.api.request(ctx, req, GET, expect.code, params, config)
-api.delete.request <- function(ctx, req, expect.code = 204, params = list(), config = accept_json()) api.request(ctx, req, DELETE, expect.code, params, config)
-api.put.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request.with.body(ctx, req, PUT, expect.code, params, config, body)
-api.patch.request  <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request.with.body(ctx, req, PATCH, expect.code, params, config, body)
-api.post.request   <- function(ctx, req, expect.code = 201, params = list(), config = accept_json(), body = NULL) api.request.with.body(ctx, req, POST, expect.code, params, config, body)
+with.body <- function(method) {
+  function(url, config, body) {
+    if (is.list(body))
+      body = toJSON(body)
+    else if (is.character(body))
+      stopifnot(length(body) == 1)
+    else
+      stopifnot(is.null(body))
+    method(url, config = config, body = body)
+  }
+}
+
+api.get.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json())       cached.api.request(ctx, req, without.body(GET),    expect.code, params, config)
+api.delete.request <- function(ctx, req, expect.code = 204, params = list(), config = accept_json())              api.request(ctx, req, without.body(DELETE), expect.code, params, config)
+api.put.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, with.body(PUT),       expect.code, params, config, body)
+api.patch.request  <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, with.body(PATCH),     expect.code, params, config, body)
+api.post.request   <- function(ctx, req, expect.code = 201, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, with.body(POST),      expect.code, params, config, body)
 
 api.test.request <- function(ctx, path)
 {
