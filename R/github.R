@@ -169,8 +169,11 @@ api.request <- function(ctx, req, method, expect.code = 200,
                        r$content <- raw
                        content(r)
                      })
+  output <- 
   list(ok = r$status_code %in% expect.code, content = result, headers = r$headers,
        code = r$status_code)
+  ## class(output) <- "github"
+  output
 }
 
 without.body <- function(method)
