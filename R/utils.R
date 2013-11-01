@@ -1,1 +1,1 @@
-.rest <- function(...) as.list(substitute(list(...)))
+.rest <- function(...) as.list(substitute(...))
