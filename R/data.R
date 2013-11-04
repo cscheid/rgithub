@@ -1,41 +1,41 @@
 # blobs
-get.blob <- api.function(function(ctx, owner, repo, sha)
-  api.get.request(ctx, c("repos", owner, repo, "git", "blobs", sha)))
-create.blob <- api.function(function(ctx, owner, repo, content)
-  api.post.request(ctx, c("repos", owner, repo, "git", "blobs"), body=content))
+get.blob <- function(owner, repo, sha, ctx = get.github.context())
+  api.get.request(ctx, c("repos", owner, repo, "git", "blobs", sha))
+create.blob <- function(owner, repo, content, ctx = get.github.context())
+  api.post.request(ctx, c("repos", owner, repo, "git", "blobs"), body=content)
 
 # commits
-get.commit <- api.function(function(ctx, owner, repo, sha)
-  api.get.request(ctx, c("repos", owner, repo, "git", "commits", sha)))
-create.commit <- api.function(function(ctx, owner, repo, content)
-  api.post.request(ctx, c("repos", owner, repo, "git", "commits", body=content)))
+get.commit <- function(owner, repo, sha, ctx = get.github.context())
+  api.get.request(ctx, c("repos", owner, repo, "git", "commits", sha))
+create.commit <- function(owner, repo, content, ctx = get.github.context())
+  api.post.request(ctx, c("repos", owner, repo, "git", "commits", body=content))
 
 # references
-get.reference <- api.function(function(ctx, owner, repo, ref)
-  api.get.request(ctx, c("repos", owner, repo, "git", "refs", ref)))
-get.all.references <- api.function(function(ctx, owner, repo, subnamespace=NULL) {
+get.reference <- function(owner, repo, ref, ctx = get.github.context())
+  api.get.request(ctx, c("repos", owner, repo, "git", "refs", ref))
+get.all.references <- function(owner, repo, subnamespace=NULL, ctx = get.github.context()) {
   if (is.null(subnamespace))
     api.get.request(ctx, c("repos", owner, repo, "git", "refs"))
   else
     api.get.request(ctx, c("repos", owner, repo, "git", "refs", subnamespace))
-})
-create.reference <- api.function(function(ctx, owner, repo, content)
-  api.post.request(ctx, c("repos", owner, repo, "git", "refs"), body=content))
-update.reference <- api.function(function(ctx, owner, repo, ref, content)
-  api.patch.request(ctx, c("repos", owner, repo, "git", "refs", ref), body=content))
-delete.reference <- api.function(function(ctx, owner, repo, ref)
-  api.delete.request(ctx, c("repos", owner, repo, "git", "refs", ref)))
+}
+create.reference <- function(owner, repo, content, ctx = get.github.context())
+  api.post.request(ctx, c("repos", owner, repo, "git", "refs"), body=content)
+update.reference <- function(owner, repo, ref, content, ctx = get.github.context())
+  api.patch.request(ctx, c("repos", owner, repo, "git", "refs", ref), body=content)
+delete.reference <- function(owner, repo, ref, ctx = get.github.context())
+  api.delete.request(ctx, c("repos", owner, repo, "git", "refs", ref))
 
 # tags
-get.tag <- api.function(function(ctx, owner, repo, sha)
-  api.get.request(ctx, c("repos", owner, repo, "git", "tags", sha)))
-create.tag <- api.function(function(ctx, owner, repo, content)
-  api.post.request(ctx, c("repos", owner, repo, "git", "tags"), body=content))
+get.tag <- function(owner, repo, sha, ctx = get.github.context())
+  api.get.request(ctx, c("repos", owner, repo, "git", "tags", sha))
+create.tag <- function(owner, repo, content, ctx = get.github.context())
+  api.post.request(ctx, c("repos", owner, repo, "git", "tags"), body=content)
 
 # trees
-get.tree <- api.function(function(ctx, owner, repo, sha, ...)
-  api.get.request(ctx, c("repos", owner, repo, "git", "trees", sha), params=.rest(...)))
-create.tree <- api.function(function(ctx, owner, repo, content)
-  api.post.request(ctx, c("repos", owner, repo, "git", "trees"), body=content))
+get.tree <- function(owner, repo, sha, ..., ctx = get.github.context())
+  api.get.request(ctx, c("repos", owner, repo, "git", "trees", sha), params=list(...))
+create.tree <- function(owner, repo, content, ctx = get.github.context())
+  api.post.request(ctx, c("repos", owner, repo, "git", "trees"), body=content)
 
 

@@ -57,6 +57,11 @@ interactive.login <- function(client_id,
 #' rate limiting will be in effect. Refer to http://developer.github.com for
 #' more details.
 #'
+#' create.github.context stores the context last created in an environment.
+#' If any of the github API functions are called without a context, this
+#' context is used instead. (if no context has been created, an unauthenticated
+#' context will be created)
+#'
 #' @param api_url the base URL
 #'
 #' @param client_id the github client ID
@@ -101,19 +106,7 @@ get.github.context <- function()
   .state$ctx
 }
 
-api.function <- function(fn)
-{
-  function(...)
-  {
-    p1 <- .rest(...)
-    if (length(p1) == 0)
-      fn(get.github.context())
-    else if (class(p1) == "githubcontext")
-      fn(...)
-    else
-      fn(get.github.context(), ...)
-  }
-}
+api.function <- function(...) NULL
 
 build.url <- function(ctx, resource, params)
 {
