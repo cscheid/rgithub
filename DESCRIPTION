@@ -23,5 +23,4 @@ Collate:
     'repositories.R'
     'search.R'
     'users.R'
-    'utils.R'
     'S3methods.R'
