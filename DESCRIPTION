@@ -12,6 +12,7 @@ Imports:
     Rook,
     stringr,
     rjson,
+    testthat,
 Collate:
     'activity.R'
     'data.R'
