@@ -2,7 +2,7 @@
 \alias{search.repositories}
 \title{Search Github repositories.}
 \usage{
-  search.repositories(q, ..., ctx)
+  search.repositories(q, ..., ctx = get.github.context())
 }
 \arguments{
   \item{q}{Query string}
