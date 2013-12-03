@@ -12,7 +12,7 @@ get.pull.request.files <- function(owner, repo, id, ctx = get.github.context())
   api.get.request(ctx, c("repos", owner, repo, "pulls", id, "files"))
 is.pull.request.merged <- function(owner, repo, id, ctx = get.github.context())
   api.test.request(ctx, c("repos", owner, repo, "pulls", id, "merge"))
-merge.pull.request <- function(owner, repo, id, ..., ctx = get.github.context())
+perform.merge.pull.request <- function(owner, repo, id, ..., ctx = get.github.context()) # "perform" here is just awful, but makes the S3method checker in CRAN happy.
   api.put.request(ctx, c("repos", owner, repo, "pulls", id, "merge"), params=list(...))
 
 # comments

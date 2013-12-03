@@ -9,7 +9,7 @@ get.repository.issue.events <- function(owner, repo, ctx = get.github.context())
   api.get.request(ctx, c("repos", owner, repo, "issues", "events"))
 # TODO I believe the documentation on http://developer.github.com/v3/activity/events/ is wrong for network.public.events, but in case it isn't...
 get.network.public.events <- function(owner, ctx = get.github.context())
-  api.get.request(ctx, c("networks", owner, repo, "events"))
+  api.get.request(ctx, c("networks", owner, "events"))
 get.organization.public.events <- function(org, ctx = get.github.context())
   api.get.request(ctx, c("orgs", org, "events"))
 get.user.received.events <- function(user, ctx = get.github.context())

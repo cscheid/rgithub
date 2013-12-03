@@ -3,7 +3,7 @@
 \alias{github}
 \docType{package}
 \title{
-What the package does (short line)
+Use the Github API from R
 ~~ package title ~~
 }
 \description{
@@ -14,16 +14,16 @@ More about what it does (maybe more than one line)
 \tabular{ll}{
 Package: \tab github\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
+Version: \tab 0.9.2\cr
 Date: \tab 2013-02-28\cr
-License: \tab What license is it under?\cr
+License: \tab MIT\cr
 }
 ~~ An overview of how to use the package, including the most important functions ~~
 }
 \author{
-Who wrote it
+Carlos Scheidegger
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
+Maintainer: Carlos Scheidegger <carlos.scheidegger@gmail.com>
 ~~ The author and/or maintainer of the package ~~
 }
 \references{
@@ -31,10 +31,7 @@ Maintainer: Who to complain to <yourfault@somewhere.net>
 }
 \keyword{ package }
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
 }
 \examples{
-ctx <- create.github.context("https://api.github.com/")
-repos <- get.user.repositories(ctx, "cscheid")
+repos <- get.user.repositories("cscheid")
 }

@@ -59,7 +59,7 @@ delete.issue.labels <- function(owner, repo, issue.number, name, ctx = get.githu
 replace.issue.labels <- function(owner, repo, issue.number, content, ctx = get.github.context())
   api.put.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), body=content)
 delete.all.issue.labels <- function(owner, repo, issue.number, ctx = get.github.context())
-  api.delete.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), body=content)
+  api.delete.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"))
 get.milestone.labels <- function(owner, repo, milestone.number, ctx = get.github.context())
   api.get.request(ctx, c("repos", owner, repo, "milestones", milestone.number, "labels"))
 

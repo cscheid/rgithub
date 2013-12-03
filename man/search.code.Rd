@@ -2,22 +2,22 @@
 \alias{search.code}
 \title{Search Github code.}
 \usage{
-  search.code(ctx, q, ...)
+  search.code(q, ..., ctx = get.github.context())
 }
 \arguments{
-  \item{ctx}{Authentication object}
-
   \item{q}{Query string}
 
   \item{...}{Further arguments passed on to Github API
   call}
+
+  \item{ctx}{Authentication object}
 }
 \description{
   Search Github code.
 }
 \examples{
 \dontrun{
-search.code(ctx, "octokit in:file extension:gemspec -repo:octokit/octokit.rb", sort="indexed")
+search.code("octokit in:file extension:gemspec -repo:octokit/octokit.rb", sort="indexed")
 }
 }
 
