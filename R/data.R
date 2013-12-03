@@ -21,7 +21,7 @@ get.all.references <- function(owner, repo, subnamespace=NULL, ctx = get.github.
 }
 create.reference <- function(owner, repo, content, ctx = get.github.context())
   api.post.request(ctx, c("repos", owner, repo, "git", "refs"), body=content)
-update.reference <- function(owner, repo, ref, content, ctx = get.github.context())
+modify.reference <- function(owner, repo, ref, content, ctx = get.github.context())
   api.patch.request(ctx, c("repos", owner, repo, "git", "refs", ref), body=content)
 delete.reference <- function(owner, repo, ref, ctx = get.github.context())
   api.delete.request(ctx, c("repos", owner, repo, "git", "refs", ref))
