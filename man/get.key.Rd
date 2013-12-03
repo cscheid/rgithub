@@ -1,0 +1,18 @@
+\name{get.key}
+\alias{get.key}
+\title{Get a public key with some id}
+\usage{
+  get.key(id, ctx = get.github.context())
+}
+\arguments{
+  \item{id}{the public key id}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the public key
+}
+\description{
+  Get a public key with some id
+}
+

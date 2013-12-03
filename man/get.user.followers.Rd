@@ -1,0 +1,18 @@
+\name{get.user.followers}
+\alias{get.user.followers}
+\title{Get the list of followers for a given user}
+\usage{
+  get.user.followers(user, ctx = get.github.context())
+}
+\arguments{
+  \item{user}{the user}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the list of followers
+}
+\description{
+  Get the list of followers for a given user
+}
+
