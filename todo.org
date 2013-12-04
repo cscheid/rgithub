@@ -1,8 +1,11 @@
 * TODO Sanitize and escape all parameters in api.request
 ** Investigate what the requirements are here
 * TODO Github APIs:
-** http://developer.github.com/v3/users/
-** http://developer.github.com/v3/search/
 ** http://developer.github.com/v3/gitignore/
 ** http://developer.github.com/v3/markdown/
-
+* TODO http://developer.github.com/v3/repos/contents/#create-a-file
+* TODO http://developer.github.com/v3/repos/contents/#update-a-file
+* TODO http://developer.github.com/v3/repos/contents/#delete-a-file
+* TODO there's some text about github and pubsubhubbub on the docs. I'm skipping it for now.
+* TODO http://developer.github.com/v3/repos/releases/
+* TODO http://developer.github.com/v3/repos/statistics/
