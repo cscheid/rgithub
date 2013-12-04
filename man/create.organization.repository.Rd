@@ -1,0 +1,22 @@
+\name{create.organization.repository}
+\alias{create.organization.repository}
+\title{create rpository under given organization}
+\usage{
+  create.organization.repository(org, ...,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{org}{the given organization}
+
+  \item{...}{parameters, "name=repo_name" is required, see
+  http://developer.github.com/v3/repos/#create for more}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the created repository
+}
+\description{
+  create rpository under given organization
+}
+

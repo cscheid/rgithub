@@ -1,0 +1,25 @@
+\name{create.repository.key}
+\alias{create.repository.key}
+\title{create a repository key}
+\usage{
+  create.repository.key(owner, repo, content,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{content}{the JSON object with the content. See
+  http://developer.github.com/v3/repos/keys/#create for
+  details}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the key
+}
+\description{
+  create a repository key
+}
+

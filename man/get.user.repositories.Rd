@@ -1,0 +1,22 @@
+\name{get.user.repositories}
+\alias{get.user.repositories}
+\title{Get list of repositories of given user}
+\usage{
+  get.user.repositories(user, ...,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{user}{the given user}
+
+  \item{...}{extra parameters, see
+  http://developer.github.com/v3/repos/}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  list of repositories
+}
+\description{
+  Get list of repositories of given user
+}
+

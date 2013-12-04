@@ -1,0 +1,27 @@
+\name{modify.hook}
+\alias{modify.hook}
+\title{modify an exisitng hook for repo}
+\usage{
+  modify.hook(owner, repo, id, content,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{id}{the id of the hook}
+
+  \item{content}{the JSON object describing the hook. See
+  http://developer.github.com/v3/repos/hooks/#edit-a-hook
+  for details.}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the specific hook
+}
+\description{
+  modify an exisitng hook for repo
+}
+

@@ -1,0 +1,22 @@
+\name{get.repository.languages}
+\alias{get.repository.languages}
+\title{get list of languages used in the repository, as estimated by github}
+\usage{
+  get.repository.languages(owner, repo,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  list of languages
+}
+\description{
+  get list of languages used in the repository, as
+  estimated by github
+}
+
