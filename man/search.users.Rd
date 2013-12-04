@@ -2,22 +2,22 @@
 \alias{search.users}
 \title{Search Github users.}
 \usage{
-  search.users(ctx, q, ...)
+  search.users(q, ..., ctx = get.github.context())
 }
 \arguments{
-  \item{ctx}{Authentication object}
-
   \item{q}{Query string}
 
   \item{...}{Further arguments passed on to Github API
   call}
+
+  \item{ctx}{Authentication object}
 }
 \description{
   Search Github users.
 }
 \examples{
 \dontrun{
-search.users(ctx, "tom repos:>42 followers:>1000")
+search.users("tom repos:>42 followers:>1000")
 }
 }
 

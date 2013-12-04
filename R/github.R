@@ -3,6 +3,8 @@ require(RCurl)
 require(stringr)
 require(rjson)
 
+.state <- new.env(parent=emptyenv())
+
 #' Obtain a github context interactively
 #'
 #' interactive.login opens a web browser, asks for your username+password, performs
@@ -55,6 +57,11 @@ interactive.login <- function(client_id,
 #' rate limiting will be in effect. Refer to http://developer.github.com for
 #' more details.
 #'
+#' create.github.context stores the context last created in an environment.
+#' If any of the github API functions are called without a context, this
+#' context is used instead. (if no context has been created, an unauthenticated
+#' context will be created)
+#'
 #' @param api_url the base URL
 #'
 #' @param client_id the github client ID
@@ -67,7 +74,7 @@ interactive.login <- function(client_id,
 #'
 #' @return a github context object that is used in every github API call
 #'   issued by this library.
-create.github.context <- function(api_url, client_id = NULL,
+create.github.context <- function(api_url = "https://api.github.com", client_id = NULL,
                                   client_secret = NULL, access_token = NULL,
                                   max_etags = 10000)
 {
@@ -87,8 +94,19 @@ create.github.context <- function(api_url, client_id = NULL,
     ctx$user <- r$content
     ctx$oath_scopes <- r$headers$`x-oauth-scopes`
   }
+  class(ctx) <- "githubcontext"
+  .state$ctx <- ctx
   ctx
 }
+
+get.github.context <- function()
+{
+  if (is.null(.state$ctx))
+    create.github.context()
+  .state$ctx
+}
+
+api.function <- function(...) NULL
 
 build.url <- function(ctx, resource, params)
 {
@@ -181,7 +199,7 @@ without.body <- function(method)
   function(url, config, body) { method(url, config = config) }
 }
 
-with.body <- function(method) {
+.with.body <- function(method) {
   function(url, config, body) {
     if (is.list(body))
       body = toJSON(body)
@@ -195,9 +213,9 @@ with.body <- function(method) {
 
 api.get.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json())       cached.api.request(ctx, req, without.body(GET),    expect.code, params, config)
 api.delete.request <- function(ctx, req, expect.code = 204, params = list(), config = accept_json())              api.request(ctx, req, without.body(DELETE), expect.code, params, config)
-api.put.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, with.body(PUT),       expect.code, params, config, body)
-api.patch.request  <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, with.body(PATCH),     expect.code, params, config, body)
-api.post.request   <- function(ctx, req, expect.code = 201, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, with.body(POST),      expect.code, params, config, body)
+api.put.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, .with.body(PUT),       expect.code, params, config, body)
+api.patch.request  <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, .with.body(PATCH),     expect.code, params, config, body)
+api.post.request   <- function(ctx, req, expect.code = 201, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, .with.body(POST),      expect.code, params, config, body)
 
 api.test.request <- function(ctx, path)
 {

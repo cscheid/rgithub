@@ -16,6 +16,7 @@ script: ./travis-tool.sh run_tests
 
 on_failure:
   - ./travis-tool.sh dump_logs
+  - cat /home/travis/build/cscheid/rgithub/github.Rcheck/00install.out
 
 notifications:
   email:

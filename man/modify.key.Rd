@@ -1,0 +1,18 @@
+\name{modify.key}
+\alias{modify.key}
+\title{Update a public key with some id}
+\usage{
+  modify.key(id, content, ctx = get.github.context())
+}
+\arguments{
+  \item{content}{the public key}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the updated public key
+}
+\description{
+  Update a public key with some id
+}
+

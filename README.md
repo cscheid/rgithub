@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/cscheid/rgithub.png)](https://travis-ci.org/cscheid/rgithub)
+
 # R Bindings for the Github v3 API
 
 These are bindings for the Github web service API as of version 3. For
