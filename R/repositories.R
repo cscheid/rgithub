@@ -9,7 +9,7 @@
 #'
 #' @return list of repositories
 get.my.repositories <- function(..., ctx = get.github.context())
-  api.get.request(ctx, c("user", "repos"), params=list(...))
+  .api.get.request(ctx, c("user", "repos"), params=list(...))
 
 #' Get list of repositories of given user
 #'
@@ -21,7 +21,7 @@ get.my.repositories <- function(..., ctx = get.github.context())
 #'
 #' @return list of repositories
 get.user.repositories <- function(user, ..., ctx = get.github.context())
-  api.get.request(ctx, c("users", user, "repos"), params=list(...))
+  .api.get.request(ctx, c("users", user, "repos"), params=list(...))
 
 #' get list of repositories of given organization
 #'
@@ -33,7 +33,7 @@ get.user.repositories <- function(user, ..., ctx = get.github.context())
 #'
 #' @return list of repositories
 get.organization.repositories <- function(org, ..., ctx = get.github.context())
-  api.get.request(ctx, c("orgs", org, "repos"), params=list(...))
+  .api.get.request(ctx, c("orgs", org, "repos"), params=list(...))
 
 #' get list of all repositories
 #'
@@ -43,7 +43,7 @@ get.organization.repositories <- function(org, ..., ctx = get.github.context())
 #'
 #' @return list of repositories
 get.all.repositories <- function(..., ctx = get.github.context())
-  api.get.request(ctx, c("repositories"), params=list(...))
+  .api.get.request(ctx, c("repositories"), params=list(...))
 
 #' create repository
 #'
@@ -54,7 +54,7 @@ get.all.repositories <- function(..., ctx = get.github.context())
 #'
 #' @return the created repository
 create.repository <- function(..., ctx = get.github.context())
-  api.post.request(ctx, c("user", "repos"), body=content)
+  .api.post.request(ctx, c("user", "repos"), body=content)
 
 #' create rpository under given organization
 #'
@@ -67,7 +67,7 @@ create.repository <- function(..., ctx = get.github.context())
 #'
 #' @return the created repository
 create.organization.repository <- function(org, ..., ctx = get.github.context())
-  api.post.request(ctx, c("orgs", org, "repos"), body=list(...))
+  .api.post.request(ctx, c("orgs", org, "repos"), body=list(...))
 
 #' get repository
 #'
@@ -79,7 +79,7 @@ create.organization.repository <- function(org, ..., ctx = get.github.context())
 #'
 #' @return the repository
 get.repository <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo))
+  .api.get.request(ctx, c("repos", owner, repo))
 
 #' modify repository
 #'
@@ -93,7 +93,7 @@ get.repository <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return the changed repository
 modify.repository <- function(owner, repo, content, ctx = get.github.context())
-  api.patch.request(ctx, c("repos", owner, repo), body=content)
+  .api.patch.request(ctx, c("repos", owner, repo), body=content)
 
 #' get list of repository contributors
 #' 
@@ -105,7 +105,7 @@ modify.repository <- function(owner, repo, content, ctx = get.github.context())
 #'
 #' @return list of repo contributors
 get.repository.contributors <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "contributors"))
+  .api.get.request(ctx, c("repos", owner, repo, "contributors"))
 
 #' get list of languages used in the repository, as estimated by github
 #' 
@@ -117,7 +117,7 @@ get.repository.contributors <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return list of languages
 get.repository.languages <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "languages"))
+  .api.get.request(ctx, c("repos", owner, repo, "languages"))
 
 #' get list of teams participating in the repository
 #' 
@@ -129,7 +129,7 @@ get.repository.languages <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return list of teams
 get.repository.teams <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "teams"))
+  .api.get.request(ctx, c("repos", owner, repo, "teams"))
 
 #' get list of repository tags
 #' 
@@ -141,7 +141,7 @@ get.repository.teams <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return list of tags
 get.repository.tags <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "tags"))
+  .api.get.request(ctx, c("repos", owner, repo, "tags"))
 
 #' get list of repository branches
 #' 
@@ -153,7 +153,7 @@ get.repository.tags <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return list of branches
 get.repository.branches <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "branches"))
+  .api.get.request(ctx, c("repos", owner, repo, "branches"))
 
 #' get specific repository branch
 #' 
@@ -167,7 +167,7 @@ get.repository.branches <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return information about the branch
 get.repository.branch <- function(owner, repo, branch, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "branches", branch))
+  .api.get.request(ctx, c("repos", owner, repo, "branches", branch))
 
 #' delete repository
 #' 
@@ -179,7 +179,7 @@ get.repository.branch <- function(owner, repo, branch, ctx = get.github.context(
 #'
 #' @return nothing
 delete.repository <- function(owner, repo, ctx = get.github.context())
-  api.delete.request(ctx, c("repos", owner, repo))
+  .api.delete.request(ctx, c("repos", owner, repo))
 
 ################################################################################
 # collaborators
@@ -194,7 +194,7 @@ delete.repository <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return list of collaborators
 get.repository.collaborators <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "collaborators"))
+  .api.get.request(ctx, c("repos", owner, repo, "collaborators"))
 
 #' test if a given user is a collaborator of a repo
 #' 
@@ -208,7 +208,7 @@ get.repository.collaborators <- function(owner, repo, ctx = get.github.context()
 #'
 #' @return TRUE if user is a collaborator in the repo
 is.repository.collaborator <- function(owner, repo, user, ctx = get.github.context())
-  api.test.request(ctx, c("repos", owner, repo, "collaborators", user))
+  .api.test.request(ctx, c("repos", owner, repo, "collaborators", user))
 
 #' add a user to the list of collaborators of a repo
 #'
@@ -222,7 +222,7 @@ is.repository.collaborator <- function(owner, repo, user, ctx = get.github.conte
 #'
 #' @return none
 add.repository.collaborator <- function(owner, repo, user, ctx = get.github.context())
-  api.put.request(ctx, c("repos", owner, repo, "collaborators", user), expect.code=204)
+  .api.put.request(ctx, c("repos", owner, repo, "collaborators", user), expect.code=204)
 
 #' delete a user from the list of collaborators of a repo
 #'
@@ -236,7 +236,7 @@ add.repository.collaborator <- function(owner, repo, user, ctx = get.github.cont
 #'
 #' @return none
 delete.repository.collaborator <- function(owner, repo, user, ctx = get.github.context())
-  api.delete.request(ctx, c("repos", owner, repo, "collaborators", user))
+  .api.delete.request(ctx, c("repos", owner, repo, "collaborators", user))
 
 ################################################################################
 # comments
@@ -251,7 +251,7 @@ delete.repository.collaborator <- function(owner, repo, user, ctx = get.github.c
 #'
 #' @return list of comments
 get.repository.comments <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "comments"))
+  .api.get.request(ctx, c("repos", owner, repo, "comments"))
 
 #' get all commit comments for a given commit in a repository
 #'
@@ -265,7 +265,7 @@ get.repository.comments <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return the comments
 get.repository.commit.comments <- function(owner, repo, sha, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "commits", sha, "comments"))
+  .api.get.request(ctx, c("repos", owner, repo, "commits", sha, "comments"))
 
 #' create a comment for a given commit in a repository
 #'
@@ -281,7 +281,7 @@ get.repository.commit.comments <- function(owner, repo, sha, ctx = get.github.co
 #'
 #' @return the comment
 create.commit.comment <- function(owner, repo, sha, content, ctx = get.github.context())
-  api.post.request(ctx, c("repos", owner, repo, "commits", sha, "comments"), body=content)
+  .api.post.request(ctx, c("repos", owner, repo, "commits", sha, "comments"), body=content)
 
 #' get a single commit comment
 #'
@@ -295,7 +295,7 @@ create.commit.comment <- function(owner, repo, sha, content, ctx = get.github.co
 #'
 #' @return the comment
 get.commit.comment <- function(owner, repo, id, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "comments", id))
+  .api.get.request(ctx, c("repos", owner, repo, "comments", id))
 
 #' update a single commit comment
 #'
@@ -311,7 +311,7 @@ get.commit.comment <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @return the comment
 modify.commit.comment <- function(owner, repo, id, content, ctx = get.github.context())
-  api.patch.request(ctx, c("repos", owner, repo, "comments", id), body=content)
+  .api.patch.request(ctx, c("repos", owner, repo, "comments", id), body=content)
 
 #' delete a single commit comment
 #'
@@ -325,7 +325,7 @@ modify.commit.comment <- function(owner, repo, id, content, ctx = get.github.con
 #'
 #' @return none
 delete.commit.comment <- function(owner, repo, id, ctx = get.github.context())
-  api.delete.request(ctx, c("repos", owner, repo, "comments", id))
+  .api.delete.request(ctx, c("repos", owner, repo, "comments", id))
 
 ################################################################################
 # commits
@@ -342,7 +342,7 @@ delete.commit.comment <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @return list of commits
 get.repository.commits <- function(owner, repo, ..., ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "commits"), params=list(...))
+  .api.get.request(ctx, c("repos", owner, repo, "commits"), params=list(...))
 
 #' get a specific commit from a repo
 #'
@@ -356,7 +356,7 @@ get.repository.commits <- function(owner, repo, ..., ctx = get.github.context())
 #'
 #' @return the commit
 get.repository.commit <- function(owner, repo, sha, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "commits", sha))
+  .api.get.request(ctx, c("repos", owner, repo, "commits", sha))
 
 #' return a diff between two commits
 #'
@@ -372,7 +372,7 @@ get.repository.commit <- function(owner, repo, sha, ctx = get.github.context())
 #'
 #' @return the commit
 get.repository.diff <- function(owner, repo, sha1, sha2, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "compare", str_c(sha1, "...", sha2)))
+  .api.get.request(ctx, c("repos", owner, repo, "compare", str_c(sha1, "...", sha2)))
 
 ################################################################################
 # contents
@@ -389,7 +389,7 @@ get.repository.diff <- function(owner, repo, sha1, sha2, ctx = get.github.contex
 #'
 #' @return the readme
 get.repository.readme <- function(owner, repo, ..., ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "readme"), params=list(...))
+  .api.get.request(ctx, c("repos", owner, repo, "readme"), params=list(...))
 
 #' Get the contents of a file
 #'
@@ -405,7 +405,7 @@ get.repository.readme <- function(owner, repo, ..., ctx = get.github.context())
 #'
 #' @return the file
 get.repository.path <- function(owner, repo, path, ..., ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "contents", path), params=list(...))
+  .api.get.request(ctx, c("repos", owner, repo, "contents", path), params=list(...))
 
 #' Get the archive of a repo
 #'
@@ -421,7 +421,7 @@ get.repository.path <- function(owner, repo, path, ..., ctx = get.github.context
 #'
 #' @return the archive
 get.repository.archive <- function(owner, repo, format, ref, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, format, ref))
+  .api.get.request(ctx, c("repos", owner, repo, format, ref))
 
 ################################################################################
 # downloads
@@ -436,7 +436,7 @@ get.repository.archive <- function(owner, repo, format, ref, ctx = get.github.co
 #'
 #' @return the list of downloads
 get.repository.downloads <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "downloads"))
+  .api.get.request(ctx, c("repos", owner, repo, "downloads"))
 
 #' get specific download for a repository
 #'
@@ -450,7 +450,7 @@ get.repository.downloads <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return the specific downloads
 get.repository.download <- function(owner, repo, id, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "downloads", id))
+  .api.get.request(ctx, c("repos", owner, repo, "downloads", id))
 # creating downloads not supported, because of interaction with S3 and different
 # HTTP apis and how it works in enterprise Github setups. I don't want to understand this right now.
 
@@ -466,7 +466,7 @@ get.repository.download <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @return the specific downloads
 delete.repository.download <- function(owner, repo, id, ctx = get.github.context())
-  api.delete.request(ctx, c("repos", owner, repo, "downloads", id))
+  .api.delete.request(ctx, c("repos", owner, repo, "downloads", id))
 
 ################################################################################
 # forks
@@ -483,7 +483,7 @@ delete.repository.download <- function(owner, repo, id, ctx = get.github.context
 #'
 #' @return the list of forks
 get.repository.forks <- function(owner, repo, ..., ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "forks"), params=list(...))
+  .api.get.request(ctx, c("repos", owner, repo, "forks"), params=list(...))
 
 #' create a fork under the current user
 #'
@@ -497,7 +497,7 @@ get.repository.forks <- function(owner, repo, ..., ctx = get.github.context())
 #'
 #' @return the new fork. Notice that forks happen asynchronously, so git objects will not be immediately accessible.
 create.fork <- function(owner, repo, ..., ctx = get.github.context())
-  api.post.request(ctx, c("repos", owner, repo, "forks"), params=list(...), expect.code=202)
+  .api.post.request(ctx, c("repos", owner, repo, "forks"), params=list(...), expect.code=202)
 
 ################################################################################
 # keys
@@ -512,7 +512,7 @@ create.fork <- function(owner, repo, ..., ctx = get.github.context())
 #'
 #' @return the key list
 get.repository.keys <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "keys"))
+  .api.get.request(ctx, c("repos", owner, repo, "keys"))
 
 #' get a specific repository key
 #'
@@ -526,7 +526,7 @@ get.repository.keys <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return the key
 get.repository.key <- function(owner, repo, id, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "keys", id))
+  .api.get.request(ctx, c("repos", owner, repo, "keys", id))
 
 #' create a repository key
 #'
@@ -540,7 +540,7 @@ get.repository.key <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @return the key
 create.repository.key <- function(owner, repo, content, ctx = get.github.context())
-  api.post.request(ctx, c("repos", owner, repo, "keys"), body=content)
+  .api.post.request(ctx, c("repos", owner, repo, "keys"), body=content)
 
 #' update a repository key
 #'
@@ -556,7 +556,7 @@ create.repository.key <- function(owner, repo, content, ctx = get.github.context
 #'
 #' @return the new key
 modify.repository.key <- function(owner, repo, id, content, ctx = get.github.context())
-  api.patch.request(ctx, c("repos", owner, repo, "keys", id), body=content)
+  .api.patch.request(ctx, c("repos", owner, repo, "keys", id), body=content)
 
 #' delete a repository key
 #'
@@ -570,7 +570,7 @@ modify.repository.key <- function(owner, repo, id, content, ctx = get.github.con
 #'
 #' @return none
 delete.repository.key <- function(owner, repo, id, ctx = get.github.context())
-  api.delete.request(ctx, c("repos", owner, repo, "keys", id))
+  .api.delete.request(ctx, c("repos", owner, repo, "keys", id))
 
 ################################################################################
 # hooks
@@ -585,7 +585,7 @@ delete.repository.key <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @return list of hooks
 get.repository.hooks <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "hooks"))
+  .api.get.request(ctx, c("repos", owner, repo, "hooks"))
 
 #' get specific hook of repository
 #'
@@ -599,7 +599,7 @@ get.repository.hooks <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return the specific hook
 get.repository.hook <- function(owner, repo, id, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "hooks", id))
+  .api.get.request(ctx, c("repos", owner, repo, "hooks", id))
 
 #' create a new hook for repo
 #'
@@ -613,7 +613,7 @@ get.repository.hook <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @return the specific hook
 create.hook <- function(owner, repo, content, ctx = get.github.context())
-  api.post.request(ctx, c("repos", owner, repo, "hooks"), body=content)
+  .api.post.request(ctx, c("repos", owner, repo, "hooks"), body=content)
 
 #' modify an exisitng hook for repo
 #'
@@ -629,7 +629,7 @@ create.hook <- function(owner, repo, content, ctx = get.github.context())
 #'
 #' @return the specific hook
 modify.hook <- function(owner, repo, id, content, ctx = get.github.context())
-  api.post.request(ctx, c("repos", owner, repo, "hooks", id), body=content)
+  .api.post.request(ctx, c("repos", owner, repo, "hooks", id), body=content)
 
 #' test a push hook. This will force github to trigger the given hook.
 #'
@@ -643,7 +643,7 @@ modify.hook <- function(owner, repo, id, content, ctx = get.github.context())
 #'
 #' @return none
 test.hook <- function(owner, repo, id, ctx = get.github.context())
-  api.post.request(ctx, c("repos", owner, repo, "hooks", id, "tests"))
+  .api.post.request(ctx, c("repos", owner, repo, "hooks", id, "tests"))
 
 #' delete a hook.
 #'
@@ -657,7 +657,7 @@ test.hook <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @return none
 delete.hook <- function(owner, repo, id, ctx = get.github.context())
-  api.delete.request(ctx, c("repos", owner, repo, "hooks", id))
+  .api.delete.request(ctx, c("repos", owner, repo, "hooks", id))
 
 ################################################################################
 # merge
@@ -674,7 +674,7 @@ delete.hook <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @return the resulting merge commit
 perform.repository.merge <- function(owner, repo, content, ctx = get.github.context())
-  api.post.request(ctx, c("repos", owner, repo, "merges"), body=content, expect.code=c(201, 204, 409, 404))
+  .api.post.request(ctx, c("repos", owner, repo, "merges"), body=content, expect.code=c(201, 204, 409, 404))
 
 ################################################################################
 # statuses
@@ -691,7 +691,7 @@ perform.repository.merge <- function(owner, repo, content, ctx = get.github.cont
 #'
 #' @return the list of statuses
 get.repository.statuses <- function(owner, repo, ref, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "statuses", ref))
+  .api.get.request(ctx, c("repos", owner, repo, "statuses", ref))
 
 #' create status for a ref in a repo
 #'
@@ -707,6 +707,6 @@ get.repository.statuses <- function(owner, repo, ref, ctx = get.github.context()
 #'
 #' @return the list of statuses
 create.repository.status <- function(owner, repo, ref, ..., ctx = get.github.context())
-  api.post.request(ctx, c("repos", owner, repo, "statuses", ref), params=list(...))
+  .api.post.request(ctx, c("repos", owner, repo, "statuses", ref), params=list(...))
 
 

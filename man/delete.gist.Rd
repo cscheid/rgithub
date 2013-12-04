@@ -1,0 +1,18 @@
+\name{delete.gist}
+\alias{delete.gist}
+\title{delete a gist}
+\usage{
+  delete.gist(id, ctx = get.github.context())
+}
+\arguments{
+  \item{id}{the gist id}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  none
+}
+\description{
+  delete a gist
+}
+

@@ -1,0 +1,23 @@
+\name{modify.gist}
+\alias{modify.gist}
+\title{Edit a gist}
+\usage{
+  modify.gist(id, content, ctx = get.github.context())
+}
+\arguments{
+  \item{id}{the gist id}
+
+  \item{content}{the JSON object describing the updated
+  gist. see
+  http://developer.github.com/v3/gists/#edit-a-gist for
+  details}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the new gist
+}
+\description{
+  Edit a gist
+}
+

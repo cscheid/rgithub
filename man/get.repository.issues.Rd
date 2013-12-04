@@ -1,0 +1,24 @@
+\name{get.repository.issues}
+\alias{get.repository.issues}
+\title{List all issues for a repo}
+\usage{
+  get.repository.issues(owner, repo, ...,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the repo name}
+
+  \item{...}{extra parameters. See
+  http://developer.github.com/v3/issues/ for details}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the list of issues
+}
+\description{
+  List all issues for a repo
+}
+

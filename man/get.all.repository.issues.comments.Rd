@@ -1,0 +1,25 @@
+\name{get.all.repository.issues.comments}
+\alias{get.all.repository.issues.comments}
+\title{Get list of comments for an issue}
+\usage{
+  get.all.repository.issues.comments(owner, repo, ...,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the repo name}
+
+  \item{...}{extra parameters. See
+  http://developer.github.com/v3/issues/comments/#list-comments-in-a-repository
+  for details.}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the list of comments
+}
+\description{
+  Get list of comments for an issue
+}
+

@@ -9,7 +9,7 @@
 #'
 #' @return the list of public events
 get.public.events <- function(..., ctx = get.github.context())
-  api.get.request(ctx, c("events"), params=list(...))
+  .api.get.request(ctx, c("events"), params=list(...))
 
 #' list events for a given repo
 #'
@@ -23,7 +23,7 @@ get.public.events <- function(..., ctx = get.github.context())
 #'
 #' @return the list of repository events
 get.repository.events <- function(owner, repo, ..., ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "events"), params=list(...))
+  .api.get.request(ctx, c("repos", owner, repo, "events"), params=list(...))
 
 #' list issue events for a given repo
 #'
@@ -37,7 +37,7 @@ get.repository.events <- function(owner, repo, ..., ctx = get.github.context())
 #'
 #' @return the list of repository issue events
 get.repository.issue.events <- function(owner, repo, ..., ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "issues", "events"), params=list(...))
+  .api.get.request(ctx, c("repos", owner, repo, "issues", "events"), params=list(...))
 
 #' list events for a network of repositories
 #'
@@ -51,7 +51,7 @@ get.repository.issue.events <- function(owner, repo, ..., ctx = get.github.conte
 #'
 #' @return the list of events for the network of repositories
 get.network.public.events <- function(owner, repo, ..., ctx = get.github.context())
-  api.get.request(ctx, c("networks", owner, repo, "events"), params=list(...))
+  .api.get.request(ctx, c("networks", owner, repo, "events"), params=list(...))
 
 #' list public events for an organization
 #'
@@ -63,7 +63,7 @@ get.network.public.events <- function(owner, repo, ..., ctx = get.github.context
 #'
 #' @return the list of events for the network of repositories
 get.organization.public.events <- function(org, ctx = get.github.context())
-  api.get.request(ctx, c("orgs", org, "events"), params=list(...))
+  .api.get.request(ctx, c("orgs", org, "events"), params=list(...))
 
 #' list events that a user has received
 #'
@@ -75,7 +75,7 @@ get.organization.public.events <- function(org, ctx = get.github.context())
 #'
 #' @return the list of events the user has received
 get.user.received.events <- function(user, ..., ctx = get.github.context())
-  api.get.request(ctx, c("users", user, "received_events"), params=list(...))
+  .api.get.request(ctx, c("users", user, "received_events"), params=list(...))
 
 #' list public events that a user has received
 #'
@@ -87,7 +87,7 @@ get.user.received.events <- function(user, ..., ctx = get.github.context())
 #'
 #' @return the list of public events the user has received
 get.user.public.received.events <- function(user, ..., ctx = get.github.context())
-  api.get.request(ctx, c("users", user, "received_events", "public"), params=list(...))
+  .api.get.request(ctx, c("users", user, "received_events", "public"), params=list(...))
 
 #' list events that a user has performed
 #'
@@ -100,7 +100,7 @@ get.user.public.received.events <- function(user, ..., ctx = get.github.context(
 #' @return the list of events the user has performed. If user is the authenticated user,
 #'         this includes private events. Otherwise, this list contains only public events.
 get.user.performed.events <- function(user, ..., ctx = get.github.context())
-  api.get.request(ctx, c("users", user, "events"), params=list(...))
+  .api.get.request(ctx, c("users", user, "events"), params=list(...))
 
 #' list public events that a user has performed
 #'
@@ -112,7 +112,7 @@ get.user.performed.events <- function(user, ..., ctx = get.github.context())
 #'
 #' @return the list of public events the user has performed.
 get.user.public.performed.events <- function(user, ctx = get.github.context())
-  api.get.request(ctx, c("users", user, "events", "public"), params=list(...))
+  .api.get.request(ctx, c("users", user, "events", "public"), params=list(...))
 
 #' list events from the authenticated user organization
 #'
@@ -124,7 +124,7 @@ get.user.public.performed.events <- function(user, ctx = get.github.context())
 #'
 #' @return the list of events 
 get.my.organization.events <- function(org, ..., ctx = get.github.context())
-  api.get.request(ctx, c("users", ctx$user$login, "events", "orgs", org), params=list(...))
+  .api.get.request(ctx, c("users", ctx$user$login, "events", "orgs", org), params=list(...))
 
 ################################################################################
 # notifications
@@ -137,7 +137,7 @@ get.my.organization.events <- function(org, ..., ctx = get.github.context())
 #'
 #' @return the list of notifications
 get.my.notifications <- function(..., ctx=get.github.context())
-  api.get.request(ctx, c("notifications"), params=list(...))
+  .api.get.request(ctx, c("notifications"), params=list(...))
 
 #' list the current user's notifications for a given repo
 #'
@@ -151,7 +151,7 @@ get.my.notifications <- function(..., ctx=get.github.context())
 #'
 #' @return the list of notifications
 get.my.repository.notifications <- function(owner, repo, ..., ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "notifications"), params=list(...))
+  .api.get.request(ctx, c("repos", owner, repo, "notifications"), params=list(...))
 
 #' mark my notifications as read
 #'
@@ -161,7 +161,7 @@ get.my.repository.notifications <- function(owner, repo, ..., ctx = get.github.c
 #'
 #' @return None
 mark.my.notifications <- function(..., ctx = get.github.context())
-  api.put.request(ctx, c("notifications"), expect.code=205, params=list(...))
+  .api.put.request(ctx, c("notifications"), expect.code=205, params=list(...))
 
 #' mark my notifications as read for a given repo
 #'
@@ -175,7 +175,7 @@ mark.my.notifications <- function(..., ctx = get.github.context())
 #'
 #' @return none
 mark.my.repository.notifications <- function(owner, repo, ..., ctx = get.github.context())
-  api.put.request(ctx, c("repos", owner, repo, "notifications"), expect.code=205, params=list(...))
+  .api.put.request(ctx, c("repos", owner, repo, "notifications"), expect.code=205, params=list(...))
 
 #' get single thread notifications
 #'
@@ -185,7 +185,7 @@ mark.my.repository.notifications <- function(owner, repo, ..., ctx = get.github.
 #'
 #' @return the thread
 get.thread.notifications <- function(id, ctx = get.github.context())
-  api.get.request(ctx, c("notifications", "threads", id))
+  .api.get.request(ctx, c("notifications", "threads", id))
 
 #' mark a single thread as read.
 #'
@@ -195,7 +195,7 @@ get.thread.notifications <- function(id, ctx = get.github.context())
 #'
 #' @return none
 mark.thread.notifications <- function(id, ctx = get.github.context())
-  api.patch.request(ctx, c("notifications", "threads", id), expect.code=205)
+  .api.patch.request(ctx, c("notifications", "threads", id), expect.code=205)
 
 #' checks to see if the current user is subscribed to a thread.
 #'
@@ -205,7 +205,7 @@ mark.thread.notifications <- function(id, ctx = get.github.context())
 #'
 #' @return the response object
 get.thread.notifications.subscription <- function(id, ctx = get.github.context())
-  api.get.request(ctx, c("notifications", "threads", id, "subscription"))
+  .api.get.request(ctx, c("notifications", "threads", id, "subscription"))
 
 #' subscribes current user to a thread, or ignore thread. Subscribing to a thread is unnecessary if the user is already subscribed to the repository. Ignoring a thread will mute all future notifications (until you comment or get at-mentioned).
 #'
@@ -217,7 +217,7 @@ get.thread.notifications.subscription <- function(id, ctx = get.github.context()
 #'
 #' @return the response object
 set.thread.notifications.subscription <- function(id, ..., ctx = get.github.context())
-  api.put.request(ctx, c("notifications", "threads", id, "subscription"), params=list(...))
+  .api.put.request(ctx, c("notifications", "threads", id, "subscription"), params=list(...))
 
 #' deletes subscription info from thread.
 #'
@@ -227,7 +227,7 @@ set.thread.notifications.subscription <- function(id, ..., ctx = get.github.cont
 #'
 #' @return none
 unset.thread.notifications.subscription <- function(id, ctx = get.github.context())
-  api.delete.request(ctx, c("notifications", "threads", id, "subscription"))
+  .api.delete.request(ctx, c("notifications", "threads", id, "subscription"))
 
 ################################################################################
 # starring
@@ -242,7 +242,7 @@ unset.thread.notifications.subscription <- function(id, ctx = get.github.context
 #'
 #' @return user list
 get.stargazers <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "stargazers"))
+  .api.get.request(ctx, c("repos", owner, repo, "stargazers"))
 
 #' list repos starred by user
 #'
@@ -254,7 +254,7 @@ get.stargazers <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return repo list
 get.repositories.starred.by.user <- function(user, ..., ctx = get.github.context())
-  api.get.request(ctx, c("users", user, "starred"), params=list(...))
+  .api.get.request(ctx, c("users", user, "starred"), params=list(...))
 
 #' list repos starred by current user
 #'
@@ -264,7 +264,7 @@ get.repositories.starred.by.user <- function(user, ..., ctx = get.github.context
 #'
 #' @return repo list
 get.repositories.starred.by.me <- function(..., ctx = get.github.context())
-  api.get.request(ctx, c("user", "starred"), params=list(...))
+  .api.get.request(ctx, c("user", "starred"), params=list(...))
 
 #' check if repository is starred by current user
 #'
@@ -276,7 +276,7 @@ get.repositories.starred.by.me <- function(..., ctx = get.github.context())
 #'
 #' @return TRUE if current user starred repo
 is.repository.starred.by.me <- function(owner, repo, ctx = get.github.context())
-  api.test.request(ctx, c("user", "starred", owner, repo))
+  .api.test.request(ctx, c("user", "starred", owner, repo))
 
 #' star a repository
 #'
@@ -288,7 +288,7 @@ is.repository.starred.by.me <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return none
 star.repository <- function(owner, repo, ctx = get.github.context())
-  api.put.request(ctx, c("user", "starred", owner, repo), expect.code=204)
+  .api.put.request(ctx, c("user", "starred", owner, repo), expect.code=204)
 
 #' unstar a repository
 #'
@@ -300,7 +300,7 @@ star.repository <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return none
 unstar.repository <- function(owner, repo, ctx = get.github.context())
-  api.delete.request(ctx, c("user", "starred", owner, repo), expect.code=204)
+  .api.delete.request(ctx, c("user", "starred", owner, repo), expect.code=204)
 
 ################################################################################
 # watching
@@ -316,7 +316,7 @@ unstar.repository <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return list of repository watchers
 get.watchers <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "subscribers"))
+  .api.get.request(ctx, c("repos", owner, repo, "subscribers"))
 
 #' list repos watched by users
 #'
@@ -326,7 +326,7 @@ get.watchers <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return list of repositories
 get.repositories.watched.by.user <- function(user, ctx = get.github.context())
-  api.get.request(ctx, c("users", user, "subscriptions"))
+  .api.get.request(ctx, c("users", user, "subscriptions"))
 
 #' list repos watched by current user
 #'
@@ -334,7 +334,7 @@ get.repositories.watched.by.user <- function(user, ctx = get.github.context())
 #'
 #' @return list of repositories
 get.repositories.watched.by.me <- function(ctx)
-  api.get.request(ctx, c("user", "subscriptions"))
+  .api.get.request(ctx, c("user", "subscriptions"))
 
 #' get repository subscription info
 #'
@@ -346,7 +346,7 @@ get.repositories.watched.by.me <- function(ctx)
 #'
 #' @return subscription info
 get.repository.subscription <- function(owner, repo, ctx = get.github.context())
-  api.get.request(ctx, c("repos", owner, repo, "subscription"))
+  .api.get.request(ctx, c("repos", owner, repo, "subscription"))
 
 #' set repository subscription info
 #'
@@ -360,7 +360,7 @@ get.repository.subscription <- function(owner, repo, ctx = get.github.context())
 #'
 #' @return subscription info
 set.repository.subscription <- function(owner, repo, ..., ctx = get.github.context())
-  api.put.request(ctx, c("repos", owner, repo, "subscription"), params=list(...))
+  .api.put.request(ctx, c("repos", owner, repo, "subscription"), params=list(...))
 
 #' clear repository subscription info
 #'
@@ -372,4 +372,4 @@ set.repository.subscription <- function(owner, repo, ..., ctx = get.github.conte
 #'
 #' @return subscription info
 unset.repository.subscription <- function(owner, repo, ctx = get.github.context())
-  api.delete.request(ctx, c("repos", owner, repo, "subscription"))
+  .api.delete.request(ctx, c("repos", owner, repo, "subscription"))
