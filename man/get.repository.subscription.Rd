@@ -1,0 +1,21 @@
+\name{get.repository.subscription}
+\alias{get.repository.subscription}
+\title{get repository subscription info}
+\usage{
+  get.repository.subscription(owner, repo,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{repo owner}
+
+  \item{repo}{name of repo}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  subscription info
+}
+\description{
+  get repository subscription info
+}
+

@@ -196,7 +196,7 @@ api.request <- function(ctx, req, method, expect.code = 200,
   output
 }
 
-without.body <- function(method)
+.without.body <- function(method)
 {
   function(url, config, body) { method(url, config = config) }
 }
@@ -213,8 +213,8 @@ without.body <- function(method)
   }
 }
 
-api.get.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json())       cached.api.request(ctx, req, without.body(GET),    expect.code, params, config)
-api.delete.request <- function(ctx, req, expect.code = 204, params = list(), config = accept_json())              api.request(ctx, req, without.body(DELETE), expect.code, params, config)
+api.get.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json())       cached.api.request(ctx, req, .without.body(GET),    expect.code, params, config)
+api.delete.request <- function(ctx, req, expect.code = 204, params = list(), config = accept_json())              api.request(ctx, req, .without.body(DELETE), expect.code, params, config)
 api.put.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, .with.body(PUT),       expect.code, params, config, body)
 api.patch.request  <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, .with.body(PATCH),     expect.code, params, config, body)
 api.post.request   <- function(ctx, req, expect.code = 201, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, .with.body(POST),      expect.code, params, config, body)

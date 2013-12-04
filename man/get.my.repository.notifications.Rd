@@ -1,0 +1,24 @@
+\name{get.my.repository.notifications}
+\alias{get.my.repository.notifications}
+\title{list the current user's notifications for a given repo}
+\usage{
+  get.my.repository.notifications(owner, repo, ...,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the name of the repo}
+
+  \item{...}{extra parameters. See
+  http://developer.github.com/v3/activity/notifications/#list-your-notifications-in-a-repository}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the list of notifications
+}
+\description{
+  list the current user's notifications for a given repo
+}
+

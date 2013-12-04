@@ -67,7 +67,7 @@ create.repository <- function(..., ctx = get.github.context())
 #'
 #' @return the created repository
 create.organization.repository <- function(org, ..., ctx = get.github.context())
-  api.post.request(ctx, c("orgs", org, "repos"), body=content)
+  api.post.request(ctx, c("orgs", org, "repos"), body=list(...))
 
 #' get repository
 #'

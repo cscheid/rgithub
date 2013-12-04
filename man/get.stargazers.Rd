@@ -1,0 +1,20 @@
+\name{get.stargazers}
+\alias{get.stargazers}
+\title{list people who starred a repo}
+\usage{
+  get.stargazers(owner, repo, ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{repo owner}
+
+  \item{repo}{name of repo}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  user list
+}
+\description{
+  list people who starred a repo
+}
+

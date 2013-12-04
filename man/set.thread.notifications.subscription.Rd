@@ -1,0 +1,27 @@
+\name{set.thread.notifications.subscription}
+\alias{set.thread.notifications.subscription}
+\title{subscribes current user to a thread, or ignore thread. Subscribing to a thread is unnecessary if the user is already subscribed to the repository. Ignoring a thread will mute all future notifications (until you comment or get at-mentioned).}
+\usage{
+  set.thread.notifications.subscription(id, ...,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{id}{the thread id}
+
+  \item{...}{extra parameters. See
+  http://developer.github.com/v3/activity/notifications/#set-a-thread-subscription
+  for details.}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the response object
+}
+\description{
+  subscribes current user to a thread, or ignore thread.
+  Subscribing to a thread is unnecessary if the user is
+  already subscribed to the repository. Ignoring a thread
+  will mute all future notifications (until you comment or
+  get at-mentioned).
+}
+
