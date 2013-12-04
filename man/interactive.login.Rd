@@ -11,6 +11,8 @@
 
   \item{client_secret}{the github client secret}
 
+  \item{scopes}{the OAuth scopes you want to request}
+
   \item{base_url}{the base URL for the github webpage.
   Change this in GitHub Enterprise deployments to your base
   G.E. URL}

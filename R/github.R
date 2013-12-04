@@ -16,6 +16,8 @@ require(rjson)
 #'
 #' @param client_secret the github client secret
 #'
+#' @param scopes the OAuth scopes you want to request
+#'
 #' @param base_url the base URL for the github webpage. Change this in
 #'   GitHub Enterprise deployments to your base G.E. URL
 #'

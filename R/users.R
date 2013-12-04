@@ -183,6 +183,8 @@ create.key <- function(content, ctx = get.github.context())
 
 #' Update a public key with some id
 #'
+#' @param id the public key id
+#'
 #' @param content the public key
 #'
 #' @param ctx the github context object
@@ -193,7 +195,7 @@ modify.key <- function(id, content, ctx = get.github.context())
 
 #' Delete a public key with some id
 #'
-#' @param id the public id 
+#' @param id the public key id 
 #'
 #' @param ctx the github context object
 #'

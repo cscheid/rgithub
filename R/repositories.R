@@ -305,7 +305,7 @@ get.commit.comment <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @param id the comment id
 #'
-#' @param comment the JSON object containing the new contents of the comment. See http://developer.github.com/v3/repos/comments/#update-a-commit-comment for details.
+#' @param content the JSON object containing the new contents of the comment. See http://developer.github.com/v3/repos/comments/#update-a-commit-comment for details.
 #'
 #' @param ctx the github context object
 #'
@@ -396,6 +396,8 @@ get.repository.readme <- function(owner, repo, ..., ctx = get.github.context())
 #' @param owner the repo owner (user, org, etc)
 #'
 #' @param repo the name of the repo
+#'
+#' @param path the file path
 #'
 #' @param ... extra parameters to be passed. See http://developer.github.com/v3/repos/contents/#get-contents
 #'

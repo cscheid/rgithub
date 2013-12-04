@@ -10,6 +10,8 @@
 
   \item{repo}{the name of the repo}
 
+  \item{path}{the file path}
+
   \item{...}{extra parameters to be passed. See
   http://developer.github.com/v3/repos/contents/#get-contents}
 

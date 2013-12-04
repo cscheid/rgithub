@@ -12,7 +12,7 @@
 
   \item{id}{the comment id}
 
-  \item{comment}{the JSON object containing the new
+  \item{content}{the JSON object containing the new
   contents of the comment. See
   http://developer.github.com/v3/repos/comments/#update-a-commit-comment
   for details.}
