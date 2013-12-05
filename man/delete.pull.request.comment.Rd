@@ -1,0 +1,23 @@
+\name{delete.pull.request.comment}
+\alias{delete.pull.request.comment}
+\title{Delete a comment on a pull request}
+\usage{
+  delete.pull.request.comment(owner, repo, comment.id,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the repo name}
+
+  \item{comment.id}{the id of the pull request}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the comment
+}
+\description{
+  Delete a comment on a pull request
+}
+

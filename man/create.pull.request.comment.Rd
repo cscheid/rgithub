@@ -1,0 +1,28 @@
+\name{create.pull.request.comment}
+\alias{create.pull.request.comment}
+\title{Create a comment on a pull request}
+\usage{
+  create.pull.request.comment(owner, repo, pull.id,
+    content, ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the repo name}
+
+  \item{pull.id}{the id of the pull request}
+
+  \item{content}{the JSON object describing the content.
+  See
+  http://developer.github.com/v3/pulls/comments/#create-a-comment
+  for details.}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the comment
+}
+\description{
+  Create a comment on a pull request
+}
+
