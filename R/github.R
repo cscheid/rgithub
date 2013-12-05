@@ -101,6 +101,9 @@ create.github.context <- function(api_url = "https://api.github.com", client_id 
   ctx
 }
 
+#' returns the most recently created github context, or creates one if none has been so far created
+#'
+#' @return a github context object
 get.github.context <- function()
 {
   if (is.null(.state$ctx))

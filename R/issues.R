@@ -174,7 +174,7 @@ create.issue.comment <- function(owner, repo, issue.number, content, ctx = get.g
 #'
 #' @param issue.number the issue number
 #'
-#' @param content.number the issue number
+#' @param comment.number the comment number
 #'
 #' @param content the JSON object describing the issue comment. See http://developer.github.com/v3/issues/comments/#edit-a-comment for details.
 #'
@@ -192,7 +192,7 @@ modify.issue.comment <- function(owner, repo, issue.number, comment.number, cont
 #'
 #' @param issue.number the issue number
 #'
-#' @param content.number the issue number
+#' @param comment.number the issue number
 #'
 #' @param ctx the github context object
 #'
@@ -229,16 +229,18 @@ get.issue.events <- function(owner, repo, issue.number, ctx = get.github.context
 get.repository.issue.events <- function(owner, repo, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "issues", "events"))
 
-#' List a single events for a repository issue
+#' List a single event for a repository issue
 #'
 #' @param owner the repo owner
 #'
 #' @param repo the repo name
 #'
+#' @param event.number the event number
+#'
 #' @param ctx the github context object
 #'
 #' @return The chosen event
-get.repository.issue.event  <- function(owner, repo, event.number, ctx = get.github.context())
+get.repository.issue.event <- function(owner, repo, event.number, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "issues", "events", event.number))
 
 ################################################################################
@@ -428,8 +430,6 @@ get.milestones <- function(owner, repo, ..., ctx = get.github.context())
 #' @param repo the repo name
 #'
 #' @param milestone.number the milestone number
-#'
-#' @param ... other parameters. See http://developer.github.com/v3/issues/milestones/#list-milestones-for-a-repository for details.
 #'
 #' @param ctx the github context object
 #'

@@ -62,7 +62,7 @@ get.network.public.events <- function(owner, repo, ..., ctx = get.github.context
 #' @param ctx the github context object
 #'
 #' @return the list of events for the network of repositories
-get.organization.public.events <- function(org, ctx = get.github.context())
+get.organization.public.events <- function(org, ..., ctx = get.github.context())
   .api.get.request(ctx, c("orgs", org, "events"), params=list(...))
 
 #' list events that a user has received
@@ -111,7 +111,7 @@ get.user.performed.events <- function(user, ..., ctx = get.github.context())
 #' @param ctx the github context object
 #'
 #' @return the list of public events the user has performed.
-get.user.public.performed.events <- function(user, ctx = get.github.context())
+get.user.public.performed.events <- function(user, ..., ctx = get.github.context())
   .api.get.request(ctx, c("users", user, "events", "public"), params=list(...))
 
 #' list events from the authenticated user organization

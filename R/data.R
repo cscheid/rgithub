@@ -21,7 +21,7 @@ get.blob <- function(owner, repo, sha, ctx = get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param sha the SHA of the blob
+#' @param content the JSON object describing the blob. See http://developer.github.com/v3/git/blobs/#create-a-blob for details.
 #'
 #' @param ctx the github context object
 #'
@@ -167,7 +167,7 @@ get.tag <- function(owner, repo, sha, ctx = get.github.context())
 #' @param ctx the github context object
 #'
 #' @return the tag
-create.tag <- function(owner, repo, ..., ctx = get.github.context())
+create.tag <- function(owner, repo, content, ctx = get.github.context())
   .api.post.request(ctx, c("repos", owner, repo, "git", "tags"), params=content)
 
 ################################################################################
