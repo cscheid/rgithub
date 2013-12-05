@@ -1,7 +1,7 @@
 Package: github
 Type: Package
 Title: github API
-Version: 0.9.5
+Version: 0.9.6
 Date: 2013-02-28
 Author: Carlos Scheidegger <cscheid@research.att.com>
 Maintainer: Carlos Scheidegger <cscheid@research.att.com>
@@ -12,6 +12,7 @@ Imports:
     Rook,
     stringr,
     rjson,
+Suggests:
     testthat,
 Collate:
     'activity.R'
