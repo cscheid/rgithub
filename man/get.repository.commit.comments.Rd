@@ -1,0 +1,24 @@
+\name{get.repository.commit.comments}
+\alias{get.repository.commit.comments}
+\title{get all commit comments for a given commit in a repository}
+\usage{
+  get.repository.commit.comments(owner, repo, sha,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{sha}{the SHA hash of the commit}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the comments
+}
+\description{
+  get all commit comments for a given commit in a
+  repository
+}
+

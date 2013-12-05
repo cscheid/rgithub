@@ -1,0 +1,25 @@
+\name{get.repository.commits}
+\alias{get.repository.commits}
+\title{get commits from a repo}
+\usage{
+  get.repository.commits(owner, repo, ...,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{...}{extra parameters to be passed. see
+  http://developer.github.com/v3/repos/commits/#list-commits-on-a-repository
+  for details}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  list of commits
+}
+\description{
+  get commits from a repo
+}
+

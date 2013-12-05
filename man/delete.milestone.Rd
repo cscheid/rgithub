@@ -1,0 +1,23 @@
+\name{delete.milestone}
+\alias{delete.milestone}
+\title{Delete milestone}
+\usage{
+  delete.milestone(owner, repo, milestone.number,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the repo name}
+
+  \item{milestone.number}{the milestone number}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  None
+}
+\description{
+  Delete milestone
+}
+

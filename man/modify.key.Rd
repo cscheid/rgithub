@@ -5,6 +5,8 @@
   modify.key(id, content, ctx = get.github.context())
 }
 \arguments{
+  \item{id}{the public key id}
+
   \item{content}{the public key}
 
   \item{ctx}{the github context object}

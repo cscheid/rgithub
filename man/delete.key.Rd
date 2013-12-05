@@ -5,7 +5,7 @@
   delete.key(id, ctx = get.github.context())
 }
 \arguments{
-  \item{id}{the public id}
+  \item{id}{the public key id}
 
   \item{ctx}{the github context object}
 }

@@ -16,6 +16,8 @@ require(rjson)
 #'
 #' @param client_secret the github client secret
 #'
+#' @param scopes the OAuth scopes you want to request
+#'
 #' @param base_url the base URL for the github webpage. Change this in
 #'   GitHub Enterprise deployments to your base G.E. URL
 #'
@@ -99,6 +101,9 @@ create.github.context <- function(api_url = "https://api.github.com", client_id 
   ctx
 }
 
+#' returns the most recently created github context, or creates one if none has been so far created
+#'
+#' @return a github context object
 get.github.context <- function()
 {
   if (is.null(.state$ctx))
@@ -106,9 +111,7 @@ get.github.context <- function()
   .state$ctx
 }
 
-api.function <- function(...) NULL
-
-build.url <- function(ctx, resource, params)
+.build.url <- function(ctx, resource, params)
 {
   # FIXME this path needs sanitization (some names can't include
   # slashes, etc) NB if you ever fix this, the *.reference calls in
@@ -134,7 +137,7 @@ build.url <- function(ctx, resource, params)
   modify_url(ctx$api_url, path = path, query = query)
 }
 
-cached.api.request <- function(ctx, req, method, expect.code = 200,
+.cached.api.request <- function(ctx, req, method, expect.code = 200,
                                params = list(), config = accept_json())
 {
   resource <- str_c(req, collapse = '/')
@@ -142,14 +145,14 @@ cached.api.request <- function(ctx, req, method, expect.code = 200,
   if (exists(resource, etags)) {
     cache <- get(resource, etags)
     tag <- cache$tag
-    r <- api.request(ctx, req, method, expect.code = c(304, expect.code),
-                     params = params, config = c(add_headers(`If-None-Match`=tag), config))
+    r <- .api.request(ctx, req, method, expect.code = c(304, expect.code),
+                      params = params, config = c(add_headers(`If-None-Match`=tag), config))
     if (r$code == 304) {
       r$content <- cache$content
     }
   } else {
-    r <- api.request(ctx, req, method, expect.code = expect.code,
-                     params = params, config = config)
+    r <- .api.request(ctx, req, method, expect.code = expect.code,
+                      params = params, config = config)
   }
   if (r$code != 304) {
     assign(resource, list(tag = r$headers$ETag, content = r$content), etags)
@@ -172,11 +175,11 @@ cached.api.request <- function(ctx, req, method, expect.code = 200,
   r
 }
 
-api.request <- function(ctx, req, method, expect.code = 200,
-                        params = list(), config = accept_json(), body = NULL)
+.api.request <- function(ctx, req, method, expect.code = 200,
+                         params = list(), config = accept_json(), body = NULL)
 {
   resource <- str_c(req, collapse = '/')
-  url <- build.url(ctx, resource, params)
+  url <- .build.url(ctx, resource, params)
   config <- c(config, user_agent(getOption("HTTPUserAgent")))
 
   r <- method(url = url, config = config, body = body)
@@ -194,7 +197,7 @@ api.request <- function(ctx, req, method, expect.code = 200,
   output
 }
 
-without.body <- function(method)
+.without.body <- function(method)
 {
   function(url, config, body) { method(url, config = config) }
 }
@@ -211,15 +214,15 @@ without.body <- function(method)
   }
 }
 
-api.get.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json())       cached.api.request(ctx, req, without.body(GET),    expect.code, params, config)
-api.delete.request <- function(ctx, req, expect.code = 204, params = list(), config = accept_json())              api.request(ctx, req, without.body(DELETE), expect.code, params, config)
-api.put.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, .with.body(PUT),       expect.code, params, config, body)
-api.patch.request  <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, .with.body(PATCH),     expect.code, params, config, body)
-api.post.request   <- function(ctx, req, expect.code = 201, params = list(), config = accept_json(), body = NULL) api.request(ctx, req, .with.body(POST),      expect.code, params, config, body)
+.api.get.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json())       .cached.api.request(ctx, req, .without.body(GET),    expect.code, params, config)
+.api.delete.request <- function(ctx, req, expect.code = 204, params = list(), config = accept_json())              .api.request(ctx, req, .without.body(DELETE), expect.code, params, config)
+.api.put.request    <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) .api.request(ctx, req, .with.body(PUT),       expect.code, params, config, body)
+.api.patch.request  <- function(ctx, req, expect.code = 200, params = list(), config = accept_json(), body = NULL) .api.request(ctx, req, .with.body(PATCH),     expect.code, params, config, body)
+.api.post.request   <- function(ctx, req, expect.code = 201, params = list(), config = accept_json(), body = NULL) .api.request(ctx, req, .with.body(POST),      expect.code, params, config, body)
 
-api.test.request <- function(ctx, path)
+.api.test.request <- function(ctx, path)
 {
-  r=api.get.request(ctx, path, expect.code = c(204, 404))
+  r=.api.get.request(ctx, path, expect.code = c(204, 404))
 
   if(r$ok)
     list(ok = TRUE, content = r$code == 204)

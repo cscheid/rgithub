@@ -1,0 +1,21 @@
+\name{delete.member.from.organization}
+\alias{delete.member.from.organization}
+\title{delete user from an organization}
+\usage{
+  delete.member.from.organization(org, user,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{org}{the organization name}
+
+  \item{user}{the user name}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  none
+}
+\description{
+  delete user from an organization
+}
+

@@ -1,12 +1,12 @@
 Package: github
 Type: Package
 Title: github API
-Version: 0.9.2
+Version: 0.9.5
 Date: 2013-02-28
 Author: Carlos Scheidegger <cscheid@research.att.com>
 Maintainer: Carlos Scheidegger <cscheid@research.att.com>
 Description: Provides access to the Github v3 API
-License: MIT
+License: MIT + file LICENSE
 Imports:
     httr,
     Rook,

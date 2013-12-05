@@ -1,0 +1,24 @@
+\name{set.repository.subscription}
+\alias{set.repository.subscription}
+\title{set repository subscription info}
+\usage{
+  set.repository.subscription(owner, repo, ...,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{repo owner}
+
+  \item{repo}{name of repo}
+
+  \item{...}{parameters to be set. See
+  http://developer.github.com/v3/activity/watching/#set-a-repository-subscription}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  subscription info
+}
+\description{
+  set repository subscription info
+}
+

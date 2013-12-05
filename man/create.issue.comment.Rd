@@ -1,0 +1,28 @@
+\name{create.issue.comment}
+\alias{create.issue.comment}
+\title{Create issue comment}
+\usage{
+  create.issue.comment(owner, repo, issue.number, content,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the repo name}
+
+  \item{issue.number}{the issue number}
+
+  \item{content}{the JSON object describing the issue
+  comment. See
+  http://developer.github.com/v3/issues/comments/#create-a-comment
+  for details.}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the comment
+}
+\description{
+  Create issue comment
+}
+

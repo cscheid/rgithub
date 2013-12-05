@@ -1,0 +1,22 @@
+\name{get.tag}
+\alias{get.tag}
+\title{get a tag}
+\usage{
+  get.tag(owner, repo, sha, ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the name of the repo}
+
+  \item{sha}{the SHA of the tag}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the tag
+}
+\description{
+  get a tag
+}
+

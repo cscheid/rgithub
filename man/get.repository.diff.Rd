@@ -1,0 +1,25 @@
+\name{get.repository.diff}
+\alias{get.repository.diff}
+\title{return a diff between two commits}
+\usage{
+  get.repository.diff(owner, repo, sha1, sha2,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{sha1}{the SHA of the commit}
+
+  \item{sha2}{the SHA of the commit}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the commit
+}
+\description{
+  return a diff between two commits
+}
+

@@ -1,0 +1,28 @@
+\name{create.repository.status}
+\alias{create.repository.status}
+\title{create status for a ref in a repo}
+\usage{
+  create.repository.status(owner, repo, ref, ...,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{ref}{Ref to list the statuses from. It can be a
+  SHA, a branch name, or a tag name.}
+
+  \item{...}{parameters that describe the status. see
+  http://developer.github.com/v3/repos/statuses/#create-a-status
+  for details.}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the list of statuses
+}
+\description{
+  create status for a ref in a repo
+}
+

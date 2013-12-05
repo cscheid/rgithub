@@ -1,0 +1,23 @@
+\name{delete.all.issue.labels}
+\alias{delete.all.issue.labels}
+\title{Delete all issue labels}
+\usage{
+  delete.all.issue.labels(owner, repo, issue.number,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the repo name}
+
+  \item{issue.number}{the number of the issue}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  None
+}
+\description{
+  Delete all issue labels
+}
+

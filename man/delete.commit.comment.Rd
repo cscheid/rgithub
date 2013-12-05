@@ -1,0 +1,23 @@
+\name{delete.commit.comment}
+\alias{delete.commit.comment}
+\title{delete a single commit comment}
+\usage{
+  delete.commit.comment(owner, repo, id,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{id}{the comment id}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  none
+}
+\description{
+  delete a single commit comment
+}
+

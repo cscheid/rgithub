@@ -1,0 +1,27 @@
+\name{modify.issue}
+\alias{modify.issue}
+\title{Modify issue}
+\usage{
+  modify.issue(owner, repo, number, content,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the repo name}
+
+  \item{number}{the issue number}
+
+  \item{content}{the JSON object with the issue content.
+  See http://developer.github.com/v3/issues/#edit-an-issue
+  for details}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the list of issues
+}
+\description{
+  Modify issue
+}
+

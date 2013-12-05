@@ -1,0 +1,22 @@
+\name{get.organization.repositories}
+\alias{get.organization.repositories}
+\title{get list of repositories of given organization}
+\usage{
+  get.organization.repositories(org, ...,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{org}{the given organization}
+
+  \item{...}{extra parameters, see
+  http://developer.github.com/v3/repos/}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  list of repositories
+}
+\description{
+  get list of repositories of given organization
+}
+

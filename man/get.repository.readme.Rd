@@ -1,0 +1,25 @@
+\name{get.repository.readme}
+\alias{get.repository.readme}
+\title{Get the README for a repo}
+\usage{
+  get.repository.readme(owner, repo, ...,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{...}{extra parameters to be passed. See
+  http://developer.github.com/v3/repos/contents/#get-the-readme
+  for details.}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the readme
+}
+\description{
+  Get the README for a repo
+}
+

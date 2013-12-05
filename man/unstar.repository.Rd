@@ -1,0 +1,21 @@
+\name{unstar.repository}
+\alias{unstar.repository}
+\title{unstar a repository}
+\usage{
+  unstar.repository(owner, repo,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{repo owner}
+
+  \item{repo}{name of repo}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  none
+}
+\description{
+  unstar a repository
+}
+

@@ -1,0 +1,16 @@
+\name{get.repositories.watched.by.me}
+\alias{get.repositories.watched.by.me}
+\title{list repos watched by current user}
+\usage{
+  get.repositories.watched.by.me(ctx)
+}
+\arguments{
+  \item{ctx}{the github context object}
+}
+\value{
+  list of repositories
+}
+\description{
+  list repos watched by current user
+}
+

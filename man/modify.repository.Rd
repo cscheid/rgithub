@@ -1,0 +1,24 @@
+\name{modify.repository}
+\alias{modify.repository}
+\title{modify repository}
+\usage{
+  modify.repository(owner, repo, content,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{content}{the changes to be made, see
+  http://developer.github.com/v3/repos/#edit}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the changed repository
+}
+\description{
+  modify repository
+}
+

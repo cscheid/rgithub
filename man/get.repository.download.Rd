@@ -1,0 +1,23 @@
+\name{get.repository.download}
+\alias{get.repository.download}
+\title{get specific download for a repository}
+\usage{
+  get.repository.download(owner, repo, id,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{id}{the id of the dowloand}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the specific downloads
+}
+\description{
+  get specific download for a repository
+}
+

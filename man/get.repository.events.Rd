@@ -1,0 +1,25 @@
+\name{get.repository.events}
+\alias{get.repository.events}
+\title{list events for a given repo}
+\usage{
+  get.repository.events(owner, repo, ...,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{...}{extra parameters. See
+  http://developer.github.com/v3/activity/events/ for
+  details}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the list of repository events
+}
+\description{
+  list events for a given repo
+}
+

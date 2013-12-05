@@ -1,0 +1,19 @@
+\name{unset.thread.notifications.subscription}
+\alias{unset.thread.notifications.subscription}
+\title{deletes subscription info from thread.}
+\usage{
+  unset.thread.notifications.subscription(id,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{id}{the thread id}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  none
+}
+\description{
+  deletes subscription info from thread.
+}
+

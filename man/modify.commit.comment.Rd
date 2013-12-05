@@ -1,0 +1,28 @@
+\name{modify.commit.comment}
+\alias{modify.commit.comment}
+\title{update a single commit comment}
+\usage{
+  modify.commit.comment(owner, repo, id, content,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{id}{the comment id}
+
+  \item{content}{the JSON object containing the new
+  contents of the comment. See
+  http://developer.github.com/v3/repos/comments/#update-a-commit-comment
+  for details.}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the comment
+}
+\description{
+  update a single commit comment
+}
+

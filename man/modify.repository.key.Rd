@@ -1,0 +1,27 @@
+\name{modify.repository.key}
+\alias{modify.repository.key}
+\title{update a repository key}
+\usage{
+  modify.repository.key(owner, repo, id, content,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{id}{the id of the key}
+
+  \item{content}{the JSON object with the content. See
+  http://developer.github.com/v3/repos/keys/#edit for
+  details}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the new key
+}
+\description{
+  update a repository key
+}
+

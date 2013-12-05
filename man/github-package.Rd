@@ -7,14 +7,16 @@ Use the Github API from R
 ~~ package title ~~
 }
 \description{
-More about what it does (maybe more than one line)
+This package wraps the Github web service API so you can make R calls
+against the Github API (to get information about repositories, or even
+to create new content)
 ~~ A concise (1-5 lines) description of the package ~~
 }
 \details{
 \tabular{ll}{
 Package: \tab github\cr
 Type: \tab Package\cr
-Version: \tab 0.9.2\cr
+Version: \tab 0.9.5\cr
 Date: \tab 2013-02-28\cr
 License: \tab MIT\cr
 }
@@ -24,14 +26,12 @@ License: \tab MIT\cr
 Carlos Scheidegger
 
 Maintainer: Carlos Scheidegger <carlos.scheidegger@gmail.com>
-~~ The author and/or maintainer of the package ~~
 }
 \references{
 ~~ Literature or other references for background information ~~
 }
 \keyword{ package }
-\seealso{
-}
+\seealso{ RJSON }
 \examples{
 repos <- get.user.repositories("cscheid")
 }

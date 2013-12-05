@@ -1,0 +1,25 @@
+\name{get.repository.archive}
+\alias{get.repository.archive}
+\title{Get the archive of a repo}
+\usage{
+  get.repository.archive(owner, repo, format, ref,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner (user, org, etc)}
+
+  \item{repo}{the name of the repo}
+
+  \item{format}{"tarball" or "zipball"}
+
+  \item{ref}{the git reference (usually "master")}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the archive
+}
+\description{
+  Get the archive of a repo
+}
+
