@@ -1,0 +1,23 @@
+\name{add.repository.to.team}
+\alias{add.repository.to.team}
+\title{add repository to team}
+\usage{
+  add.repository.to.team(id, owner, repo,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{id}{team id}
+
+  \item{owner}{the repo owner}
+
+  \item{repo}{the repo name}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  none
+}
+\description{
+  add repository to team
+}
+

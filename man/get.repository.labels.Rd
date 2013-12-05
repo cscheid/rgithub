@@ -1,0 +1,21 @@
+\name{get.repository.labels}
+\alias{get.repository.labels}
+\title{List all labels for a repository}
+\usage{
+  get.repository.labels(owner, repo,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the repo name}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  The list of labels
+}
+\description{
+  List all labels for a repository
+}
+

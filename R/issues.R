@@ -203,47 +203,281 @@ delete.issue.comment <- function(owner, repo, issue.number, comment.number, ctx 
 ################################################################################
 # events
 
+#' List events for an issue
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param issue.number the issue number
+#'
+#' @param ctx the github context object
+#'
+#' @return The event list
 get.issue.events <- function(owner, repo, issue.number, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "issues", issue.number, "events"))
-repository.issue.events <- function(owner, repo, ctx = get.github.context())
+
+#' List all issue events for a repository
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param ctx the github context object
+#'
+#' @return The event list
+get.repository.issue.events <- function(owner, repo, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "issues", "events"))
-repository.issue.event  <- function(owner, repo, event.number, ctx = get.github.context())
+
+#' List a single events for a repository issue
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param ctx the github context object
+#'
+#' @return The chosen event
+get.repository.issue.event  <- function(owner, repo, event.number, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "issues", "events", event.number))
 
+################################################################################
 # labels
+
+#' List all labels for a repository
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param ctx the github context object
+#'
+#' @return The list of labels
 get.repository.labels <- function(owner, repo, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "labels"))
+
+#' get a specific label for a repository
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param name the label name
+#'
+#' @param ctx the github context object
+#'
+#' @return The given label
 get.repository.label <- function(owner, repo, name, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "labels", name))
+
+#' create a label for a repository
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param content the JSON object describing the label. See http://developer.github.com/v3/issues/labels/#create-a-label for details.
+#'
+#' @param ctx the github context object
+#'
+#' @return The given label
 create.repository.label <- function(owner, repo, content, ctx = get.github.context())
   .api.post.request(ctx, c("repos", owner, repo, "labels"), body=content)
+
+#' edit a specific label for a repository
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param name the label name
+#'
+#' @param content the JSON object describing the label. See http://developer.github.com/v3/issues/labels/#create-a-label for details.
+#'
+#' @param ctx the github context object
+#'
+#' @return The given label
 modify.repository.label <- function(owner, repo, name, content, ctx = get.github.context())
   .api.patch.request(ctx, c("repos", owner, repo, "labels", name), body=content)
+
+#' delete a label from a repository
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param name the label name
+#'
+#' @param ctx the github context object
+#'
+#' @return None
 delete.repository.label <- function(owner, repo, name, ctx = get.github.context())
   .api.delete.request(ctx, c("repos", owner, repo, "labels", name))
 
+#' List all labels for an issue
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param issue.number the number of the issue
+#'
+#' @param ctx the github context object
+#'
+#' @return The list of labels
 get.issue.labels <- function(owner, repo, issue.number, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"))
+
+#' Add labels to an issue
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param issue.number the number of the issue
+#'
+#' @param content the list of labels
+#'
+#' @param ctx the github context object
+#'
+#' @return The list of labels
 add.issue.labels <- function(owner, repo, issue.number, content, ctx = get.github.context())
   .api.post.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), expect.code=200, body=content)
-delete.issue.labels <- function(owner, repo, issue.number, name, ctx = get.github.context())
+
+#' Delete an issue from a label
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param issue.number the number of the issue
+#'
+#' @param name the label name
+#'
+#' @param ctx the github context object
+#'
+#' @return None
+delete.issue.label <- function(owner, repo, issue.number, name, ctx = get.github.context())
   .api.delete.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels", name))
+
+#' Replace all issue labels
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param issue.number the number of the issue
+#'
+#' @param content the new list of labels
+#'
+#' @param ctx the github context object
+#'
+#' @return The new list of labels
 replace.issue.labels <- function(owner, repo, issue.number, content, ctx = get.github.context())
   .api.put.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"), body=content)
+
+#' Delete all issue labels
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param issue.number the number of the issue
+#'
+#' @param ctx the github context object
+#'
+#' @return None
 delete.all.issue.labels <- function(owner, repo, issue.number, ctx = get.github.context())
   .api.delete.request(ctx, c("repos", owner, repo, "issues", issue.number, "labels"))
+
+#' Get labels for every issue in a milestone
+#' 
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param milestone.number the number of the milestone
+#'
+#' @param ctx the github context object
+#'
+#' @return All labels for that milestone
 get.milestone.labels <- function(owner, repo, milestone.number, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "milestones", milestone.number, "labels"))
 
+################################################################################
 # milestones
 
-get.milestones <- function(owner, repo, ctx = get.github.context())
-  .api.get.request(ctx, c("repos", owner, repo, "milestones"))
+#' List milestones for a repository
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param ... other parameters. See http://developer.github.com/v3/issues/milestones/#list-milestones-for-a-repository for details.
+#'
+#' @param ctx the github context object
+#'
+#' @return the milestone list
+get.milestones <- function(owner, repo, ..., ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "milestones"), params = list(...))
+
+#' Get specific milestone from a repository
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param milestone.number the milestone number
+#'
+#' @param ... other parameters. See http://developer.github.com/v3/issues/milestones/#list-milestones-for-a-repository for details.
+#'
+#' @param ctx the github context object
+#'
+#' @return the milestone list
 get.milestone <- function(owner, repo, milestone.number, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "milestones", milestone.number))
+
+#' Create milestone
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param content the JSON object describing the milestone. See http://developer.github.com/v3/issues/milestones/#create-a-milestone for details.
+#'
+#' @param ctx the github context object
+#'
+#' @return the created milestone
 create.milestone <- function(owner, repo, content, ctx = get.github.context())
   .api.post.request(ctx, c("repos", owner, repo, "milestones"), body=content)
+
+#' Edit milestone
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param milestone.number the milestone number
+#'
+#' @param content the JSON object describing the milestone. See http://developer.github.com/v3/issues/milestones/#update-a-milestone for details.
+#'
+#' @param ctx the github context object
+#'
+#' @return the created milestone
 modify.milestone <- function(owner, repo, milestone.number, content, ctx = get.github.context())
   .api.patch.request(ctx, c("repos", owner, repo, "milestones", milestone.number), body=content)
+
+#' Delete milestone
+#'
+#' @param owner the repo owner
+#'
+#' @param repo the repo name
+#'
+#' @param milestone.number the milestone number
+#'
+#' @param ctx the github context object
+#'
+#' @return None
 delete.milestone <- function(owner, repo, milestone.number, ctx = get.github.context())
   .api.delete.request(ctx, c("repos", owner, repo, "milestones", milestone.number))
+

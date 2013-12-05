@@ -1,0 +1,26 @@
+\name{create.milestone}
+\alias{create.milestone}
+\title{Create milestone}
+\usage{
+  create.milestone(owner, repo, content,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the repo name}
+
+  \item{content}{the JSON object describing the milestone.
+  See
+  http://developer.github.com/v3/issues/milestones/#create-a-milestone
+  for details.}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the created milestone
+}
+\description{
+  Create milestone
+}
+

@@ -1,0 +1,18 @@
+\name{get.team.repositories}
+\alias{get.team.repositories}
+\title{list repositories of a team}
+\usage{
+  get.team.repositories(id, ctx = get.github.context())
+}
+\arguments{
+  \item{id}{team id}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  the repository list
+}
+\description{
+  list repositories of a team
+}
+

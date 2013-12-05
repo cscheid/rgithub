@@ -1,0 +1,20 @@
+\name{get.user.organizations}
+\alias{get.user.organizations}
+\title{List all public organizations for an unauthenticated user. Lists private and public organizations for authenticated users.}
+\usage{
+  get.user.organizations(user, ctx = get.github.context())
+}
+\arguments{
+  \item{user}{the user}
+
+  \item{ctx}{the githb context object}
+}
+\value{
+  the list of organizations
+}
+\description{
+  List all public organizations for an unauthenticated
+  user. Lists private and public organizations for
+  authenticated users.
+}
+

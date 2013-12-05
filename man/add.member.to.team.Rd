@@ -1,0 +1,20 @@
+\name{add.member.to.team}
+\alias{add.member.to.team}
+\title{add member to team}
+\usage{
+  add.member.to.team(id, user, ctx = get.github.context())
+}
+\arguments{
+  \item{id}{team id}
+
+  \item{user}{the user name}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  TRUE if user is member of team
+}
+\description{
+  add member to team
+}
+

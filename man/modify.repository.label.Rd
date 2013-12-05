@@ -1,0 +1,27 @@
+\name{modify.repository.label}
+\alias{modify.repository.label}
+\title{edit a specific label for a repository}
+\usage{
+  modify.repository.label(owner, repo, name, content,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the repo name}
+
+  \item{name}{the label name}
+
+  \item{content}{the JSON object describing the label. See
+  http://developer.github.com/v3/issues/labels/#create-a-label
+  for details.}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  The given label
+}
+\description{
+  edit a specific label for a repository
+}
+

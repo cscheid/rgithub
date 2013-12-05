@@ -1,0 +1,23 @@
+\name{delete.repository.label}
+\alias{delete.repository.label}
+\title{delete a label from a repository}
+\usage{
+  delete.repository.label(owner, repo, name,
+    ctx = get.github.context())
+}
+\arguments{
+  \item{owner}{the repo owner}
+
+  \item{repo}{the repo name}
+
+  \item{name}{the label name}
+
+  \item{ctx}{the github context object}
+}
+\value{
+  None
+}
+\description{
+  delete a label from a repository
+}
+
