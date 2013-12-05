@@ -217,18 +217,6 @@ delete.issue.comment <- function(owner, repo, issue.number, comment.number, ctx 
 get.issue.events <- function(owner, repo, issue.number, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "issues", issue.number, "events"))
 
-#' List all issue events for a repository
-#'
-#' @param owner the repo owner
-#'
-#' @param repo the repo name
-#'
-#' @param ctx the github context object
-#'
-#' @return The event list
-get.repository.issue.events <- function(owner, repo, ctx = get.github.context())
-  .api.get.request(ctx, c("repos", owner, repo, "issues", "events"))
-
 #' List a single event for a repository issue
 #'
 #' @param owner the repo owner
