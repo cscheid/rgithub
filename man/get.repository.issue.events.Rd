@@ -2,7 +2,7 @@
 \alias{get.repository.issue.events}
 \title{list issue events for a given repo}
 \usage{
-  get.repository.issue.events(owner, repo,
+  get.repository.issue.events(owner, repo, ...,
     ctx = get.github.context())
 }
 \arguments{
