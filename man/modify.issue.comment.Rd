@@ -12,7 +12,7 @@
 
   \item{issue.number}{the issue number}
 
-  \item{content.number}{the issue number}
+  \item{comment.number}{the comment number}
 
   \item{content}{the JSON object describing the issue
   comment. See

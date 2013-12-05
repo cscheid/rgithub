@@ -10,7 +10,9 @@
 
   \item{repo}{the name of the repo}
 
-  \item{sha}{the SHA of the blob}
+  \item{content}{the JSON object describing the blob. See
+  http://developer.github.com/v3/git/blobs/#create-a-blob
+  for details.}
 
   \item{ctx}{the github context object}
 }

@@ -3,7 +3,6 @@
 \title{Create gist comment}
 \usage{
   create.gist.comment(gist.id, content,
-    config = add_headers(Accept = "application/vnd.github.v3.text+json"),
     ctx = get.github.context())
 }
 \arguments{

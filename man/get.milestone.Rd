@@ -12,10 +12,6 @@
 
   \item{milestone.number}{the milestone number}
 
-  \item{...}{other parameters. See
-  http://developer.github.com/v3/issues/milestones/#list-milestones-for-a-repository
-  for details.}
-
   \item{ctx}{the github context object}
 }
 \value{

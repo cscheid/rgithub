@@ -2,7 +2,8 @@
 \alias{create.tag}
 \title{create a tag}
 \usage{
-  create.tag(owner, repo, ..., ctx = get.github.context())
+  create.tag(owner, repo, content,
+    ctx = get.github.context())
 }
 \arguments{
   \item{owner}{the repo owner}

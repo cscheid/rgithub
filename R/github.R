@@ -222,7 +222,7 @@ get.github.context <- function()
 
 .api.test.request <- function(ctx, path)
 {
-  r=api.get.request(ctx, path, expect.code = c(204, 404))
+  r=.api.get.request(ctx, path, expect.code = c(204, 404))
 
   if(r$ok)
     list(ok = TRUE, content = r$code == 204)

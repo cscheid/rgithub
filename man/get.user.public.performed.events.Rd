@@ -2,7 +2,7 @@
 \alias{get.user.public.performed.events}
 \title{list public events that a user has performed}
 \usage{
-  get.user.public.performed.events(user,
+  get.user.public.performed.events(user, ...,
     ctx = get.github.context())
 }
 \arguments{

@@ -12,7 +12,7 @@
 
   \item{issue.number}{the issue number}
 
-  \item{content.number}{the issue number}
+  \item{comment.number}{the issue number}
 
   \item{ctx}{the github context object}
 }

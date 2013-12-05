@@ -2,7 +2,7 @@
 \alias{get.organization.public.events}
 \title{list public events for an organization}
 \usage{
-  get.organization.public.events(org,
+  get.organization.public.events(org, ...,
     ctx = get.github.context())
 }
 \arguments{
