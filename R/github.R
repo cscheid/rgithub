@@ -180,7 +180,7 @@ get.github.context <- function()
 {
   resource <- str_c(req, collapse = '/')
   url <- .build.url(ctx, resource, params)
-  config <- c(config, user_agent(getOption("HTTPUserAgent")))
+  config <- c(config, user_agent(getOption("HTTPUserAgent")), add_headers(Accept = "application/vnd.github.beta+json"))
 
   r <- method(url = url, config = config, body = body)
   result <- tryCatch(content(r),
