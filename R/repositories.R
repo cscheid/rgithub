@@ -107,6 +107,18 @@ modify.repository <- function(owner, repo, content, ctx = get.github.context())
 get.repository.contributors <- function(owner, repo, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "contributors"))
 
+#' get stats on repository contributors
+#' 
+#' @param owner the repo owner (user, org, etc)
+#'
+#' @param repo the name of the repo
+#'
+#' @param ctx the github context object
+#'
+#' @return list of repo contributors stats
+get.repository.contributors.stats <- function(owner, repo, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "stats", "contributors"))
+
 #' get list of languages used in the repository, as estimated by github
 #' 
 #' @param owner the repo owner (user, org, etc)
