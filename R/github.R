@@ -33,7 +33,8 @@ interactive.login <- function(client_id,
                               scopes = NULL,
                               base_url = "https://github.com",
                               api_url = "https://api.github.com",
-                              max_etags = 10000)
+                              max_etags = 10000,
+                              verbose = FALSE)
 {
   ## auth_url <- NULL
   auth_url <- modify_url(base_url, path = "login/oauth")
@@ -50,7 +51,7 @@ interactive.login <- function(client_id,
   app <- oauth_app("github", client_id, client_secret)
   client_secret <- app$secret
   github_token <- oauth2.0_token(github, app, as_header=FALSE, scope=scopes)
-  create.github.context(api_url, client_id, client_secret, github_token)
+  create.github.context(api_url, client_id, client_secret, github_token, verbose=verbose)
 }
 
 #' Create a github context object.
@@ -77,11 +78,13 @@ interactive.login <- function(client_id,
 #'
 #' @param max_etags the maximum number of entries to cache in the context
 #'
+#' @param verbose if TRUE, passes verbose() to httr configuration
+#'
 #' @return a github context object that is used in every github API call
 #'   issued by this library.
 create.github.context <- function(api_url = "https://api.github.com", client_id = NULL,
                                   client_secret = NULL, access_token = NULL, personal_token = NULL,
-                                  max_etags = 10000)
+                                  max_etags = 10000, verbose = FALSE)
 {
   ctx <- list(api_url        = api_url,
               client_secret  = client_secret,
@@ -90,7 +93,8 @@ create.github.context <- function(api_url = "https://api.github.com", client_id 
               client_id      = client_id,
               max_etags      = max_etags,
               etags          = new.env(parent = emptyenv()),
-              authenticated  = !is.null(access_token))
+              authenticated  = !is.null(access_token),
+              verbose        = verbose)
   if (!is.null(access_token) || !is.null(personal_token)) {
     r <- get.myself(ctx)
     if (!r$ok) {
@@ -206,7 +210,8 @@ get.github.context <- function()
   url <- lst$url
   config <- c(config, lst$config)
   config <- c(config, user_agent(getOption("HTTPUserAgent")), add_headers(Accept = "application/vnd.github.beta+json"))
-  print(config)
+  if (ctx$verbose)
+    config <- c(config, verbose())
 
   r <- method(url = url, config = config, body = body)
   result <- tryCatch(content(r),
@@ -225,7 +230,7 @@ get.github.context <- function()
 
 .without.body <- function(method)
 {
-  function(url, config, body) { method(url, config = config, verbose(), verbose()) }
+  function(url, config, body) { method(url, config = config) }
 }
 
 .with.body <- function(method) {
@@ -239,7 +244,7 @@ get.github.context <- function()
     else
       stopifnot(is.null(body))
     str(body)
-    method(url, config = config, body = body, verbose(), verbose())
+    method(url, config = config, body = body)
   }
 }
 
