@@ -1,8 +1,3 @@
-require(httr)
-require(RCurl)
-require(stringr)
-require(rjson)
-
 .state <- new.env(parent=emptyenv())
 
 #' Obtain a github context interactively
@@ -209,7 +204,7 @@ get.github.context <- function()
   print(config)
 
   r <- method(url = url, config = config, body = body)
-  result <- tryCatch(content(r),
+  result <- tryCatch(fromJSON(rawToChar(r$content)),
                      error = function(e) {
                        raw <- r$content
                        raw[raw>127] <- as.raw(63)

@@ -11,8 +11,9 @@ Imports:
     httr (>= 0.3),
     Rook,
     stringr,
-    rjson,
-    testthat,
+    jsonlite
+Suggests:
+    testthat
 Collate:
     'activity.R'
     'data.R'
