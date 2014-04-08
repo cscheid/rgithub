@@ -8,7 +8,7 @@ Maintainer: Carlos Scheidegger <cscheid@research.att.com>
 Description: Provides access to the Github v3 API
 License: MIT + file LICENSE
 Imports:
-    httr,
+    httr (>= 0.3),
     Rook,
     stringr,
     rjson,

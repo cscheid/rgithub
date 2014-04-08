@@ -11,7 +11,7 @@ require(rjson)
 #' the OAuth dance, retrieves the token, and uses it to create a github context.
 #'
 #' Refer to http://developer.github.com/guides/basics-of-authentication/
-#' 
+#'
 #' @param client_id the github client ID
 #'
 #' @param client_secret the github client secret
@@ -35,12 +35,13 @@ interactive.login <- function(client_id,
                               api_url = "https://api.github.com",
                               max_etags = 10000)
 {
-  auth_url <- NULL
-  if (is.null(scopes))
-    auth_url <- modify_url(base_url, path = "login/oauth")
-  else
-    auth_url <- modify_url(base_url, path = "login/oauth",
-                           query = list(scope = str_c(scopes, collapse = ',')))
+  ## auth_url <- NULL
+  auth_url <- modify_url(base_url, path = "login/oauth")
+  ## if (is.null(scopes))
+  ## else
+  ##   auth_url <- modify_url(base_url, path = "login/oauth",
+  ##                          query = list(scope = str_c(scopes, collapse = ',')))
+  ## print(auth_url)
   github <- oauth_endpoint(NULL, "authorize", "access_token",
                            base_url = auth_url)
   # as in httr, if client_secret is not given,
@@ -48,7 +49,7 @@ interactive.login <- function(client_id,
   # used.
   app <- oauth_app("github", client_id, client_secret)
   client_secret <- app$secret
-  github_token <- oauth2.0_token(github, app)
+  github_token <- oauth2.0_token(github, app, as_header=FALSE, scope=scopes)
   create.github.context(api_url, client_id, client_secret, github_token)
 }
 
@@ -72,23 +73,25 @@ interactive.login <- function(client_id,
 #'
 #' @param access_token the github access token
 #'
+#' @param personal_token the personal access token given by github via the /authorizations api
+#'
 #' @param max_etags the maximum number of entries to cache in the context
 #'
 #' @return a github context object that is used in every github API call
 #'   issued by this library.
 create.github.context <- function(api_url = "https://api.github.com", client_id = NULL,
-                                  client_secret = NULL, access_token = NULL,
+                                  client_secret = NULL, access_token = NULL, personal_token = NULL,
                                   max_etags = 10000)
 {
-  ctx <- list(token         = access_token,
-              api_url       = api_url,
-              client_secret = client_secret,
-              token         = access_token,
-              client_id     = client_id,
-              max_etags     = max_etags,
-              etags         = new.env(parent = emptyenv()),
-              authenticated = !is.null(access_token))
-  if (!is.null(access_token)) {
+  ctx <- list(api_url        = api_url,
+              client_secret  = client_secret,
+              personal_token = personal_token,
+              token          = access_token,
+              client_id      = client_id,
+              max_etags      = max_etags,
+              etags          = new.env(parent = emptyenv()),
+              authenticated  = !is.null(access_token))
+  if (!is.null(access_token) || !is.null(personal_token)) {
     r <- get.myself(ctx)
     if (!r$ok) {
       stop("create.github.context had access token but wasn't authenticated to get.user?");
@@ -117,14 +120,12 @@ get.github.context <- function()
   # slashes, etc) NB if you ever fix this, the *.reference calls in
   # data.R will need attention, since reference include slashes that
   # are passed unescaped to the github API
-  
+
   query <- params
   if (!is.null(ctx$client_id))
     query$client_id <- ctx$client_id
   if (!is.null(ctx$client_secret))
     query$client_secret <- ctx$client_secret
-  if (!is.null(ctx$token))
-    query$access_token <- ctx$token[[1]]
 
   # we cannot use modify_url directly, because it doesn't merge paths
   # so we have to do that by hand
@@ -134,7 +135,29 @@ get.github.context <- function()
   else
     path <- resource
 
-  modify_url(ctx$api_url, path = path, query = query)
+  if (is.null(ctx$token) && is.null(ctx$personal_token))
+    return(list(url = modify_url(ctx$api_url, path = path, query = query),
+                config = c()))
+
+  if (!is.null(ctx$personal_token))
+    return(list(url = modify_url(ctx$api_url, path = path, query = query),
+                config = authenticate(ctx$personal_token, "x-oauth-basic", type = "basic")))
+
+  # from here on out, ctx$token is not null
+
+  # FIXME this is ugly: we use httr's refclass for the interactive flow, but a string for the non-interactive flow...
+  if (!is.null(tryCatch(ctx$token$sign, error=function(cond) { NULL }))) {
+    # we have sign: this came from the interactive flow...
+    result <- modify_url(ctx$api_url, path = path, query = query)
+    result <- ctx$token$sign(url = result)
+    result <- result$url
+    return(list(url = result, config = c()))
+  } else {
+    # we don't have sign: this came from the non-interactive flow.
+    query$access_token <- ctx$token
+    result <- modify_url(ctx$api_url, path = path, query = query)
+    return(list(url = result, config = c()))
+  }
 }
 
 .cached.api.request <- function(ctx, req, method, expect.code = 200,
@@ -179,8 +202,11 @@ get.github.context <- function()
                          params = list(), config = accept_json(), body = NULL)
 {
   resource <- str_c(req, collapse = '/')
-  url <- .build.url(ctx, resource, params)
+  lst <- .build.url(ctx, resource, params)
+  url <- lst$url
+  config <- c(config, lst$config)
   config <- c(config, user_agent(getOption("HTTPUserAgent")), add_headers(Accept = "application/vnd.github.beta+json"))
+  print(config)
 
   r <- method(url = url, config = config, body = body)
   result <- tryCatch(content(r),
@@ -190,7 +216,7 @@ get.github.context <- function()
                        r$content <- raw
                        content(r)
                      })
-  output <- 
+  output <-
   list(ok = r$status_code %in% expect.code, content = result, headers = r$headers,
        code = r$status_code)
   ## class(output) <- "github"
@@ -199,18 +225,21 @@ get.github.context <- function()
 
 .without.body <- function(method)
 {
-  function(url, config, body) { method(url, config = config) }
+  function(url, config, body) { method(url, config = config, verbose(), verbose()) }
 }
 
 .with.body <- function(method) {
   function(url, config, body) {
-    if (is.list(body))
+    if (is.list(body)) {
       body = toJSON(body)
+      # config = c(config, add_headers(`Content-Type` = "application/json; charset=utf-8"))
+    }
     else if (is.character(body))
       stopifnot(length(body) == 1)
     else
       stopifnot(is.null(body))
-    method(url, config = config, body = body)
+    str(body)
+    method(url, config = config, body = body, verbose(), verbose())
   }
 }
 
