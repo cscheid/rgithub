@@ -11,6 +11,7 @@ Imports:
     httr (>= 0.3),
     Rook,
     stringr,
+    jsonlite,
     rjson,
 Suggests:
     testthat,
