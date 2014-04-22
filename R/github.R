@@ -243,7 +243,6 @@ get.github.context <- function()
       stopifnot(length(body) == 1)
     else
       stopifnot(is.null(body))
-    str(body)
     method(url, config = config, body = body)
   }
 }
