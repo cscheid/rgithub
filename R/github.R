@@ -98,7 +98,11 @@ create.github.context <- function(api_url = "https://api.github.com", client_id 
   if (!is.null(access_token) || !is.null(personal_token)) {
     r <- get.myself(ctx)
     if (!r$ok) {
-      stop("create.github.context had access token but wasn't authenticated to get.user?");
+      if (!is.null(access_token))
+        stop("invalid access_token.")
+      if (!is.null(personal_token))
+        stop("invalid (perhaps revoked?) personal_token.")
+      stop("internal error, shouldn't have gotten here")
     }
     ctx$user <- r$content
     ctx$oath_scopes <- r$headers$`x-oauth-scopes`
