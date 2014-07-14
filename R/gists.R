@@ -161,4 +161,4 @@ modify.gist.comment <- function(gist.id, comment.id, content, ctx = get.github.c
 #'
 #' @return none
 delete.gist.comment <- function(gist.id, comment.id, ctx = get.github.context())
-  .api.patch.request(ctx, c("gists", gist.id, "comments", comment.id))
+  .api.delete.request(ctx, c("gists", gist.id, "comments", comment.id))
