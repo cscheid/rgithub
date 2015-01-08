@@ -10,10 +10,10 @@ API](http://developer.github.com/v3).
 
 	> ctx = interactive.login(client.id, client.secret)
     > me = get.myself(ctx)
-    > me$public_repos
+    > me$content$public_repos
     [1] 17
-    > star.repository(ctx, "cscheid", "guitar")
-    > unstar.repository(ctx, "cscheid", "guitar")
+    > star.repository("cscheid", "guitar", ctx)
+    > unstar.repository("cscheid", "guitar", ctx)
 
 ### Setting up
 
@@ -75,15 +75,15 @@ API. Once you logged in, all calls to the API take the result of
 web.login. Examples:
 
     > repos = get.my.repositories(ctx)
-    > repos = get.my.repositories(ctx, type="owned")
+    > repos = get.my.repositories(ctx, type="owner")
 
-The result of all calls to the API is the request from httr. most of
+The result of all calls to the API is the request from httr. Most of
 the time you will want the response contents, accessible through httr's
 `content()`. This is automatically parsed into JSON, the message
 format used throughout's the api:
 
     > me = get.myself(ctx)
-    > content(me)$public_repos
+    > me$content$public_repos
     [1] 17
 
 The naming of the function calls is always meant to evoke an
@@ -92,8 +92,8 @@ objects:
 
     > evts = get.public.events(ctx)
     > result = is.repository.starred.by.me("cscheid", "facet")
-    > star.repository(ctx, "cscheid", "guitar")
-    > unstar.repository(ctx, "cscheid", "guitar")
+    > star.repository("cscheid", "guitar", ctx)
+    > unstar.repository("cscheid", "guitar", ctx)
 
 When the Github API specifies "inputs", such as with [blob
 creation](http://developer.github.com/v3/git/blobs/#create-a-blob),
@@ -104,7 +104,7 @@ you will send the JSON content as the last parameter, named `content`:
 When the Github API specifies extra parameters, such as when [listing repositories](http://developer.github.com/v3/repos/#list-your-repositories), you will pass parameters directly to the API call, like you've already seen above:
 
     # Get all my repositories, sorted by when I last pushed to them
-    > repos = get.my.repositories(ctx, type="owned", sort="pushed")
+    > repos = get.my.repositories(ctx, type="owner", sort="pushed")
 
 ### TODO
 
