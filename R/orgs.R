@@ -210,7 +210,7 @@ is.member.in.team <- function(id, user, ctx = get.github.context())
 #'
 #' @return TRUE if user is member of team
 add.member.to.team <- function(id, user, ctx = get.github.context())
-  .api.put.request(ctx, c("teams", id, "members", user), expect.code=204)
+  .api.put.request(ctx, c("teams", id, "memberships", user))
 
 #' remove member from team
 #'
