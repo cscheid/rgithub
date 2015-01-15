@@ -1,8 +1,3 @@
-require(httr)
-require(RCurl)
-require(stringr)
-require(rjson)
-
 .state <- new.env(parent=emptyenv())
 
 #' Obtain a github context interactively
