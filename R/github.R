@@ -1,3 +1,19 @@
+#' @title github-package: use the Github API from R
+#' 
+#' @description This package wraps the Github web service API so you can make R
+#'   calls against the Github API (to get information about repositories, or
+#'   even to create new content)
+#'   
+#' @author Carlos Scheidegger
+#' @docType package
+#' @name github
+#' @aliases github
+#' @keywords package github-package
+#' @examples
+#' \dontrun{get.user.repositories("cscheid")}
+#' @seealso \code{RJSON}
+NULL 
+
 .state <- new.env(parent=emptyenv())
 
 #' Obtain a github context interactively
