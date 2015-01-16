@@ -17,28 +17,32 @@ NULL
 .state <- new.env(parent=emptyenv())
 
 #' Obtain a github context interactively
-#'
-#' interactive.login opens a web browser, asks for your username+password, performs
-#' the OAuth dance, retrieves the token, and uses it to create a github context.
-#'
+#' 
+#' interactive.login opens a web browser, asks for your username+password,
+#' performs the OAuth dance, retrieves the token, and uses it to create a github
+#' context.
+#' 
 #' Refer to http://developer.github.com/guides/basics-of-authentication/
-#'
+#' 
 #' @param client_id the github client ID
-#'
+#'   
 #' @param client_secret the github client secret
-#'
+#'   
 #' @param scopes the OAuth scopes you want to request
-#'
-#' @param base_url the base URL for the github webpage. Change this in
-#'   GitHub Enterprise deployments to your base G.E. URL
-#'
-#' @param api_url the base URL for the github API. Change this in
-#'   GitHub Enterprise deployments to your base G.E. API URL
-#'
+#'   
+#' @param base_url the base URL for the github webpage. Change this in GitHub
+#'   Enterprise deployments to your base G.E. URL
+#'   
+#' @param api_url the base URL for the github API. Change this in GitHub
+#'   Enterprise deployments to your base G.E. API URL
+#'   
 #' @param max_etags the maximum number of entries to cache in the context
-#'
-#' @return a github context object that is used in every github API call
-#'   issued by this library.
+#'   
+#' @param verbose logical, passed to \code{create.github.context} and,
+#'   ultimately, to httr configuration
+#'   
+#' @return a github context object that is used in every github API call issued
+#'   by this library.
 interactive.login <- function(client_id,
                               client_secret,
                               scopes = NULL,
