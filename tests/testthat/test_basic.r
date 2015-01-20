@@ -1,4 +1,3 @@
-library(github)
 context("Basic Tests")
 
 test_that("A basic rgithub context can be acquired", {
