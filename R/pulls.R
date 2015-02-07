@@ -81,8 +81,10 @@ get.pull.request.commits <- function(owner, repo, id, ctx = get.github.context()
 #' @param ctx the github context object
 #'
 #' @return the list of pull request files
-get.pull.request.files <- function(owner, repo, id, ctx = get.github.context())
-  .api.get.request(ctx, c("repos", owner, repo, "pulls", id, "files"))
+get.pull.request.files <-
+  function(owner, repo, id, ..., ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "pulls", id, "files"),
+                   params=list(...))
 
 #' test if pull request has been merged
 #'
