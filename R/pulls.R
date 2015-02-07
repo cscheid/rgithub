@@ -71,15 +71,18 @@ get.pull.request.commits <- function(owner, repo, id, ctx = get.github.context()
   .api.get.request(ctx, c("repos", owner, repo, "pulls", id, "commits"))
 
 #' list files for a pull request
-#'
+#' 
 #' @param owner the repo owner
-#'
+#'   
 #' @param repo the repo name
-#'
+#'   
 #' @param id the pull request id
-#'
+#'   
 #' @param ctx the github context object
-#'
+#'   
+#' @param ... extra parameters. See
+#'   http://developer.github.com/v3/pulls/#list-pull-requests for details
+#'   
 #' @return the list of pull request files
 get.pull.request.files <-
   function(owner, repo, id, ..., ctx = get.github.context())
