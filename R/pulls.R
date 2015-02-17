@@ -67,8 +67,9 @@ modify.pull.request <- function(owner, repo, id, content, ctx = get.github.conte
 #' @param ctx the github context object
 #'
 #' @return the list of pull request commits
-get.pull.request.commits <- function(owner, repo, id, ctx = get.github.context())
-  .api.get.request(ctx, c("repos", owner, repo, "pulls", id, "commits"))
+get.pull.request.commits <- function(owner, repo, id, ..., ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "pulls", id, "commits"),
+                   params=list(...))
 
 #' list files for a pull request
 #' 
