@@ -13,6 +13,9 @@ get.pull.request.commits(owner, repo, id, ..., ctx = get.github.context())
 
 \item{id}{the pull request id}
 
+\item{...}{extra parameters. See
+https://developer.github.com/v3/pulls/#list-commits-on-a-pull-request for details}
+
 \item{ctx}{the github context object}
 }
 \value{
