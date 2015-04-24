@@ -11,7 +11,7 @@
 #' @keywords package github-package
 #' @examples
 #' \dontrun{get.user.repositories("cscheid")}
-#' @seealso \code{RJSON}
+#' @seealso \code{jsonlite}
 NULL 
 
 .state <- new.env(parent=emptyenv())
