@@ -53,8 +53,9 @@ get.all.repositories <- function(..., ctx = get.github.context())
 #' @param ctx the github context object
 #'
 #' @return the created repository
-create.repository <- function(..., ctx = get.github.context())
-  .api.post.request(ctx, c("user", "repos"), body=content)
+
+create.repository <- function (..., ctx = get.github.context()) 
+  .api.post.request(ctx, c("user", "repos"), body = list(...))
 
 #' create rpository under given organization
 #'
