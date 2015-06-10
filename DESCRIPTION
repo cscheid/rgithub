@@ -11,18 +11,6 @@ Imports:
     httr (>= 0.3),
     Rook,
     stringr,
-    rjson,
+    jsonlite,
 Suggests:
-    testthat,
-Collate:
-    'activity.R'
-    'data.R'
-    'gists.R'
-    'github.R'
-    'issues.R'
-    'orgs.R'
-    'pulls.R'
-    'repositories.R'
-    'search.R'
-    'users.R'
-    'S3methods.R'
+    testthat

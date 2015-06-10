@@ -1,33 +1,48 @@
-require(httr)
-require(RCurl)
-require(stringr)
-require(rjson)
+#' @title github-package: use the Github API from R
+#' 
+#' @description This package wraps the Github web service API so you can make R
+#'   calls against the Github API (to get information about repositories, or
+#'   even to create new content)
+#'   
+#' @author Carlos Scheidegger
+#' @docType package
+#' @name github
+#' @aliases github
+#' @keywords package github-package
+#' @examples
+#' \dontrun{get.user.repositories("cscheid")}
+#' @seealso \code{jsonlite}
+NULL 
 
 .state <- new.env(parent=emptyenv())
 
 #' Obtain a github context interactively
-#'
-#' interactive.login opens a web browser, asks for your username+password, performs
-#' the OAuth dance, retrieves the token, and uses it to create a github context.
-#'
+#' 
+#' interactive.login opens a web browser, asks for your username+password,
+#' performs the OAuth dance, retrieves the token, and uses it to create a github
+#' context.
+#' 
 #' Refer to http://developer.github.com/guides/basics-of-authentication/
-#'
+#' 
 #' @param client_id the github client ID
-#'
+#'   
 #' @param client_secret the github client secret
-#'
+#'   
 #' @param scopes the OAuth scopes you want to request
-#'
-#' @param base_url the base URL for the github webpage. Change this in
-#'   GitHub Enterprise deployments to your base G.E. URL
-#'
-#' @param api_url the base URL for the github API. Change this in
-#'   GitHub Enterprise deployments to your base G.E. API URL
-#'
+#'   
+#' @param base_url the base URL for the github webpage. Change this in GitHub
+#'   Enterprise deployments to your base G.E. URL
+#'   
+#' @param api_url the base URL for the github API. Change this in GitHub
+#'   Enterprise deployments to your base G.E. API URL
+#'   
 #' @param max_etags the maximum number of entries to cache in the context
-#'
-#' @return a github context object that is used in every github API call
-#'   issued by this library.
+#'   
+#' @param verbose logical, passed to \code{create.github.context} and,
+#'   ultimately, to httr configuration
+#'   
+#' @return a github context object that is used in every github API call issued
+#'   by this library.
 interactive.login <- function(client_id,
                               client_secret,
                               scopes = NULL,
@@ -98,7 +113,11 @@ create.github.context <- function(api_url = "https://api.github.com", client_id 
   if (!is.null(access_token) || !is.null(personal_token)) {
     r <- get.myself(ctx)
     if (!r$ok) {
-      stop("create.github.context had access token but wasn't authenticated to get.user?");
+      if (!is.null(access_token))
+        stop("invalid access_token.")
+      if (!is.null(personal_token))
+        stop("invalid (perhaps revoked?) personal_token.")
+      stop("internal error, shouldn't have gotten here")
     }
     ctx$user <- r$content
     ctx$oath_scopes <- r$headers$`x-oauth-scopes`
