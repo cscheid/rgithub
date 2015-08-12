@@ -255,7 +255,7 @@ get.github.context <- function()
 .with.body <- function(method) {
   function(url, config, body) {
     if (is.list(body)) {
-      body = toJSON(body)
+      body <- toJSON(body, auto_unbox=TRUE)
       # config = c(config, add_headers(`Content-Type` = "application/json; charset=utf-8"))
     }
     else if (is.character(body))
