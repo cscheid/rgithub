@@ -21,6 +21,10 @@ NULL
 #' interactive.login opens a web browser, asks for your username+password,
 #' performs the OAuth dance, retrieves the token, and uses it to create a github
 #' context.
+#'
+#' If you use rgithub interactively, then you will get a default
+#' client ID and client secret that you can use. Please don't abuse that,
+#' or the feature might need to be removed.
 #' 
 #' Refer to http://developer.github.com/guides/basics-of-authentication/
 #' 
@@ -43,14 +47,18 @@ NULL
 #'   
 #' @return a github context object that is used in every github API call issued
 #'   by this library.
-interactive.login <- function(client_id,
-                              client_secret,
+interactive.login <- function(client_id = NULL,
+                              client_secret = NULL,
                               scopes = NULL,
                               base_url = "https://github.com",
                               api_url = "https://api.github.com",
                               max_etags = 10000,
                               verbose = FALSE)
 {
+  if (is.null(client_id) && is.null(client_secret) && interactive()) {
+    client_id <- "1ce1de9d27bd86ce924d"
+    client_secret <- "67f526618a826e6149ce00b4a07bc4c2aca90df1"
+  }
   ## auth_url <- NULL
   auth_url <- modify_url(base_url, path = "login/oauth")
   ## if (is.null(scopes))
