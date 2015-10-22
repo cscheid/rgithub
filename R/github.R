@@ -76,6 +76,10 @@ interactive.login <- function(client_id,
 #' rate limiting will be in effect. Refer to http://developer.github.com for
 #' more details.
 #'
+#' If the environment variable GITHUB_PAT is set, then rgithub will attempt
+#' to authenticate using the value of that variable as a personal authentication
+#' token.
+#'
 #' create.github.context stores the context last created in an environment.
 #' If any of the github API functions are called without a context, this
 #' context is used instead. (if no context has been created, an unauthenticated
@@ -101,6 +105,9 @@ create.github.context <- function(api_url = "https://api.github.com", client_id 
                                   client_secret = NULL, access_token = NULL, personal_token = NULL,
                                   max_etags = 10000, verbose = FALSE)
 {
+  if (is.null(personal_token) && (Sys.getenv("GITHUB_PAT") != "")) {
+    personal_token <- Sys.getenv("GITHUB_PAT")
+  }
   ctx <- list(api_url        = api_url,
               client_secret  = client_secret,
               personal_token = personal_token,
