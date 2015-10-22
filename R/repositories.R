@@ -20,7 +20,7 @@ get.my.repositories <- function(..., ctx = get.github.context())
 #' @param ctx the github context object
 #'
 #' @return list of repositories
-get.user.repositories <- function(user, ..., ctx = get.github.context())
+get.user.repositories <- function(user, ..., ctx = get.github.ontext())
   .api.get.request(ctx, c("users", user, "repos"), params=list(...))
 
 #' get list of repositories of given organization
@@ -107,18 +107,6 @@ modify.repository <- function(owner, repo, content, ctx = get.github.context())
 #' @return list of repo contributors
 get.repository.contributors <- function(owner, repo, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "contributors"))
-
-#' get stats on repository contributors
-#' 
-#' @param owner the repo owner (user, org, etc)
-#'
-#' @param repo the name of the repo
-#'
-#' @param ctx the github context object
-#'
-#' @return list of repo contributors stats
-get.repository.contributors.stats <- function(owner, repo, ctx = get.github.context())
-  .api.get.request(ctx, c("repos", owner, repo, "stats", "contributors"))
 
 #' get list of languages used in the repository, as estimated by github
 #' 
@@ -420,6 +408,38 @@ get.repository.readme <- function(owner, repo, ..., ctx = get.github.context())
 get.repository.path <- function(owner, repo, path, ..., ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "contents", path), params=list(...))
 
+#' Update the contents of a file
+#'
+#' @param owner the repo owner (user, org, etc)
+#'
+#' @param repo the name of the repo
+#'
+#' @param path the file path
+#'
+#' @param ... extra parameters to be passed. See http://developer.github.com/v3/repos/contents/#update-a-file
+#'
+#' @param ctx the github context object
+#'
+#' @return the file
+update.repository.path <- function(owner, repo, path, ..., ctx = get.github.context())
+  .api.put.request(ctx, c("repos", owner, repo, "contents", path), params=list(...))
+
+#' Delete a file in a repository
+#'
+#' @param owner the repo owner (user, org, etc)
+#'
+#' @param repo the name of the repo
+#'
+#' @param path the file path
+#'
+#' @param ... extra parameters to be passed. See http://developer.github.com/v3/repos/contents/#update-a-file
+#'
+#' @param ctx the github context object
+#'
+#' @return the file
+delete.repository.path <- function(owner, repo, path, ..., ctx = get.github.context())
+  .api.delete.request(ctx, c("repos", owner, repo, "contents", path), params=list(...))
+
 #' Get the archive of a repo
 #'
 #' @param owner the repo owner (user, org, etc)
@@ -435,6 +455,21 @@ get.repository.path <- function(owner, repo, path, ..., ctx = get.github.context
 #' @return the archive
 get.repository.archive <- function(owner, repo, format, ref, ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, format, ref))
+
+################################################################################
+# deployments
+
+get.deployments <- function(owner, repo, ctx = get.github.context())
+    .api.get.request(ctx, c("repos", owner, repo, "deployments"))
+
+create.deployment <- function(owner, repo, ..., ctx = get.github.context())
+    .api.post.request(ctx, c("repos", owner, repo, "deployments"), body=list(...))
+
+get.deployment.statuses <- function(owner, repo, id, ctx = get.github.context())
+    .api.get.request(ctx, c("repos", owner, repo, "deployments", id, "statuses"))
+
+create.deployment.status <- function(owner, repo, id, ..., ctx = get.github.context())
+    .api.post.request(ctx, c("repos", owner, repo, "deployments", id, "statuses"), body=list(...))
 
 ################################################################################
 # downloads
@@ -690,6 +725,84 @@ perform.repository.merge <- function(owner, repo, content, ctx = get.github.cont
   .api.post.request(ctx, c("repos", owner, repo, "merges"), body=content, expect.code=c(201, 204, 409, 404))
 
 ################################################################################
+# pages
+
+get.pages <- function(owner, repo, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "pages"))
+
+get.pages.builds <- function(owner, repo, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "pages", "builds"))
+
+get.latest.pages.build <- function(owner, repo, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "pages", "builds", "latest"))
+
+################################################################################
+# releases
+
+get.releases <- function(owner, repo, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "releases"))
+
+get.release <- function(owner, repo, id, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "releases", id))
+
+get.latest.release <- function(owner, repo, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "releases", "latest"))
+
+get.release.by.tag <- function(owner, repo, tag, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "releases", "tags", tag))
+
+create.release <- function(owner, repo, ..., ctx = get.github.context())
+  .api.post.request(ctx, c("repos", owner, repo, "releases"), body = list(...), expect.code=201)
+
+edit.release <- function(owner, repo, id, ..., ctx = get.github.context())
+  .api.patch.request(ctx, c("repos", owner, repo, "releases", id), body = list(...))
+
+delete.release <- function(owner, repo, id, ctx = get.github.context())
+  .api.delete.request(ctx, c("repos", owner, repo, "releases", id), expect.code=204)
+
+get.release.assets <- function(owner, repo, id, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "releases", id, "assets"))
+
+# Upload release asset, huh? unsupported for now.
+# https://developer.github.com/v3/repos/releases/#upload-a-release-asset
+
+get.release.asset <- function(owner, repo, id, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "releases", "assets", id))
+
+edit.release.asset <- function(owner, repo, id, ..., ctx = get.github.context())
+  .api.patch.request(ctx, c("repos", owner, repo, "releases", "assets", id), body = list(...))
+
+delete.release.asset <- function(owner, repo, id, ctx = get.github.context())
+  .api.delete.request(ctx, c("repos", owner, repo, "releases", "assets", id), expect.code = 204)
+
+################################################################################
+# statistics
+
+#' get stats on repository contributors
+#' 
+#' @param owner the repo owner (user, org, etc)
+#'
+#' @param repo the name of the repo
+#'
+#' @param ctx the github context object
+#'
+#' @return list of repo contributors stats
+get.repository.contributors.stats <- function(owner, repo, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "stats", "contributors"))
+
+get.last.year.commit.activity <- function(owner, repo, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "stats", "commit_activity"))
+
+get.weekly.additions.deletions <- function(owner, repo, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "stats", "code_frequency"))
+
+get.weekly.commit.count <- function(owner, repo, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "stats", "participation"))
+
+get.punch.card <- function(owner, repo, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "stats", "punch_card"))
+
+################################################################################
 # statuses
 
 #' get statuses for a ref in a repo
@@ -704,7 +817,21 @@ perform.repository.merge <- function(owner, repo, content, ctx = get.github.cont
 #'
 #' @return the list of statuses
 get.repository.statuses <- function(owner, repo, ref, ctx = get.github.context())
-  .api.get.request(ctx, c("repos", owner, repo, "statuses", ref))
+  .api.get.request(ctx, c("repos", owner, repo, "commits", ref, "statuses"))
+
+#' get combined status for a ref in a repo
+#'
+#' @param owner the repo owner (user, org, etc)
+#'
+#' @param repo the name of the repo
+#'
+#' @param ref Ref to list the statuses from. It can be a SHA, a branch name, or a tag name.
+#'
+#' @param ctx the github context object
+#'
+#' @return the combined status
+get.repository.status <- function(owner, repo, ref, ctx = get.github.context())
+  .api.get.request(ctx, c("repos", owner, repo, "commits", ref, "status"))
 
 #' create status for a ref in a repo
 #'
@@ -722,4 +849,5 @@ get.repository.statuses <- function(owner, repo, ref, ctx = get.github.context()
 create.repository.status <- function(owner, repo, ref, ..., ctx = get.github.context())
   .api.post.request(ctx, c("repos", owner, repo, "statuses", ref), params=list(...))
 
-
+################################################################################
+# webhooks unsupported for now.
