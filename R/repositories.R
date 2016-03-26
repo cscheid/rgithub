@@ -20,7 +20,7 @@ get.my.repositories <- function(..., ctx = get.github.context())
 #' @param ctx the github context object
 #'
 #' @return list of repositories
-get.user.repositories <- function(user, ..., ctx = get.github.ontext())
+get.user.repositories <- function(user, ..., ctx = get.github.context())
   .api.get.request(ctx, c("users", user, "repos"), params=list(...))
 
 #' get list of repositories of given organization
