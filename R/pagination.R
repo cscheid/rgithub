@@ -21,6 +21,7 @@ next.page <- function(response, ..., ctx = get.github.context()) {
 .parse_links <- function(response) {
   regex <- "[<]([^>]+)[>]; rel=\"([^\"]+)\""
   raw_links <- response$headers$link
+  if (is.null(raw_links)) return(NULL)
   link_matches <- str_match_all(raw_links, regex)[[1]][,1]
   urls <- str_replace(link_matches, regex, "\\1")
   targets <- str_replace(link_matches, regex, "\\2")
