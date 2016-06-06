@@ -68,6 +68,16 @@ is.starred <- function(id, ctx = get.github.context())
 fork.gist <- function(id, ctx = get.github.context())
   .api.post.request  (ctx, c("gists", id, "forks"))
 
+#' list the forks of a gist
+#'
+#' @param id the gist id
+#'
+#' @param ctx the github context object
+#'
+#' @return the list of fork information
+get.gist.forks <- function(id, ctx = get.github.context())
+  .api.get.request  (ctx, c("gists", id, "forks"))
+
 #' delete a gist
 #'
 #' @param id the gist id
