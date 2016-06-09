@@ -11,7 +11,7 @@ get.repository.commits(owner, repo, ..., ctx = get.github.context())
 
 \item{repo}{the name of the repo}
 
-\item{...}{extra parameters to be passed. see http://developer.github.com/v3/repos/commits/#list-commits-on-a-repository for details}
+\item{...}{extra parameters to be passed. see \url{http://developer.github.com/v3/repos/commits/#list-commits-on-a-repository} for details}
 
 \item{ctx}{the github context object}
 }

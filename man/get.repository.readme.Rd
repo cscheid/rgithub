@@ -11,7 +11,7 @@ get.repository.readme(owner, repo, ..., ctx = get.github.context())
 
 \item{repo}{the name of the repo}
 
-\item{...}{extra parameters to be passed. See http://developer.github.com/v3/repos/contents/#get-the-readme for details.}
+\item{...}{extra parameters to be passed. See \url{http://developer.github.com/v3/repos/contents/#get-the-readme} for details.}
 
 \item{ctx}{the github context object}
 }

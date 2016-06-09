@@ -13,7 +13,7 @@ get.repository.path(owner, repo, path, ..., ctx = get.github.context())
 
 \item{path}{the file path}
 
-\item{...}{extra parameters to be passed. See http://developer.github.com/v3/repos/contents/#get-contents}
+\item{...}{extra parameters to be passed. See \url{http://developer.github.com/v3/repos/contents/#get-contents}}
 
 \item{ctx}{the github context object}
 }

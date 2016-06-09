@@ -11,7 +11,7 @@ perform.repository.merge(owner, repo, content, ctx = get.github.context())
 
 \item{repo}{the name of the repo}
 
-\item{content}{the JSON object describing the merge. See http://developer.github.com/v3/repos/merging/#perform-a-merge for details.}
+\item{content}{the JSON object describing the merge. See \url{http://developer.github.com/v3/repos/merging/#perform-a-merge} for details.}
 
 \item{ctx}{the github context object}
 }

@@ -14,7 +14,7 @@ modify.pull.request.comment(owner, repo, pull.id, content,
 
 \item{pull.id}{the id of the pull request}
 
-\item{content}{the JSON object describing the edited content. See http://developer.github.com/v3/pulls/comments/#edit-a-comment for details.}
+\item{content}{the JSON object describing the edited content. See \url{http://developer.github.com/v3/pulls/comments/#edit-a-comment} for details.}
 
 \item{ctx}{the github context object}
 }

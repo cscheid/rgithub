@@ -21,7 +21,7 @@ get.blob <- function(owner, repo, sha, ctx = get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param content the JSON object describing the blob. See http://developer.github.com/v3/git/blobs/#create-a-blob for details.
+#' @param content the JSON object describing the blob. See \url{http://developer.github.com/v3/git/blobs/#create-a-blob} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -101,7 +101,7 @@ get.all.references <- function(owner, repo, subnamespace=NULL, ctx = get.github.
 #'
 #' @param repo the name of the repo
 #'
-#' @param content the JSON object describing the reference. See http://developer.github.com/v3/git/refs/#create-a-reference for details.
+#' @param content the JSON object describing the reference. See \url{http://developer.github.com/v3/git/refs/#create-a-reference} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -117,7 +117,7 @@ create.reference <- function(owner, repo, content, ctx = get.github.context())
 #'
 #' @param ref the reference
 #'
-#' @param content the JSON object describing the reference. See http://developer.github.com/v3/git/refs/#update-a-reference for details.
+#' @param content the JSON object describing the reference. See \url{http://developer.github.com/v3/git/refs/#update-a-reference} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -162,7 +162,7 @@ get.tag <- function(owner, repo, sha, ctx = get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param content the JSON object describing the content. See http://developer.github.com/v3/git/tags/#create-a-tag-object for details.
+#' @param content the JSON object describing the content. See \url{http://developer.github.com/v3/git/tags/#create-a-tag-object} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -195,7 +195,7 @@ get.tree <- function(owner, repo, sha, ..., ctx = get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param content the JSON object describing the tree. See http://developer.github.com/v3/git/trees/#create-a-tree for details.
+#' @param content the JSON object describing the tree. See \url{http://developer.github.com/v3/git/trees/#create-a-tree} for details.
 #'
 #' @param ctx the github context object
 #'

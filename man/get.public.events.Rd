@@ -7,7 +7,7 @@
 get.public.events(..., ctx = get.github.context())
 }
 \arguments{
-\item{...}{the pagination parameters. See http://developer.github.com/v3/activity/events/ for details}
+\item{...}{the pagination parameters. See \url{http://developer.github.com/v3/activity/events/} for details}
 
 \item{ctx}{the github context object}
 }

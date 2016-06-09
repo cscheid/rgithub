@@ -14,7 +14,7 @@
 
 \item{path}{the file path}
 
-\item{...}{extra parameters to be passed. See http://developer.github.com/v3/repos/contents/#update-a-file}
+\item{...}{extra parameters to be passed. See \url{http://developer.github.com/v3/repos/contents/#update-a-file}}
 
 \item{ctx}{the github context object}
 }

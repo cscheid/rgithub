@@ -13,7 +13,7 @@ modify.commit.comment(owner, repo, id, content, ctx = get.github.context())
 
 \item{id}{the comment id}
 
-\item{content}{the JSON object containing the new contents of the comment. See http://developer.github.com/v3/repos/comments/#update-a-commit-comment for details.}
+\item{content}{the JSON object containing the new contents of the comment. See \url{http://developer.github.com/v3/repos/comments/#update-a-commit-comment} for details.}
 
 \item{ctx}{the github context object}
 }

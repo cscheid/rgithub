@@ -11,7 +11,7 @@ get.network.public.events(owner, repo, ..., ctx = get.github.context())
 
 \item{repo}{the name of the repo}
 
-\item{...}{extra parameters. See http://developer.github.com/v3/activity/events/ for details}
+\item{...}{extra parameters. See \url{http://developer.github.com/v3/activity/events/} for details}
 
 \item{ctx}{the github context object}
 }

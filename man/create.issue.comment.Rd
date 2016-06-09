@@ -14,7 +14,7 @@ create.issue.comment(owner, repo, issue.number, content,
 
 \item{issue.number}{the issue number}
 
-\item{content}{the JSON object describing the issue comment. See http://developer.github.com/v3/issues/comments/#create-a-comment for details.}
+\item{content}{the JSON object describing the issue comment. See \url{http://developer.github.com/v3/issues/comments/#create-a-comment} for details.}
 
 \item{ctx}{the github context object}
 }

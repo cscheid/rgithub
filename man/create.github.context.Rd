@@ -30,7 +30,7 @@ a github context object that is used in every github API call
 \description{
 If create.github.context is called without some of client_id, client_secret
 or access_token, then some API calls will be unavailable, and more severe
-rate limiting will be in effect. Refer to http://developer.github.com for
+rate limiting will be in effect. Refer to \url{http://developer.github.com} for
 more details.
 }
 \details{

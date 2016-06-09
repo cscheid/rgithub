@@ -14,7 +14,7 @@ modify.repository.label(owner, repo, name, content,
 
 \item{name}{the label name}
 
-\item{content}{the JSON object describing the label. See http://developer.github.com/v3/issues/labels/#create-a-label for details.}
+\item{content}{the JSON object describing the label. See \url{http://developer.github.com/v3/issues/labels/#create-a-label} for details.}
 
 \item{ctx}{the github context object}
 }

@@ -13,7 +13,7 @@ modify.hook(owner, repo, id, content, ctx = get.github.context())
 
 \item{id}{the id of the hook}
 
-\item{content}{the JSON object describing the hook. See http://developer.github.com/v3/repos/hooks/#edit-a-hook for details.}
+\item{content}{the JSON object describing the hook. See \url{http://developer.github.com/v3/repos/hooks/#edit-a-hook} for details.}
 
 \item{ctx}{the github context object}
 }

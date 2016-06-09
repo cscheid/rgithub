@@ -11,7 +11,7 @@ get.milestones(owner, repo, ..., ctx = get.github.context())
 
 \item{repo}{the repo name}
 
-\item{...}{other parameters. See http://developer.github.com/v3/issues/milestones/#list-milestones-for-a-repository for details.}
+\item{...}{other parameters. See \url{http://developer.github.com/v3/issues/milestones/#list-milestones-for-a-repository} for details.}
 
 \item{ctx}{the github context object}
 }

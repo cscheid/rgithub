@@ -3,7 +3,7 @@
 
 #' Get list of repositories of current user
 #'
-#' @param ... extra parameters, see http://developer.github.com/v3/repos/
+#' @param ... extra parameters, see \url{http://developer.github.com/v3/repos/}
 #'
 #' @param ctx the github context object
 #'
@@ -15,7 +15,7 @@ get.my.repositories <- function(..., ctx = get.github.context())
 #'
 #' @param user the given user
 #'
-#' @param ... extra parameters, see http://developer.github.com/v3/repos/
+#' @param ... extra parameters, see \url{http://developer.github.com/v3/repos/}
 #'
 #' @param ctx the github context object
 #'
@@ -27,7 +27,7 @@ get.user.repositories <- function(user, ..., ctx = get.github.context())
 #'
 #' @param org the given organization
 #'
-#' @param ... extra parameters, see http://developer.github.com/v3/repos/
+#' @param ... extra parameters, see \url{http://developer.github.com/v3/repos/}
 #'
 #' @param ctx the github context object
 #'
@@ -48,7 +48,7 @@ get.all.repositories <- function(..., ctx = get.github.context())
 #' create repository
 #'
 #' @param ... parameters, "name=repo_name" is required, see
-#'   http://developer.github.com/v3/repos/#create for more
+#'   \url{http://developer.github.com/v3/repos/#create} for more
 #'
 #' @param ctx the github context object
 #'
@@ -62,7 +62,7 @@ create.repository <- function (..., ctx = get.github.context())
 #' @param org the given organization
 #'
 #' @param ... parameters, "name=repo_name" is required, see
-#'   http://developer.github.com/v3/repos/#create for more
+#'   \url{http://developer.github.com/v3/repos/#create} for more
 #'
 #' @param ctx the github context object
 #'
@@ -88,7 +88,7 @@ get.repository <- function(owner, repo, ctx = get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param content the changes to be made, see http://developer.github.com/v3/repos/#edit
+#' @param content the changes to be made, see \url{http://developer.github.com/v3/repos/#edit}
 #'
 #' @param ctx the github context object
 #'
@@ -276,7 +276,7 @@ get.repository.commit.comments <- function(owner, repo, sha, ctx = get.github.co
 #'
 #' @param sha the SHA hash of the commit
 #'
-#' @param content JSON object describing the comment (see http://developer.github.com/v3/repos/comments/#create-a-commit-comment for details)
+#' @param content JSON object describing the comment (see \url{http://developer.github.com/v3/repos/comments/#create-a-commit-comment} for details)
 #'
 #' @param ctx the github context object
 #'
@@ -306,7 +306,7 @@ get.commit.comment <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @param id the comment id
 #'
-#' @param content the JSON object containing the new contents of the comment. See http://developer.github.com/v3/repos/comments/#update-a-commit-comment for details.
+#' @param content the JSON object containing the new contents of the comment. See \url{http://developer.github.com/v3/repos/comments/#update-a-commit-comment} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -337,7 +337,7 @@ delete.commit.comment <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param ... extra parameters to be passed. see http://developer.github.com/v3/repos/commits/#list-commits-on-a-repository for details
+#' @param ... extra parameters to be passed. see \url{http://developer.github.com/v3/repos/commits/#list-commits-on-a-repository} for details
 #'
 #' @param ctx the github context object
 #'
@@ -384,7 +384,7 @@ get.repository.diff <- function(owner, repo, sha1, sha2, ctx = get.github.contex
 #'
 #' @param repo the name of the repo
 #'
-#' @param ... extra parameters to be passed. See http://developer.github.com/v3/repos/contents/#get-the-readme for details.
+#' @param ... extra parameters to be passed. See \url{http://developer.github.com/v3/repos/contents/#get-the-readme} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -400,7 +400,7 @@ get.repository.readme <- function(owner, repo, ..., ctx = get.github.context())
 #'
 #' @param path the file path
 #'
-#' @param ... extra parameters to be passed. See http://developer.github.com/v3/repos/contents/#get-contents
+#' @param ... extra parameters to be passed. See \url{http://developer.github.com/v3/repos/contents/#get-contents}
 #'
 #' @param ctx the github context object
 #'
@@ -416,7 +416,7 @@ get.repository.path <- function(owner, repo, path, ..., ctx = get.github.context
 #'
 #' @param path the file path
 #'
-#' @param ... extra parameters to be passed. See http://developer.github.com/v3/repos/contents/#update-a-file
+#' @param ... extra parameters to be passed. See \url{http://developer.github.com/v3/repos/contents/#update-a-file}
 #'
 #' @param ctx the github context object
 #'
@@ -432,7 +432,7 @@ update.repository.path <- function(owner, repo, path, ..., ctx = get.github.cont
 #'
 #' @param path the file path
 #'
-#' @param ... extra parameters to be passed. See http://developer.github.com/v3/repos/contents/#update-a-file
+#' @param ... extra parameters to be passed. See \url{http://developer.github.com/v3/repos/contents/#update-a-file}
 #'
 #' @param ctx the github context object
 #'
@@ -525,7 +525,7 @@ delete.repository.download <- function(owner, repo, id, ctx = get.github.context
 #'
 #' @param repo the name of the repo
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/repos/forks/#list-forks for details.
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/repos/forks/#list-forks} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -539,7 +539,7 @@ get.repository.forks <- function(owner, repo, ..., ctx = get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/repos/forks/#create-fork for details.
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/repos/forks/#create-fork} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -582,7 +582,7 @@ get.repository.key <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param content the JSON object with the content. See http://developer.github.com/v3/repos/keys/#create for details
+#' @param content the JSON object with the content. See \url{http://developer.github.com/v3/repos/keys/#create} for details
 #'
 #' @param ctx the github context object
 #'
@@ -598,7 +598,7 @@ create.repository.key <- function(owner, repo, content, ctx = get.github.context
 #'
 #' @param id the id of the key
 #'
-#' @param content the JSON object with the content. See http://developer.github.com/v3/repos/keys/#edit for details
+#' @param content the JSON object with the content. See \url{http://developer.github.com/v3/repos/keys/#edit} for details
 #'
 #' @param ctx the github context object
 #'
@@ -655,7 +655,7 @@ get.repository.hook <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param content the JSON object describing the hook. See http://developer.github.com/v3/repos/hooks/#create-a-hook for details.
+#' @param content the JSON object describing the hook. See \url{http://developer.github.com/v3/repos/hooks/#create-a-hook} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -671,7 +671,7 @@ create.hook <- function(owner, repo, content, ctx = get.github.context())
 #'
 #' @param id the id of the hook
 #'
-#' @param content the JSON object describing the hook. See http://developer.github.com/v3/repos/hooks/#edit-a-hook for details.
+#' @param content the JSON object describing the hook. See \url{http://developer.github.com/v3/repos/hooks/#edit-a-hook} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -716,7 +716,7 @@ delete.hook <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param content the JSON object describing the merge. See http://developer.github.com/v3/repos/merging/#perform-a-merge for details.
+#' @param content the JSON object describing the merge. See \url{http://developer.github.com/v3/repos/merging/#perform-a-merge} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -841,7 +841,7 @@ get.repository.status <- function(owner, repo, ref, ctx = get.github.context())
 #'
 #' @param ref Ref to list the statuses from. It can be a SHA, a branch name, or a tag name.
 #'
-#' @param ... parameters that describe the status. see http://developer.github.com/v3/repos/statuses/#create-a-status for details.
+#' @param ... parameters that describe the status. see \url{http://developer.github.com/v3/repos/statuses/#create-a-status} for details.
 #'
 #' @param ctx the github context object
 #'

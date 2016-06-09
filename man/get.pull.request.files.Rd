@@ -14,7 +14,7 @@ get.pull.request.files(owner, repo, id, ..., ctx = get.github.context())
 \item{id}{the pull request id}
 
 \item{...}{extra parameters. See
-http://developer.github.com/v3/pulls/#list-pull-requests for details}
+\url{http://developer.github.com/v3/pulls/#list-pull-requests} for details}
 
 \item{ctx}{the github context object}
 }

@@ -9,7 +9,7 @@ modify.organization(org, content, ctx = get.github.context())
 \arguments{
 \item{org}{the organization name}
 
-\item{content}{the JSON object describing the organization. See http://developer.github.com/v3/orgs/#edit-an-organization for details.}
+\item{content}{the JSON object describing the organization. See \url{http://developer.github.com/v3/orgs/#edit-an-organization} for details.}
 
 \item{ctx}{the github context object}
 }

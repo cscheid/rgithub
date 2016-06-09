@@ -1,6 +1,6 @@
 #' get all issues across all the authenticated user's visible repositories including owned repositories, member repositories, and organization repositories
 #
-#' @param ... extra parameters. See http://developer.github.com/v3/issues/ for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/issues/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -10,7 +10,7 @@ get.all.my.issues <- function(..., ctx = get.github.context())
 
 #' List all issues across owned and member repositories for the authenticated user:
 #
-#' @param ... extra parameters. See http://developer.github.com/v3/issues/ for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/issues/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -22,7 +22,7 @@ get.my.issues <- function(..., ctx = get.github.context())
 #'
 #' @param org the organization
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/issues/ for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/issues/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -36,7 +36,7 @@ get.organization.issues <- function(org, ..., ctx = get.github.context())
 #'
 #' @param repo the repo name
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/issues/ for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/issues/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -50,7 +50,7 @@ get.repository.issues <- function(owner, repo, ..., ctx = get.github.context())
 #'
 #' @param repo the repo name
 #'
-#' @param content the JSON object with the issue content. See http://developer.github.com/v3/issues/#create-an-issue for details
+#' @param content the JSON object with the issue content. See \url{http://developer.github.com/v3/issues/#create-an-issue} for details
 #'
 #' @param ctx the github context object
 #'
@@ -66,7 +66,7 @@ create.issue <- function(owner, repo, content, ctx = get.github.context())
 #'
 #' @param number the issue number
 #'
-#' @param content the JSON object with the issue content. See http://developer.github.com/v3/issues/#edit-an-issue for details
+#' @param content the JSON object with the issue content. See \url{http://developer.github.com/v3/issues/#edit-an-issue} for details
 #'
 #' @param ctx the github context object
 #'
@@ -126,7 +126,7 @@ get.issue.comments <- function(owner, repo, number, ctx = get.github.context())
 #'
 #' @param repo the repo name
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/issues/comments/#list-comments-in-a-repository for details.
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/issues/comments/#list-comments-in-a-repository} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -158,7 +158,7 @@ get.issue.comment <- function(owner, repo, issue.number, comment.number, ctx = g
 #'
 #' @param issue.number the issue number
 #'
-#' @param content the JSON object describing the issue comment. See http://developer.github.com/v3/issues/comments/#create-a-comment for details.
+#' @param content the JSON object describing the issue comment. See \url{http://developer.github.com/v3/issues/comments/#create-a-comment} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -176,7 +176,7 @@ create.issue.comment <- function(owner, repo, issue.number, content, ctx = get.g
 #'
 #' @param comment.number the comment number
 #'
-#' @param content the JSON object describing the issue comment. See http://developer.github.com/v3/issues/comments/#edit-a-comment for details.
+#' @param content the JSON object describing the issue comment. See \url{http://developer.github.com/v3/issues/comments/#edit-a-comment} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -266,7 +266,7 @@ get.repository.label <- function(owner, repo, name, ctx = get.github.context())
 #'
 #' @param repo the repo name
 #'
-#' @param content the JSON object describing the label. See http://developer.github.com/v3/issues/labels/#create-a-label for details.
+#' @param content the JSON object describing the label. See \url{http://developer.github.com/v3/issues/labels/#create-a-label} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -282,7 +282,7 @@ create.repository.label <- function(owner, repo, content, ctx = get.github.conte
 #'
 #' @param name the label name
 #'
-#' @param content the JSON object describing the label. See http://developer.github.com/v3/issues/labels/#create-a-label for details.
+#' @param content the JSON object describing the label. See \url{http://developer.github.com/v3/issues/labels/#create-a-label} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -403,7 +403,7 @@ get.milestone.labels <- function(owner, repo, milestone.number, ctx = get.github
 #'
 #' @param repo the repo name
 #'
-#' @param ... other parameters. See http://developer.github.com/v3/issues/milestones/#list-milestones-for-a-repository for details.
+#' @param ... other parameters. See \url{http://developer.github.com/v3/issues/milestones/#list-milestones-for-a-repository} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -431,7 +431,7 @@ get.milestone <- function(owner, repo, milestone.number, ctx = get.github.contex
 #'
 #' @param repo the repo name
 #'
-#' @param content the JSON object describing the milestone. See http://developer.github.com/v3/issues/milestones/#create-a-milestone for details.
+#' @param content the JSON object describing the milestone. See \url{http://developer.github.com/v3/issues/milestones/#create-a-milestone} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -447,7 +447,7 @@ create.milestone <- function(owner, repo, content, ctx = get.github.context())
 #'
 #' @param milestone.number the milestone number
 #'
-#' @param content the JSON object describing the milestone. See http://developer.github.com/v3/issues/milestones/#update-a-milestone for details.
+#' @param content the JSON object describing the milestone. See \url{http://developer.github.com/v3/issues/milestones/#update-a-milestone} for details.
 #'
 #' @param ctx the github context object
 #'

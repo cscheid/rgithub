@@ -3,7 +3,7 @@
 
 #' list public events
 #'
-#' @param ... the pagination parameters. See http://developer.github.com/v3/activity/events/ for details
+#' @param ... the pagination parameters. See \url{http://developer.github.com/v3/activity/events/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -17,7 +17,7 @@ get.public.events <- function(..., ctx = get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/events/ for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/events/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -31,7 +31,7 @@ get.repository.events <- function(owner, repo, ..., ctx = get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/events/ for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/events/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -45,7 +45,7 @@ get.repository.issue.events <- function(owner, repo, ..., ctx = get.github.conte
 #'
 #' @param repo the name of the repo
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/events/ for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/events/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -57,7 +57,7 @@ get.network.public.events <- function(owner, repo, ..., ctx = get.github.context
 #'
 #' @param org the organization
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/events/ for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/events/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -69,7 +69,7 @@ get.organization.public.events <- function(org, ..., ctx = get.github.context())
 #'
 #' @param user the user
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/events/ for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/events/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -81,7 +81,7 @@ get.user.received.events <- function(user, ..., ctx = get.github.context())
 #'
 #' @param user the user
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/events/ for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/events/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -93,7 +93,7 @@ get.user.public.received.events <- function(user, ..., ctx = get.github.context(
 #'
 #' @param user the user
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/events/ for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/events/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -106,7 +106,7 @@ get.user.performed.events <- function(user, ..., ctx = get.github.context())
 #'
 #' @param user the user
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/events/ for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/events/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -118,7 +118,7 @@ get.user.public.performed.events <- function(user, ..., ctx = get.github.context
 #'
 #' @param org the organization
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/events/ for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/events/} for details
 #'
 #' @param ctx the github context object
 #'
@@ -131,7 +131,7 @@ get.my.organization.events <- function(org, ..., ctx = get.github.context())
 
 #' list the current user's notifications
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/notifications/#list-your-notifications for details.
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/notifications/#list-your-notifications} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -145,7 +145,7 @@ get.my.notifications <- function(..., ctx=get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/notifications/#list-your-notifications-in-a-repository
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/notifications/#list-your-notifications-in-a-repository}
 #'
 #' @param ctx the github context object
 #'
@@ -155,7 +155,7 @@ get.my.repository.notifications <- function(owner, repo, ..., ctx = get.github.c
 
 #' mark my notifications as read
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/notifications/#mark-notifications-as-read
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/notifications/#mark-notifications-as-read}
 #'
 #' @param ctx the github context object
 #'
@@ -169,7 +169,7 @@ mark.my.notifications <- function(..., ctx = get.github.context())
 #'
 #' @param repo the name of the repo
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/notifications/#mark-notifications-as-read-in-a-repository for 
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/notifications/#mark-notifications-as-read-in-a-repository} for 
 #'
 #' @param ctx the github context object
 #'
@@ -211,7 +211,7 @@ get.thread.notifications.subscription <- function(id, ctx = get.github.context()
 #'
 #' @param id the thread id
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/notifications/#set-a-thread-subscription for details.
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/notifications/#set-a-thread-subscription} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -248,7 +248,7 @@ get.stargazers <- function(owner, repo, ctx = get.github.context())
 #'
 #' @param user name of user
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/starring/#list-repositories-being-starred for details.
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/starring/#list-repositories-being-starred} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -258,7 +258,7 @@ get.repositories.starred.by.user <- function(user, ..., ctx = get.github.context
 
 #' list repos starred by current user
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/activity/starring/#list-repositories-being-starred for details.
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/activity/starring/#list-repositories-being-starred} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -354,7 +354,7 @@ get.repository.subscription <- function(owner, repo, ctx = get.github.context())
 #'
 #' @param repo name of repo
 #'
-#' @param ... parameters to be set. See http://developer.github.com/v3/activity/watching/#set-a-repository-subscription
+#' @param ... parameters to be set. See \url{http://developer.github.com/v3/activity/watching/#set-a-repository-subscription}
 #'
 #' @param ctx the github context object
 #'

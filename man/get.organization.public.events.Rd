@@ -9,7 +9,7 @@ get.organization.public.events(org, ..., ctx = get.github.context())
 \arguments{
 \item{org}{the organization}
 
-\item{...}{extra parameters. See http://developer.github.com/v3/activity/events/ for details}
+\item{...}{extra parameters. See \url{http://developer.github.com/v3/activity/events/} for details}
 
 \item{ctx}{the github context object}
 }

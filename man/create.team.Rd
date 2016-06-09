@@ -9,7 +9,7 @@ create.team(org, content, ctx = get.github.context())
 \arguments{
 \item{org}{the organization name}
 
-\item{content}{the JSON object describing the team. See http://developer.github.com/v3/orgs/teams/#create-team for details.}
+\item{content}{the JSON object describing the team. See \url{http://developer.github.com/v3/orgs/teams/#create-team} for details.}
 
 \item{ctx}{the github context object}
 }

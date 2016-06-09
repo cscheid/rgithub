@@ -13,7 +13,7 @@ create.commit.comment(owner, repo, sha, content, ctx = get.github.context())
 
 \item{sha}{the SHA hash of the commit}
 
-\item{content}{JSON object describing the comment (see http://developer.github.com/v3/repos/comments/#create-a-commit-comment for details)}
+\item{content}{JSON object describing the comment (see \url{http://developer.github.com/v3/repos/comments/#create-a-commit-comment} for details)}
 
 \item{ctx}{the github context object}
 }

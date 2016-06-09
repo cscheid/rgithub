@@ -11,7 +11,7 @@ create.blob(owner, repo, content, ctx = get.github.context())
 
 \item{repo}{the name of the repo}
 
-\item{content}{the JSON object describing the blob. See http://developer.github.com/v3/git/blobs/#create-a-blob for details.}
+\item{content}{the JSON object describing the blob. See \url{http://developer.github.com/v3/git/blobs/#create-a-blob} for details.}
 
 \item{ctx}{the github context object}
 }

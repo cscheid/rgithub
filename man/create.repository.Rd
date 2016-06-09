@@ -8,7 +8,7 @@ create.repository(..., ctx = get.github.context())
 }
 \arguments{
 \item{...}{parameters, "name=repo_name" is required, see
-http://developer.github.com/v3/repos/#create for more}
+\url{http://developer.github.com/v3/repos/#create} for more}
 
 \item{ctx}{the github context object}
 }

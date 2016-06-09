@@ -9,7 +9,7 @@ set.thread.notifications.subscription(id, ..., ctx = get.github.context())
 \arguments{
 \item{id}{the thread id}
 
-\item{...}{extra parameters. See http://developer.github.com/v3/activity/notifications/#set-a-thread-subscription for details.}
+\item{...}{extra parameters. See \url{http://developer.github.com/v3/activity/notifications/#set-a-thread-subscription} for details.}
 
 \item{ctx}{the github context object}
 }

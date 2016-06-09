@@ -13,7 +13,7 @@ modify.pull.request(owner, repo, id, content, ctx = get.github.context())
 
 \item{id}{the pull request id}
 
-\item{content}{the JSON object representing the pull request. See http://developer.github.com/v3/pulls/#update-a-pull-request for details.}
+\item{content}{the JSON object representing the pull request. See \url{http://developer.github.com/v3/pulls/#update-a-pull-request} for details.}
 
 \item{ctx}{the github context object}
 }

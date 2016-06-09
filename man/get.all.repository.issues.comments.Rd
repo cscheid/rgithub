@@ -12,7 +12,7 @@ get.all.repository.issues.comments(owner, repo, ...,
 
 \item{repo}{the repo name}
 
-\item{...}{extra parameters. See http://developer.github.com/v3/issues/comments/#list-comments-in-a-repository for details.}
+\item{...}{extra parameters. See \url{http://developer.github.com/v3/issues/comments/#list-comments-in-a-repository} for details.}
 
 \item{ctx}{the github context object}
 }

@@ -11,7 +11,7 @@ create.repository.label(owner, repo, content, ctx = get.github.context())
 
 \item{repo}{the repo name}
 
-\item{content}{the JSON object describing the label. See http://developer.github.com/v3/issues/labels/#create-a-label for details.}
+\item{content}{the JSON object describing the label. See \url{http://developer.github.com/v3/issues/labels/#create-a-label} for details.}
 
 \item{ctx}{the github context object}
 }

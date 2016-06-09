@@ -26,7 +26,7 @@ NULL
 #' client ID and client secret that you can use. Please don't abuse that,
 #' or the feature might need to be removed.
 #' 
-#' Refer to http://developer.github.com/guides/basics-of-authentication/
+#' Refer to \url{http://developer.github.com/guides/basics-of-authentication/}
 #' 
 #' @param client_id the github client ID
 #'   
@@ -81,7 +81,7 @@ interactive.login <- function(client_id = NULL,
 #'
 #' If create.github.context is called without some of client_id, client_secret
 #' or access_token, then some API calls will be unavailable, and more severe
-#' rate limiting will be in effect. Refer to http://developer.github.com for
+#' rate limiting will be in effect. Refer to \url{http://developer.github.com} for
 #' more details.
 #'
 #' If the environment variable GITHUB_PAT is set, then rgithub will attempt

@@ -11,7 +11,7 @@ create.repository.key(owner, repo, content, ctx = get.github.context())
 
 \item{repo}{the name of the repo}
 
-\item{content}{the JSON object with the content. See http://developer.github.com/v3/repos/keys/#create for details}
+\item{content}{the JSON object with the content. See \url{http://developer.github.com/v3/repos/keys/#create} for details}
 
 \item{ctx}{the github context object}
 }
