@@ -13,7 +13,7 @@ modify.reference(owner, repo, ref, content, ctx = get.github.context())
 
 \item{ref}{the reference}
 
-\item{content}{the JSON object describing the reference. See http://developer.github.com/v3/git/refs/#update-a-reference for details.}
+\item{content}{the JSON object describing the reference. See \url{http://developer.github.com/v3/git/refs/#update-a-reference} for details.}
 
 \item{ctx}{the github context object}
 }

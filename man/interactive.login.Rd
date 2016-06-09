@@ -40,6 +40,6 @@ If you use rgithub interactively, then you will get a default
 client ID and client secret that you can use. Please don't abuse that,
 or the feature might need to be removed.
 
-Refer to http://developer.github.com/guides/basics-of-authentication/
+Refer to \url{http://developer.github.com/guides/basics-of-authentication/}
 }
 

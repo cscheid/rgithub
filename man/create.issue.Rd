@@ -11,7 +11,7 @@ create.issue(owner, repo, content, ctx = get.github.context())
 
 \item{repo}{the repo name}
 
-\item{content}{the JSON object with the issue content. See http://developer.github.com/v3/issues/#create-an-issue for details}
+\item{content}{the JSON object with the issue content. See \url{http://developer.github.com/v3/issues/#create-an-issue} for details}
 
 \item{ctx}{the github context object}
 }

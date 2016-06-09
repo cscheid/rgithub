@@ -11,7 +11,7 @@ get.my.repository.notifications(owner, repo, ..., ctx = get.github.context())
 
 \item{repo}{the name of the repo}
 
-\item{...}{extra parameters. See http://developer.github.com/v3/activity/notifications/#list-your-notifications-in-a-repository}
+\item{...}{extra parameters. See \url{http://developer.github.com/v3/activity/notifications/#list-your-notifications-in-a-repository}}
 
 \item{ctx}{the github context object}
 }

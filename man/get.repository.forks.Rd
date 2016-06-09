@@ -11,7 +11,7 @@ get.repository.forks(owner, repo, ..., ctx = get.github.context())
 
 \item{repo}{the name of the repo}
 
-\item{...}{extra parameters. See http://developer.github.com/v3/repos/forks/#list-forks for details.}
+\item{...}{extra parameters. See \url{http://developer.github.com/v3/repos/forks/#list-forks} for details.}
 
 \item{ctx}{the github context object}
 }

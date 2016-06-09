@@ -11,7 +11,7 @@ create.pull.request(owner, repo, content, ctx = get.github.context())
 
 \item{repo}{the repo name}
 
-\item{content}{the JSON object representing the new pull request. See http://developer.github.com/v3/pulls/#create-a-pull-request for details.}
+\item{content}{the JSON object representing the new pull request. See \url{http://developer.github.com/v3/pulls/#create-a-pull-request} for details.}
 
 \item{ctx}{the github context object}
 }

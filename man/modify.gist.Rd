@@ -9,7 +9,7 @@ modify.gist(id, content, ctx = get.github.context())
 \arguments{
 \item{id}{the gist id}
 
-\item{content}{the JSON object describing the updated gist. see http://developer.github.com/v3/gists/#edit-a-gist for details}
+\item{content}{the JSON object describing the updated gist. see \url{http://developer.github.com/v3/gists/#edit-a-gist} for details}
 
 \item{ctx}{the github context object}
 }

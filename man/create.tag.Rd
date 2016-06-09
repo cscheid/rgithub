@@ -11,7 +11,7 @@ create.tag(owner, repo, content, ctx = get.github.context())
 
 \item{repo}{the name of the repo}
 
-\item{content}{the JSON object describing the content. See http://developer.github.com/v3/git/tags/#create-a-tag-object for details.}
+\item{content}{the JSON object describing the content. See \url{http://developer.github.com/v3/git/tags/#create-a-tag-object} for details.}
 
 \item{ctx}{the github context object}
 }

@@ -14,7 +14,7 @@ create.pull.request.comment(owner, repo, pull.id, content,
 
 \item{pull.id}{the id of the pull request}
 
-\item{content}{the JSON object describing the content. See http://developer.github.com/v3/pulls/comments/#create-a-comment for details.}
+\item{content}{the JSON object describing the content. See \url{http://developer.github.com/v3/pulls/comments/#create-a-comment} for details.}
 
 \item{ctx}{the github context object}
 }

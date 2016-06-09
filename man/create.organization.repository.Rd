@@ -10,7 +10,7 @@ create.organization.repository(org, ..., ctx = get.github.context())
 \item{org}{the given organization}
 
 \item{...}{parameters, "name=repo_name" is required, see
-http://developer.github.com/v3/repos/#create for more}
+\url{http://developer.github.com/v3/repos/#create} for more}
 
 \item{ctx}{the github context object}
 }

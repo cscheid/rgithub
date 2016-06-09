@@ -16,7 +16,7 @@ modify.issue.comment(owner, repo, issue.number, comment.number, content,
 
 \item{comment.number}{the comment number}
 
-\item{content}{the JSON object describing the issue comment. See http://developer.github.com/v3/issues/comments/#edit-a-comment for details.}
+\item{content}{the JSON object describing the issue comment. See \url{http://developer.github.com/v3/issues/comments/#edit-a-comment} for details.}
 
 \item{ctx}{the github context object}
 }

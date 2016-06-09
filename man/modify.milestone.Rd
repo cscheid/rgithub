@@ -14,7 +14,7 @@ modify.milestone(owner, repo, milestone.number, content,
 
 \item{milestone.number}{the milestone number}
 
-\item{content}{the JSON object describing the milestone. See http://developer.github.com/v3/issues/milestones/#update-a-milestone for details.}
+\item{content}{the JSON object describing the milestone. See \url{http://developer.github.com/v3/issues/milestones/#update-a-milestone} for details.}
 
 \item{ctx}{the github context object}
 }

@@ -9,7 +9,7 @@ get.organization.repositories(org, ..., ctx = get.github.context())
 \arguments{
 \item{org}{the given organization}
 
-\item{...}{extra parameters, see http://developer.github.com/v3/repos/}
+\item{...}{extra parameters, see \url{http://developer.github.com/v3/repos/}}
 
 \item{ctx}{the github context object}
 }

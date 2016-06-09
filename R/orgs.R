@@ -30,7 +30,7 @@ get.organization <- function(org, ctx = get.github.context())
 #'
 #' @param org the organization name
 #'
-#' @param content the JSON object describing the organization. See http://developer.github.com/v3/orgs/#edit-an-organization for details.
+#' @param content the JSON object describing the organization. See \url{http://developer.github.com/v3/orgs/#edit-an-organization} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -148,7 +148,7 @@ get.team <- function(id, ctx = get.github.context())
 #'
 #' @param org the organization name
 #'
-#' @param content the JSON object describing the team. See http://developer.github.com/v3/orgs/teams/#create-team for details.
+#' @param content the JSON object describing the team. See \url{http://developer.github.com/v3/orgs/teams/#create-team} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -160,7 +160,7 @@ create.team <- function(org, content, ctx = get.github.context())
 #'
 #' @param id team id
 #'
-#' @param content the JSON object describing the team. See http://developer.github.com/v3/orgs/teams/#create-team for details.
+#' @param content the JSON object describing the team. See \url{http://developer.github.com/v3/orgs/teams/#create-team} for details.
 #'
 #' @param ctx the github context object
 #'

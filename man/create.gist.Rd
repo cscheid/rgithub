@@ -7,7 +7,7 @@
 create.gist(content, ctx = get.github.context())
 }
 \arguments{
-\item{content}{the JSON object describing the gist. see http://developer.github.com/v3/gists/#create-a-gist for details}
+\item{content}{the JSON object describing the gist. see \url{http://developer.github.com/v3/gists/#create-a-gist} for details}
 
 \item{ctx}{the github context object}
 }

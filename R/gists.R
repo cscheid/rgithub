@@ -90,7 +90,7 @@ delete.gist <- function(id, ctx = get.github.context())
 
 #' create a new gist
 #'
-#' @param content the JSON object describing the gist. see http://developer.github.com/v3/gists/#create-a-gist for details
+#' @param content the JSON object describing the gist. see \url{http://developer.github.com/v3/gists/#create-a-gist} for details
 #'
 #' @param ctx the github context object
 #'
@@ -102,7 +102,7 @@ create.gist <- function(content, ctx = get.github.context())
 #'
 #' @param id the gist id
 #'
-#' @param content the JSON object describing the updated gist. see http://developer.github.com/v3/gists/#edit-a-gist for details
+#' @param content the JSON object describing the updated gist. see \url{http://developer.github.com/v3/gists/#edit-a-gist} for details
 #'
 #' @param ctx the github context object
 #'
@@ -139,7 +139,7 @@ get.gist.comment <- function(gist.id, comment.id, ctx = get.github.context())
 #'
 #' @param gist.id the gist id
 #'
-#' @param content the JSON object describing the comment. see http://developer.github.com/v3/gists/comments/#create-a-comment for details
+#' @param content the JSON object describing the comment. see \url{http://developer.github.com/v3/gists/comments/#create-a-comment} for details
 #'
 #' @param ctx the github context object
 #'
@@ -153,7 +153,7 @@ create.gist.comment <- function(gist.id, content, ctx = get.github.context())
 #'
 #' @param comment.id the comment id
 #'
-#' @param content the JSON object describing the comment. see http://developer.github.com/v3/gists/comments/#edit-a-comment for details
+#' @param content the JSON object describing the comment. see \url{http://developer.github.com/v3/gists/comments/#edit-a-comment} for details
 #'
 #' @param ctx the github context object
 #'

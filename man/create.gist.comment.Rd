@@ -9,7 +9,7 @@ create.gist.comment(gist.id, content, ctx = get.github.context())
 \arguments{
 \item{gist.id}{the gist id}
 
-\item{content}{the JSON object describing the comment. see http://developer.github.com/v3/gists/comments/#create-a-comment for details}
+\item{content}{the JSON object describing the comment. see \url{http://developer.github.com/v3/gists/comments/#create-a-comment} for details}
 
 \item{ctx}{the github context object}
 }

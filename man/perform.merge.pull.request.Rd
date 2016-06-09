@@ -13,7 +13,7 @@ perform.merge.pull.request(owner, repo, id, ..., ctx = get.github.context())
 
 \item{id}{the pull request id}
 
-\item{...}{extra parameters to control the merge. See http://developer.github.com/v3/pulls/#merge-a-pull-request-merge-buttontrade for details.}
+\item{...}{extra parameters to control the merge. See \url{http://developer.github.com/v3/pulls/#merge-a-pull-request-merge-buttontrade} for details.}
 
 \item{ctx}{the github context object}
 }

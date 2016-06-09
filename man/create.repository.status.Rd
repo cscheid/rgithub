@@ -13,7 +13,7 @@ create.repository.status(owner, repo, ref, ..., ctx = get.github.context())
 
 \item{ref}{Ref to list the statuses from. It can be a SHA, a branch name, or a tag name.}
 
-\item{...}{parameters that describe the status. see http://developer.github.com/v3/repos/statuses/#create-a-status for details.}
+\item{...}{parameters that describe the status. see \url{http://developer.github.com/v3/repos/statuses/#create-a-status} for details.}
 
 \item{ctx}{the github context object}
 }

@@ -9,7 +9,7 @@ get.user.public.received.events(user, ..., ctx = get.github.context())
 \arguments{
 \item{user}{the user}
 
-\item{...}{extra parameters. See http://developer.github.com/v3/activity/events/ for details}
+\item{...}{extra parameters. See \url{http://developer.github.com/v3/activity/events/} for details}
 
 \item{ctx}{the github context object}
 }

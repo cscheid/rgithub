@@ -7,7 +7,7 @@
 get.repositories.starred.by.me(..., ctx = get.github.context())
 }
 \arguments{
-\item{...}{extra parameters. See http://developer.github.com/v3/activity/starring/#list-repositories-being-starred for details.}
+\item{...}{extra parameters. See \url{http://developer.github.com/v3/activity/starring/#list-repositories-being-starred} for details.}
 
 \item{ctx}{the github context object}
 }

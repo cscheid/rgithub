@@ -11,7 +11,7 @@ modify.repository(owner, repo, content, ctx = get.github.context())
 
 \item{repo}{the name of the repo}
 
-\item{content}{the changes to be made, see http://developer.github.com/v3/repos/#edit}
+\item{content}{the changes to be made, see \url{http://developer.github.com/v3/repos/#edit}}
 
 \item{ctx}{the github context object}
 }

@@ -4,7 +4,7 @@
 #'
 #' @param repo the repo name
 #'
-#' @param ... extra parameters. See http://developer.github.com/v3/pulls/#list-pull-requests for details
+#' @param ... extra parameters. See \url{http://developer.github.com/v3/pulls/#list-pull-requests} for details
 #'
 #' @param ctx the github context object
 #'
@@ -32,7 +32,7 @@ get.pull.request <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @param repo the repo name
 #'
-#' @param content the JSON object representing the new pull request. See http://developer.github.com/v3/pulls/#create-a-pull-request for details.
+#' @param content the JSON object representing the new pull request. See \url{http://developer.github.com/v3/pulls/#create-a-pull-request} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -48,7 +48,7 @@ create.pull.request <- function(owner, repo, content, ctx = get.github.context()
 #'
 #' @param id the pull request id
 #'
-#' @param content the JSON object representing the pull request. See http://developer.github.com/v3/pulls/#update-a-pull-request for details.
+#' @param content the JSON object representing the pull request. See \url{http://developer.github.com/v3/pulls/#update-a-pull-request} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -67,7 +67,7 @@ modify.pull.request <- function(owner, repo, id, content, ctx = get.github.conte
 #' @param ctx the github context object
 #'
 #' @param ... extra parameters. See
-#'   https://developer.github.com/v3/pulls/#list-commits-on-a-pull-request for details
+#'   \url{https://developer.github.com/v3/pulls/#list-commits-on-a-pull-request} for details
 #' @return the list of pull request commits
 get.pull.request.commits <- function(owner, repo, id, ..., ctx = get.github.context())
   .api.get.request(ctx, c("repos", owner, repo, "pulls", id, "commits"),
@@ -84,7 +84,7 @@ get.pull.request.commits <- function(owner, repo, id, ..., ctx = get.github.cont
 #' @param ctx the github context object
 #'   
 #' @param ... extra parameters. See
-#'   http://developer.github.com/v3/pulls/#list-pull-requests for details
+#'   \url{http://developer.github.com/v3/pulls/#list-pull-requests} for details
 #'   
 #' @return the list of pull request files
 get.pull.request.files <-
@@ -114,7 +114,7 @@ is.pull.request.merged <- function(owner, repo, id, ctx = get.github.context())
 #'
 #' @param id the pull request id
 #'
-#' @param ... extra parameters to control the merge. See http://developer.github.com/v3/pulls/#merge-a-pull-request-merge-buttontrade for details.
+#' @param ... extra parameters to control the merge. See \url{http://developer.github.com/v3/pulls/#merge-a-pull-request-merge-buttontrade} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -145,7 +145,7 @@ get.pull.request.comments <- function(owner, repo, id, ctx = get.github.context(
 #'
 #' @param repo the repo name
 #'
-#' @param ... extra parameters to control pagination. See http://developer.github.com/v3/pulls/comments/#list-comments-in-a-repository for details.
+#' @param ... extra parameters to control pagination. See \url{http://developer.github.com/v3/pulls/comments/#list-comments-in-a-repository} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -175,7 +175,7 @@ get.pull.requests.comment <- function(owner, repo, comment.id, ctx = get.github.
 #'
 #' @param pull.id the id of the pull request
 #'
-#' @param content the JSON object describing the content. See http://developer.github.com/v3/pulls/comments/#create-a-comment for details.
+#' @param content the JSON object describing the content. See \url{http://developer.github.com/v3/pulls/comments/#create-a-comment} for details.
 #'
 #' @param ctx the github context object
 #'
@@ -191,7 +191,7 @@ create.pull.request.comment <- function(owner, repo, pull.id, content, ctx = get
 #'
 #' @param pull.id the id of the pull request
 #'
-#' @param content the JSON object describing the edited content. See http://developer.github.com/v3/pulls/comments/#edit-a-comment for details.
+#' @param content the JSON object describing the edited content. See \url{http://developer.github.com/v3/pulls/comments/#edit-a-comment} for details.
 #'
 #' @param ctx the github context object
 #'

@@ -13,7 +13,7 @@ modify.repository.key(owner, repo, id, content, ctx = get.github.context())
 
 \item{id}{the id of the key}
 
-\item{content}{the JSON object with the content. See http://developer.github.com/v3/repos/keys/#edit for details}
+\item{content}{the JSON object with the content. See \url{http://developer.github.com/v3/repos/keys/#edit} for details}
 
 \item{ctx}{the github context object}
 }

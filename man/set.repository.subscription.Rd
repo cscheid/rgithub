@@ -11,7 +11,7 @@ set.repository.subscription(owner, repo, ..., ctx = get.github.context())
 
 \item{repo}{name of repo}
 
-\item{...}{parameters to be set. See http://developer.github.com/v3/activity/watching/#set-a-repository-subscription}
+\item{...}{parameters to be set. See \url{http://developer.github.com/v3/activity/watching/#set-a-repository-subscription}}
 
 \item{ctx}{the github context object}
 }

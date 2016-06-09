@@ -9,7 +9,7 @@ get.user.repositories(user, ..., ctx = get.github.context())
 \arguments{
 \item{user}{the given user}
 
-\item{...}{extra parameters, see http://developer.github.com/v3/repos/}
+\item{...}{extra parameters, see \url{http://developer.github.com/v3/repos/}}
 
 \item{ctx}{the github context object}
 }

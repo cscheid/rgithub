@@ -11,7 +11,7 @@ get.pull.requests.comments(owner, repo, ..., ctx = get.github.context())
 
 \item{repo}{the repo name}
 
-\item{...}{extra parameters to control pagination. See http://developer.github.com/v3/pulls/comments/#list-comments-in-a-repository for details.}
+\item{...}{extra parameters to control pagination. See \url{http://developer.github.com/v3/pulls/comments/#list-comments-in-a-repository} for details.}
 
 \item{ctx}{the github context object}
 }
