@@ -247,6 +247,7 @@ get.github.context <- function()
   if (ctx$verbose)
     config <- c(config, verbose())
 
+  # Rserve::ulog("GITHUB request: ", url)
   r <- method(url = url, config = config, body = body)
   result <- tryCatch(content(r),
                      error = function(e) {
@@ -272,6 +273,7 @@ get.github.context <- function()
     if (is.list(body)) {
       body <- toJSON(body, auto_unbox=TRUE, null="null")
       # config = c(config, add_headers(`Content-Type` = "application/json; charset=utf-8"))
+      config = c(config, content_type("application/json; charset=utf-8"))
     }
     else if (is.character(body))
       stopifnot(length(body) == 1)

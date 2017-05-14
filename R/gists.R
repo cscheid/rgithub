@@ -145,7 +145,7 @@ get.gist.comment <- function(gist.id, comment.id, ctx = get.github.context())
 #'
 #' @return the comment
 create.gist.comment <- function(gist.id, content, ctx = get.github.context())
-  .api.post.request(ctx, c("gists", gist.id, "comments"), body=content, config=add_headers(Accept='application/vnd.github.v3.text+json'))
+  .api.post.request(ctx, c("gists", gist.id, "comments"), body=content, config=add_headers(Accept='application/vnd.github.v3.text+json', `Content-Type` = 'application/json'))
 
 #' Edit gist comment
 #'
@@ -159,7 +159,7 @@ create.gist.comment <- function(gist.id, content, ctx = get.github.context())
 #'
 #' @return the comment
 modify.gist.comment <- function(gist.id, comment.id, content, ctx = get.github.context())
-  .api.patch.request(ctx, c("gists", gist.id, "comments", comment.id), body=content, config=add_headers(Accept='application/vnd.github.v3.text+json'))
+  .api.patch.request(ctx, c("gists", gist.id, "comments", comment.id), body=content, config=add_headers(Accept='application/vnd.github.v3.text+json', `Content-Type` = 'application/json'))
 
 #' Delete gist comment
 #'
