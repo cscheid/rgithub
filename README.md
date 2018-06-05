@@ -2,6 +2,12 @@
 
 # R Bindings for the Github v3 API
 
+## This project is essentially abandoned
+
+Hello there - unfortunately I don't have time to maintain this project anymore. If you're interested in taking over, send me an email and I'm happy to help with the transition.
+
+## Intro
+
 These are bindings for the Github web service API as of version 3. For
 full documentation, please refer to the [Github developer
 API](http://developer.github.com/v3).
