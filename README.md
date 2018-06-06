@@ -6,6 +6,8 @@
 
 Hello there - unfortunately I don't have time to maintain this project anymore. If you're interested in taking over, send me an email and I'm happy to help with the transition.
 
+If you're a user of this library, consider switching to [gh](https://github.com/r-lib/gh/) or [ghapi3](https://github.com/coatless/ghapi3), which are both newer and more actively maintained.
+
 ## Intro
 
 These are bindings for the Github web service API as of version 3. For
