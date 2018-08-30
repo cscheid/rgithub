@@ -257,7 +257,7 @@ get.github.context <- function()
                      })
   output <-
   list(ok = r$status_code %in% expect.code, content = result, headers = r$headers,
-       code = r$status_code)
+       code = r$status_code, req = req, method = method, params = params)
   ## class(output) <- "github"
   output
 }
